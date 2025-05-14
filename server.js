@@ -6,10 +6,10 @@ const port = 3000;
 
 // Configuração da conexão com o MySQL
 const db = mysql.createConnection({
-  host: 'localhost',  // ou o seu host
-  user: 'root',       // seu usuário do MySQL
-  password: '',       // sua senha do MySQL
-  database: 'quiz'    // nome do banco de dados
+  host: 'localhost',      // ou o seu host
+  user: 'root',           // seu usuário do MySQL
+  password: '',           // sua senha do MySQL
+  database: 'quiz'        // nome do banco de dados
 });
 
 // Conectando ao banco de dados MySQL
@@ -22,19 +22,31 @@ db.connect((err) => {
 });
 
 // Middleware para servir arquivos estáticos diretamente da raiz do projeto
-app.use(express.static(path.join(__dirname))); // Agora ele vai procurar os arquivos na raiz
+app.use(express.static(path.join(__dirname)));
 
 // Rota para a página inicial
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));  // Serve o index.html da raiz
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Rota para obter as perguntas do banco de dados
+// Rota para obter as perguntas do quiz
 app.get('/api/questions', (req, res) => {
   db.query('SELECT * FROM questions', (err, results) => {
     if (err) {
-      console.error('Erro ao obter perguntas:', err);
-      res.status(500).send('Erro ao obter perguntas');
+      console.error('Erro ao obter perguntas do quiz:', err);
+      res.status(500).send('Erro ao obter perguntas do quiz');
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter as perguntas do game
+app.get('/api/game-questions', (req, res) => {
+  db.query('SELECT * FROM game_questions', (err, results) => {
+    if (err) {
+      console.error('Erro ao obter perguntas do game:', err);
+      res.status(500).send('Erro ao obter perguntas do game');
     } else {
       res.json(results);
     }

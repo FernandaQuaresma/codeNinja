@@ -76,8 +76,6 @@ function renderQuestions() {
 
     $questionsContainer.appendChild(questionCard);
   });
-
- 
 }
 
 function selectAnswer(event, card, cardIndex) {
@@ -135,10 +133,15 @@ function finishGame() {
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
-      <span>Resultado: ${message}</span>
+      <span>Resultado: ${message}</span><br/>
+      Redirecionando para o jogo...
     </p>
-    <button onclick="window.location.href='algoritimos.html'" class="button">Retornar</button>
   `;
+
+  // Redireciona automaticamente para o jogo após 3 segundos
+  setTimeout(() => {
+    window.location.href = "http://localhost:3000/ninjagame/frontend/game.html";
+  }, 3000);
 }
 
 // Inicia automaticamente ao carregar a página

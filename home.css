@@ -1,0 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: #0a0a23;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+/* Header */
+header {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+}
+
+header .brand {
+  color: #7c4dff;
+  font-size: 1.8em;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+header .navigation .navigation-items a {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 30px;
+  position: relative;
+}
+
+header .navigation .navigation-items a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #7c4dff;
+  transition: 0.3s ease;
+}
+
+header .navigation .navigation-items a:hover::before {
+  width: 100%;
+}
+
+.menu-btn {
+  display: none;
+}
+
+/* Seção principal com vídeo */
+.home {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: #0a0a23;
+  overflow: hidden;
+}
+
+.home video {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Camada escura sutil */
+.home::before {
+  z-index: 1;
+  content: '';
+  position: absolute;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(20,0,40,0.7));
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Fumaça roxa */
+.home::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('imagems-videos/fumaca-roxa.gif') center/cover no-repeat;
+  opacity: 0.25;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Conteúdo da seção */
+.home .content {
+  z-index: 2;
+  color: #fff;
+  width: 70%;
+  margin-top: 80px;
+  margin-left: 50px;
+}
+
+.home .content h1 {
+  font-size: 3.5em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+}
+
+.home .content h1 span {
+  color: #7c4dff;
+}
+
+.home .content p {
+  font-size: 1.2em;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Ícone removido como pedido */
+.home .media-icons {
+  display: none;
+}
+
+/* Texto explicativo */
+.text-home {
+  background: #120c2c;
+  color: #e1dfff;
+  border-top: 3px solid #7c4dff;
+  padding: 80px 50px 150px; /* espaço inferior reservado */
+}
+
+.text-home h1 {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #7c4dff;
+}
+
+.text-home p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* Responsivo */
+@media (max-width: 1040px) {
+  header {
+    padding: 12px 20px;
+  }
+
+  .home .content {
+    width: 90%;
+    margin: 100px 20px 0;
+  }
+
+  .menu-btn {
+    background: url('imagems-videos/menu.png') no-repeat center;
+    background-size: 30px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: block;
+    z-index: 1001;
+  }
+
+  .menu-btn.active {
+    background: url('imagems-videos/close.png') no-repeat center;
+    background-size: 30px;
+  }
+
+  header .navigation {
+    display: none;
+  }
+
+  header .navigation.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .navigation .navigation-items {
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  header .navigation .navigation-items a {
+    color: #111;
+    font-size: 1.2em;
+  }
+
+  .text-home {
+    padding: 60px 20px 120px;
+  }
+}

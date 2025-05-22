@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil</title>
+  <link rel="stylesheet" href="../perfil.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Logo Ninja" />
+    </div>
+    <ul>
+      <li><a href="../home.html">Home</a></li>
+    </ul>
+  </header>
+
+  <div class="perfil-container">
+    <img id="foto-perfil" src="" alt="Foto de perfil" />
+
+    <div id="visualizacao" class="perfil-dados">
+      <p><strong>Nome:</strong> <span id="nomeDisplay">Nome</span></p>
+      <p><strong>Email:</strong> <span id="emailDisplay"></span></p>
+      <p><strong>Senha:</strong> ******</p>
+      <button class="edit-btn" onclick="ativarEdicao()">
+        <i class="bi bi-pencil-square"></i> Editar Perfil
+      </button>
+    </div>
+
+    <form id="formPerfil" style="display:none;" enctype="multipart/form-data">
+      <input type="file" name="foto" accept="image/*" />
+      <input type="text" id="nome" name="nome" placeholder="Novo nome" />
+      <input type="email" id="email" name="email" placeholder="Novo email" />
+      <input type="password" id="senha" name="senha" placeholder="Nova senha" />
+
+      <div class="form-buttons">
+        <button type="submit" class="save-btn">Salvar alterações</button>
+        <button type="button" class="cancel-btn" onclick="cancelarEdicao()">Cancelar</button>
+      </div>
+    </form>
+
+    <a href="/logout" class="logout-btn">Sair</a>
+    <button class="delete-btn" onclick="excluirConta()">Excluir Conta</button>
+  </div>
+
+  <script>
+    fetch('/api/usuario')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('nomeDisplay').textContent = data.nome;
+        document.getElementById('emailDisplay').textContent = data.email;
+        document.getElementById('foto-perfil').src = data.foto
+          ? `/fotos/${data.foto}`
+          : 'https://i.pravatar.cc/100?img=11';
+
+        document.getElementById('nome').value = data.nome;
+        document.getElementById('email').value = data.email;
+      });
+
+    function ativarEdicao() {
+      document.getElementById('visualizacao').style.display = 'none';
+      document.getElementById('formPerfil').style.display = 'block';
+    }
+
+    function cancelarEdicao() {
+      document.getElementById('formPerfil').reset();
+      document.getElementById('formPerfil').style.display = 'none';
+      document.getElementById('visualizacao').style.display = 'block';
+    }
+
+    document.getElementById('formPerfil').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = document.getElementById('formPerfil');
+      const formData = new FormData(form);
+
+      const res = await fetch('/atualizar-usuario', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (res.ok) {
+        alert('Alterações salvas!');
+        window.location.reload();
+      } else {
+        alert('Erro ao salvar alterações.');
+      }
+    });
+
+    function excluirConta() {
+      if (confirm("Tem certeza que deseja excluir sua conta? Essa ação é permanente.")) {
+        fetch('/excluir-conta', {
+          method: 'DELETE'
+        })
+        .then(res => {
+          if (res.ok) {
+            alert('Conta excluída com sucesso.');
+            window.location.href = '/login.html';
+          } else {
+            alert('Erro ao excluir a conta.');
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

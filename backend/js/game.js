@@ -126,7 +126,7 @@ document.addEventListener('keydown', (e) => {
 
   ninjaX = Math.max(limiteEsquerdo, Math.min(limiteDireito - 120, ninjaX));
   ninja.style.left = `${ninjaX}px`;
-  ninja.src = direction === 'direita' ? 'assets/ninja-direita.png' : 'assets/ninja-esquerda.png';
+  ninja.src = direction === 'direita' ? '/frontend/assets/ninja-direita.png' : '/frontend/assets/ninja-esquerda.png';
 });
 
 // Início do jogo

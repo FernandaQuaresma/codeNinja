@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: #0a0a23;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+/* Header */
+header {
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+}
+
+header .brand {
+  color: #7c4dff;
+  font-size: 1.8em;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+header .navigation .navigation-items a {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 30px;
+  position: relative;
+}
+
+header .navigation .navigation-items a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #7c4dff;
+  transition: 0.3s ease;
+}
+
+header .navigation .navigation-items a:hover::before {
+  width: 100%;
+}
+
+.menu-btn {
+  display: none;
+}
+
+  
+.exit-button {
+    background-color: #512da8;
+    color: white;
+    border: none;
+    padding: 12px 45px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+    margin: 20px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.exit-button:hover {
+    background-color: #3a1f7a;
+}
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .lesson-box {
+    background-color: #1b1b1b;
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #a367fd;
+    max-width: 800px;
+    box-shadow: 0 0 10px #a367fd33;
+  }
+  
+  .lesson-box h1 {
+    color: #d5b4ff;
+  }
+  
+  .lesson-box h2 {
+    color: #d5b4ff;
+    margin-top: 20px;
+  }
+  
+  .lesson-box p {
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+  
+  .code-box {
+    background-color: #111;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: monospace;
+    color: #9af;
+    margin-top: 10px;
+    white-space: pre-wrap;
+  }
+  
+  .quiz-button {
+    margin-top: 20px;
+    background-color: #a367fd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 30px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

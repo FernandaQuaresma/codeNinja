@@ -140,7 +140,7 @@ function finishGame() {
 
   // Redireciona automaticamente para o jogo após 3 segundos
   setTimeout(() => {
-    window.location.href = "http://localhost:3000/ninjagame/frontend/game.html";
+    window.location.href = "http://localhost:3000/frontend/pages/game.html";
   }, 3000);
 }
 

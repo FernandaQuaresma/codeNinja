@@ -136,16 +136,14 @@ header .navigation .navigation-items a:hover::before {
   line-height: 1.6;
 }
 
-/* Ícone removido como pedido */
 .home .media-icons {
   display: none;
 }
 
-/* Texto explicativo */
 .text-home {
   background: #120c2c;
   color: #e1dfff;
-  border-top: 3px solid #7c4dff;
+  border-top: 3px solid #120c2c;
   padding: 80px 50px 150px; /* espaço inferior reservado */
 }
 

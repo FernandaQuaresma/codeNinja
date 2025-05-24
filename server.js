@@ -1,59 +1,60 @@
 const express = require('express');
 const mysql = require('mysql2');
-const path = require('path');  // Para resolver o caminho dos arquivos
+const path = require('path');
+const session = require('express-session');
 const app = express();
 const port = 3000;
 
-// Configuração da conexão com o MySQL
+// Banco de dados
 const db = mysql.createConnection({
-  host: 'localhost',      // ou o seu host
-  user: 'root',           // seu usuário do MySQL
-  password: '',           // sua senha do MySQL
-  database: 'quiz'        // nome do banco de dados
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'quiz'
 });
-
-// Conectando ao banco de dados MySQL
 db.connect((err) => {
-  if (err) {
-    console.error('Erro ao conectar ao MySQL:', err);
-    return;
-  }
-  console.log('Conectado ao MySQL!');
+  if (err) console.error('Erro ao conectar:', err);
+  else console.log('Conectado ao MySQL!');
 });
 
-// Middleware para servir arquivos estáticos diretamente da raiz do projeto
+// Sessão
+app.use(session({
+  secret: 'seusegredo123',
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Parse de form
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Arquivos estáticos
 app.use(express.static(path.join(__dirname)));
 
-// Rota para a página inicial
+// Rotas
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '/frontend/pages/home.html'));
 });
 
-// Rota para obter as perguntas do quiz
 app.get('/api/questions', (req, res) => {
   db.query('SELECT * FROM questions', (err, results) => {
-    if (err) {
-      console.error('Erro ao obter perguntas do quiz:', err);
-      res.status(500).send('Erro ao obter perguntas do quiz');
-    } else {
-      res.json(results);
-    }
+    if (err) res.status(500).send('Erro ao obter perguntas');
+    else res.json(results);
   });
 });
 
-// Rota para obter as perguntas do game
 app.get('/api/game-questions', (req, res) => {
   db.query('SELECT * FROM game_questions', (err, results) => {
-    if (err) {
-      console.error('Erro ao obter perguntas do game:', err);
-      res.status(500).send('Erro ao obter perguntas do game');
-    } else {
-      res.json(results);
-    }
+    if (err) res.status(500).send('Erro ao obter perguntas');
+    else res.json(results);
   });
 });
 
-// Iniciar o servidor na porta 3000
+// Rotas de usuário
+const userRoutes = require('./serveruser')(db);
+app.use(userRoutes);
+
+// Inicia servidor
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });

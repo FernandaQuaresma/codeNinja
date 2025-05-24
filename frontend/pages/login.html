@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/frontend/css/cadastro.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" class="brand">CodeNinja</a>
+        <div class="menu-btn"></div>
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="cadastro.html">Cadastrar</a>
+                <a href="home.html">O que é o CodeNinja?</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form action="/login" method="POST">
+                <h1>Entre na conta</h1>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+
+        </div>
+        <div class="side-panel">
+            <h1>Olá!</h1>
+            <p>Se ainda não tem uma conta, cadastre-se!</p>
+            <a href="cadastro.html"><button>Cadastrar</button></a>
+        </div>
+    </div>
+</body>
+
+</html>

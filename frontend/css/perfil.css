@@ -11,55 +11,53 @@ body {
 }
 
 header {
-  background-color: #1a1a2e;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5px 40px;
-  box-shadow: 0 2px 8px rgba(124, 77, 255, 0.3);
-  border-bottom: 1px solid #292929;
-  position: relative;
-  z-index: 2;
+  padding: 15px 50px;
 }
 
-header .logo {
-  color: #ffffff;
-  font-size: 30px;
-  display: flex;
-  align-items: center;
-}
-
-header .logo img {
-  height: 70px;
-  margin-right: 10px;
-  border-radius: 8px;
-}
-
-header ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-header ul li {
-  margin-left: 20px;
-  margin-right: 30px;
-}
-
-header ul li a {
+header .brand {
+  color: #7c4dff;
+  font-size: 1.8em;
+  font-weight: 800;
+  text-transform: uppercase;
   text-decoration: none;
-  color: #ffffff;
-  font-size: 25px;
-  font-family: 'Segoe UI', sans-serif;
-  transition: transform 0.3s ease, color 0.3s ease;
+  letter-spacing: 2px;
 }
 
-header ul li a:hover {
-  transform: scale(1.2);
-  color: #8c52ff;
+header .navigation .navigation-items a {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 30px;
+  position: relative;
 }
 
+header .navigation .navigation-items a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #7c4dff;
+  transition: 0.3s ease;
+}
+
+header .navigation .navigation-items a:hover::before {
+  width: 100%;
+}
+
+.menu-btn {
+  display: none;
+}
 .perfil-container {
   max-width: 420px;
   margin: 60px auto;

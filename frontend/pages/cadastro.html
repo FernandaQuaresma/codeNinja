@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/frontend/css/cadastro.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="brand">CodeNinja</a>
+        <div class="menu-btn"></div>
+        <div class="navigation">
+            <div class="navigation-items">
+                <a href="login.html">Login</a>
+                <a href="home.html">O que é o CodeNinja?</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <form id="formCadastro">
+              <h1>Criar conta</h1>
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+
+        <div class="side-panel">
+            <h1>Bem-vindo!</h1>
+            <p>Já tem uma conta? Entre!</p>
+            <a href="login.html"><button>Entrar</button></a>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+    const form = document.getElementById('formCadastro');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('/cadastro', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.redirected) {
+                alert('Cadastro realizado com sucesso!');
+                window.location.href = response.url;
+            } else {
+                return response.text().then(msg => alert(msg));
+            }
+        })
+        .catch(err => {
+            console.error('Erro:', err);
+            alert('Ocorreu um erro ao cadastrar. Tente novamente.');
+        });
+    });
+    </script>
+
+</body>
+</html>

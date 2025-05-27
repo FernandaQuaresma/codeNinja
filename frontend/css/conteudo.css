@@ -6,129 +6,219 @@
 }
 
 body {
-  background: #0a0a23;
+  background: #07070f; /* fundo bem escuro */
   overflow-x: hidden;
-  color: #fff;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
 header {
   z-index: 999;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
+  background: #0a0a23;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 15px 50px;
+  box-shadow: 0 2px 8px rgba(124, 77, 255, 0.3);
 }
 
-header .brand {
+.brand {
   color: #7c4dff;
   font-size: 1.8em;
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
-  text-decoration: none;
   letter-spacing: 2px;
-}
-
-header .navigation .navigation-items a {
-  color: #fff;
-  font-size: 1em;
-  font-weight: 500;
   text-decoration: none;
-  margin-left: 30px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-header .navigation .navigation-items a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #7c4dff;
-  transition: 0.3s ease;
+.brand-icon {
+  height: 40px;
+  width: auto;
+  filter: drop-shadow(0 0 4px #7c4dff);
 }
 
-header .navigation .navigation-items a:hover::before {
-  width: 100%;
+/* Container principal */
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  max-width: 900px;
+  margin: 0 auto 60px;
 }
 
-.menu-btn {
-  display: none;
-}
-
-  
+/* Botão Sair da Lição estilizado */
 .exit-button {
-    background-color: #512da8;
-    color: white;
-    border: none;
-    padding: 12px 45px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-    margin: 20px;
-    font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #7c4dff;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  align-self: flex-end;
+  box-shadow: 0 0 15px #7c4dff88;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .exit-button:hover {
-    background-color: #3a1f7a;
+  background-color: #5a34c7;
+  box-shadow: 0 0 25px #7c4dffcc;
 }
-  
+
+/* Box da lição */
+.lesson-box {
+  background-color: #121229;
+  padding: 40px;
+  border-radius: 16px;
+  border: 2px solid #7c4dff;
+  box-shadow: 0 0 30px #7c4dff66;
+  width: 100%;
+  max-width: 900px;
+}
+
+.lesson-box h1,
+.lesson-box h2 {
+  color: #bda7ff;
+  margin-bottom: 20px;
+}
+
+.lesson-box h1 {
+  font-weight: 900;
+  font-size: 3em;
+}
+
+.lesson-box h2 {
+  font-weight: 700;
+  font-size: 1.8em;
+}
+
+.lesson-box p {
+  line-height: 1.7;
+  margin: 15px 0;
+  color: #d8d4f7;
+  font-size: 1.1em;
+}
+
+.lesson-box ul {
+  margin-left: 20px;
+  margin-bottom: 25px;
+  color: #ccc7ff;
+  font-size: 1.05em;
+  line-height: 1.6;
+}
+
+.lesson-box li {
+  margin-bottom: 10px;
+}
+
+/* Código destacado */
+.code-box {
+  background-color: #1a1a3d;
+  padding: 20px;
+  border-radius: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #c9baff;
+  font-size: 1em;
+  white-space: pre-wrap;
+  margin-top: 15px;
+  box-shadow: 0 0 20px #7c4dff88 inset;
+}
+
+/* Botão Quiz */
+.quiz-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.quiz-button {
+  width: 100%;
+  max-width: 300px;
+  background-color: #7c4dff;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 18px 0;
+  font-weight: 900;
+  font-size: 1.3em;
+  cursor: pointer;
+  box-shadow: 0 0 20px #7c4dffaa;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quiz-button:hover {
+  background-color: #5a34c7;
+  box-shadow: 0 0 30px #7c4dffdd;
+}
+
+/* Responsividade */
+@media screen and (max-width: 600px) {
+  header {
+    padding: 15px 20px;
+  }
+
+  .brand {
+    font-size: 1.4em;
+    gap: 6px;
+  }
+
+  .brand-icon {
+    height: 30px;
+  }
+
   .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: 'Segoe UI', Roboto, sans-serif;
+    padding: 20px 15px;
   }
-  
+
   .lesson-box {
-    background-color: #1b1b1b;
-    padding: 30px;
-    border-radius: 12px;
-    border: 2px solid #a367fd;
-    max-width: 800px;
-    box-shadow: 0 0 10px #a367fd33;
+    padding: 25px 20px;
   }
-  
+
   .lesson-box h1 {
-    color: #d5b4ff;
+    font-size: 2.2em;
   }
-  
+
   .lesson-box h2 {
-    color: #d5b4ff;
-    margin-top: 20px;
+    font-size: 1.4em;
   }
-  
-  .lesson-box p {
-    line-height: 1.6;
-    margin: 10px 0;
+
+  .lesson-box p,
+  .lesson-box ul {
+    font-size: 1em;
   }
-  
+
   .code-box {
-    background-color: #111;
+    font-size: 0.9em;
     padding: 15px;
-    border-radius: 8px;
-    font-family: monospace;
-    color: #9af;
-    margin-top: 10px;
-    white-space: pre-wrap;
   }
-  
+
+  .exit-button {
+    align-self: center;
+    margin-bottom: 25px;
+    padding: 12px 30px;
+    font-size: 14px;
+  }
+
   .quiz-button {
-    margin-top: 20px;
-    background-color: #a367fd;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 15px 30px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
+    max-width: 100%;
   }
-  
+}

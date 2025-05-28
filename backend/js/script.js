@@ -52,28 +52,7 @@ function renderQuestions() {
   $questionsContainer.innerHTML = "";
 
   displayedQuestions.forEach((q, index) => {
-    const questionCard = document.createElement("div");
-    questionCard.classList.add("question-card");
-    questionCard.dataset.index = index;
-
-    const questionText = document.createElement("p");
-    questionText.classList.add("question-text");
-    questionText.textContent = `${index + 1}. ${q.question}`;
-    questionCard.appendChild(questionText);
-
-    q.answers.forEach(answer => {
-      const answerButton = document.createElement("button");
-      answerButton.classList.add("button", "answer");
-      answerButton.textContent = answer.text;
-      answerButton.dataset.correct = answer.correct;
-
-      answerButton.addEventListener("click", (e) =>
-        selectAnswer(e, questionCard, index)
-      );
-
-      questionCard.appendChild(answerButton);
-    });
-
+    const questionCard = createQuestionCard(q, index);
     $questionsContainer.appendChild(questionCard);
   });
 
@@ -87,6 +66,32 @@ function renderQuestions() {
   $questionsContainer.appendChild(returnBtn);
 }
 
+function createQuestionCard(questionObj, index) {
+  const questionCard = document.createElement("div");
+  questionCard.classList.add("question-card");
+  questionCard.dataset.index = index;
+
+  const questionText = document.createElement("p");
+  questionText.classList.add("question-text");
+  questionText.textContent = `${index + 1}. ${questionObj.question}`;
+  questionCard.appendChild(questionText);
+
+  questionObj.answers.forEach(answer => {
+    const answerButton = document.createElement("button");
+    answerButton.classList.add("button", "answer");
+    answerButton.textContent = answer.text;
+    answerButton.dataset.correct = answer.correct;
+
+    answerButton.addEventListener("click", (e) =>
+      selectAnswer(e, questionCard, index)
+    );
+
+    questionCard.appendChild(answerButton);
+  });
+
+  return questionCard;
+}
+
 function selectAnswer(event, card, cardIndex) {
   const selected = event.target;
   const isCorrect = selected.dataset.correct === "true";
@@ -98,12 +103,20 @@ function selectAnswer(event, card, cardIndex) {
     else btn.classList.add("incorrect");
   });
 
+  card.classList.add("answered");
+
   if (isCorrect) {
     totalCorrect++;
   } else {
     const newQuestion = getRandomQuestions(1)[0];
     if (newQuestion) {
       displayedQuestions[cardIndex] = newQuestion;
+
+      // Atualiza só a pergunta errada
+      setTimeout(() => {
+        updateQuestionCard(card, cardIndex);
+      }, 800);
+      return;
     } else {
       displayedQuestions.splice(cardIndex, 1);
     }
@@ -111,19 +124,36 @@ function selectAnswer(event, card, cardIndex) {
 
   if (totalCorrect === displayedQuestions.length) {
     finishGame();
-  } else {
-    setTimeout(() => {
-      renderQuestions();
-    }, 800);
   }
 }
 
+function updateQuestionCard(card, cardIndex) {
+  const q = displayedQuestions[cardIndex];
+  card.innerHTML = "";
+
+  const questionText = document.createElement("p");
+  questionText.classList.add("question-text");
+  questionText.textContent = `${cardIndex + 1}. ${q.question}`;
+  card.appendChild(questionText);
+
+  q.answers.forEach(answer => {
+    const answerButton = document.createElement("button");
+    answerButton.classList.add("button", "answer");
+    answerButton.textContent = answer.text;
+    answerButton.dataset.correct = answer.correct;
+
+    answerButton.addEventListener("click", (e) =>
+      selectAnswer(e, card, cardIndex)
+    );
+
+    card.appendChild(answerButton);
+  });
+}
+
 function finishGame() {
-  // Redireciona automaticamente para a próxima fase
   window.location.href = "nivel2.html";
 }
 
-// Inicia automaticamente ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   startGame();
 });

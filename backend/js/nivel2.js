@@ -11,7 +11,7 @@ async function loadQuestions() {
     const data = await response.json();
 
     // Filtra apenas as questões com dificuldade "fácil"
-    const easyQuestions = data.filter(q => q.dificuldade?.toLowerCase() === "fácil");
+   const difficultQuestions = data.filter(q => q.dificuldade?.toLowerCase() === "difícil");
 
     allQuestions = easyQuestions.map(q => ({
       question: q.question,
@@ -20,10 +20,11 @@ async function loadQuestions() {
         { text: q.answer2, correct: q.correct_answer === 2 },
         { text: q.answer3, correct: q.correct_answer === 3 },
         { text: q.answer4, correct: q.correct_answer === 4 }
-      ]
+      ],
+      locked: false
     }));
 
-    displayedQuestions = getRandomQuestions(4); // Agora pega 4 perguntas
+    displayedQuestions = getRandomQuestions(4);
     renderQuestions();
   } catch (error) {
     console.error('Erro ao carregar as perguntas:', error);
@@ -52,37 +53,41 @@ function renderQuestions() {
   $questionsContainer.innerHTML = "";
 
   displayedQuestions.forEach((q, index) => {
-    const questionCard = document.createElement("div");
-    questionCard.classList.add("question-card");
-    questionCard.dataset.index = index;
-
-    const questionText = document.createElement("p");
-    questionText.classList.add("question-text");
-    questionText.textContent = `${index + 1}. ${q.question}`;
-    questionCard.appendChild(questionText);
-
-    q.answers.forEach(answer => {
-      const answerButton = document.createElement("button");
-      answerButton.classList.add("button", "answer");
-      answerButton.textContent = answer.text;
-      answerButton.dataset.correct = answer.correct;
-
-      answerButton.addEventListener("click", (e) =>
-        selectAnswer(e, questionCard, index)
-      );
-
-      questionCard.appendChild(answerButton);
-    });
-
+    const questionCard = createQuestionCard(q, index);
     $questionsContainer.appendChild(questionCard);
   });
+}
+
+function createQuestionCard(questionObj, index) {
+  const card = document.createElement("div");
+  card.classList.add("question-card");
+  card.dataset.index = index;
+
+  const questionText = document.createElement("p");
+  questionText.classList.add("question-text");
+  questionText.textContent = `${index + 1}. ${questionObj.question}`;
+  card.appendChild(questionText);
+
+  questionObj.answers.forEach(answer => {
+    const btn = document.createElement("button");
+    btn.classList.add("button", "answer");
+    btn.textContent = answer.text;
+    btn.dataset.correct = answer.correct;
+    btn.disabled = questionObj.locked;
+
+    btn.addEventListener("click", (e) => selectAnswer(e, card, index));
+
+    card.appendChild(btn);
+  });
+
+  return card;
 }
 
 function selectAnswer(event, card, cardIndex) {
   const selected = event.target;
   const isCorrect = selected.dataset.correct === "true";
-
   const answerButtons = card.querySelectorAll(".answer");
+
   answerButtons.forEach(btn => {
     btn.disabled = true;
     if (btn.dataset.correct === "true") btn.classList.add("correct");
@@ -91,28 +96,46 @@ function selectAnswer(event, card, cardIndex) {
 
   if (isCorrect) {
     totalCorrect++;
+    displayedQuestions[cardIndex].locked = true;
+
+    if (totalCorrect === displayedQuestions.length) {
+      setTimeout(() => finishGame(), 800);
+    }
   } else {
     const newQuestion = getRandomQuestions(1)[0];
     if (newQuestion) {
       displayedQuestions[cardIndex] = newQuestion;
+      setTimeout(() => updateQuestionCard(card, cardIndex), 800);
     } else {
       displayedQuestions.splice(cardIndex, 1);
+      setTimeout(() => renderQuestions(), 800);
     }
-  }
-
-  if (totalCorrect === displayedQuestions.length) {
-    setTimeout(() => {
-      finishGame();
-    }, 800);
-  } else {
-    setTimeout(() => {
-      renderQuestions();
-    }, 800);
   }
 }
 
+function updateQuestionCard(card, index) {
+  const q = displayedQuestions[index];
+  card.innerHTML = "";
+
+  const questionText = document.createElement("p");
+  questionText.classList.add("question-text");
+  questionText.textContent = `${index + 1}. ${q.question}`;
+  card.appendChild(questionText);
+
+  q.answers.forEach(answer => {
+    const btn = document.createElement("button");
+    btn.classList.add("button", "answer");
+    btn.textContent = answer.text;
+    btn.dataset.correct = answer.correct;
+
+    btn.addEventListener("click", (e) => selectAnswer(e, card, index));
+
+    card.appendChild(btn);
+  });
+}
+
 function finishGame() {
-  const totalQuestions = totalCorrect + (4 - displayedQuestions.length);
+  const totalQuestions = displayedQuestions.length;
   const performance = Math.floor((totalCorrect / totalQuestions) * 100);
 
   let message = "";
@@ -138,13 +161,11 @@ function finishGame() {
     </p>
   `;
 
-  // Redireciona automaticamente para o jogo após 3 segundos
   setTimeout(() => {
     window.location.href = "http://localhost:3000/frontend/pages/game.html";
   }, 3000);
 }
 
-// Inicia automaticamente ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   startGame();
 });

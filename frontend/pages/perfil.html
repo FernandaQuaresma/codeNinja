@@ -9,25 +9,55 @@
 </head>
 <body>
   <header>
-        <a href="#" class="brand">CodeNinja</a>
-        <div class="menu-btn"></div>
-        <div class="navigation">
-            <div class="navigation-items">
-                <a href="/frontend/pages/home.html">O que é o CodeNinja?</a>
+    <a href="#" class="brand">
+      <div class="brand-logo">
+        <img src="/frontend/assets/ninjalogo.png" alt="Logo CodeNinja">
+        <span>CodeNinja</span>
+      </div>
+    </a>
+    <div class="menu-btn"></div>
+    <div class="profile-dropdown">
+            <div class="profile-dropdown-btn" onclick="toggle()">
+                <i class="bi bi-list"></i>
             </div>
+            <ul class="profile-dropdown-list">
+              <li class="profile-dropdown-list-item">
+                    <a href="/frontend/pages/home.html">
+                        <i class="bi bi-house-door-fill"></i>
+                        Home
+                    </a>
+                </li>
+                
+                <li class="profile-dropdown-list-item">
+                    <a href="/frontend/pages/topicos.html">
+                        <i class="bi bi-file-earmark-text"></i>
+                        Conteúdos
+                    </a>
+                </li>
+                <hr>
+                <li class="profile-dropdown-list-item">
+                    <a href="/logout">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Sair
+                    </a>
+                </li>
+            </ul>
         </div>
-    </header>
-
+      </div>
+  </header>
   <div class="perfil-container">
     <img id="foto-perfil" src="" alt="Foto de perfil" />
 
     <div id="visualizacao" class="perfil-dados">
-      <p><strong>Nome:</strong> <span id="nomeDisplay">Nome</span></p>
+      <p><strong>Nome:</strong> <span id="nomeDisplay"></span></p>
       <p><strong>Email:</strong> <span id="emailDisplay"></span></p>
-      <p><strong>Senha:</strong> ******</p>
+      <p><strong>Senha:</strong> </p>
       <button class="edit-btn" onclick="ativarEdicao()">
         <i class="bi bi-pencil-square"></i> Editar Perfil
       </button>
+      <button class="delete-btn" onclick="excluirConta()">
+    <i class="bi bi-trash3"></i> Excluir Conta
+  </button>
     </div>
 
     <form id="formPerfil" style="display:none;" enctype="multipart/form-data">
@@ -39,12 +69,9 @@
       <div class="form-buttons">
         <button type="submit" class="save-btn">Salvar alterações</button>
         <button type="button" class="cancel-btn" onclick="cancelarEdicao()">Cancelar</button>
+        
       </div>
     </form>
-
-    <a href="/logout" class="logout-btn">Sair</a>
-    <button class="delete-btn" onclick="excluirConta()">Excluir Conta</button>
-  </div>
 
   <script>
     fetch('/api/usuario')
@@ -105,5 +132,6 @@
       }
     }
   </script>
+  <script src="/frontend/js/dropdown.js"></script>
 </body>
 </html>

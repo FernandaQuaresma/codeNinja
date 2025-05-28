@@ -22,8 +22,36 @@
       <div class="navigation-items">
         <a href="/frontend/pages/login.html">Login</a>
         <a href="/frontend/pages/cadastro.html">Cadastro</a>
-      </div>
     </div>
+    <div class="profile-dropdown">
+            <div class="profile-dropdown-btn" onclick="toggle()">
+                <i class="bi bi-list"></i>
+            </div>
+            <ul class="profile-dropdown-list">
+                <li class="profile-dropdown-list-item">
+                    <a href="perfil.html">
+                        <i class="bi bi-person"></i>
+                        Meu perfil
+                    </a>
+                </li>
+                <li class="profile-dropdown-list-item">
+                    <a href="/frontend/pages/topicos.html">
+                        <i class="bi bi-file-earmark-text"></i>
+                        Conteúdos
+                    </a>
+                </li>
+              
+                <hr>
+                <li class="profile-dropdown-list-item">
+                    <a href="#">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Sair
+                    </a>
+                </li>
+            </ul>
+        </div>
+      </div>
+      
   </header>
 
   <section class="home">
@@ -46,40 +74,46 @@
     <div class="dev-container">
       <div class="dev-card">
         <div class="dev-img"></div>
-        <p class="dev-name">Nome 1</p>
+        <p class="dev-name">Caio Pecly</p>
       </div>
       <div class="dev-card">
         <div class="dev-img"></div>
-        <p class="dev-name">Nome 2</p>
+        <p class="dev-name">Fernanda Quaresma</p>
       </div>
       <div class="dev-card">
         <div class="dev-img"></div>
-        <p class="dev-name">Nome 3</p>
+        <p class="dev-name">Gabriel Galvão</p>
       </div>
       <div class="dev-card">
         <div class="dev-img"></div>
-        <p class="dev-name">Nome 4</p>
+        <p class="dev-name">Kamilla Vilas</p>
       </div>
     </div>
   </section>
 
   <section class="sobre-projeto">
-  <div class="sobre-container">
-    <h2>Como surgiu o projeto?</h2>
-    <p>
-      A ideia do CodeNinja surgiu quando olhamos para nós mesmos no início do curso. Lembramos das dificuldades, das dúvidas, da curiosidade que parecia não ter fim — e percebemos o quanto teria sido útil ter uma plataforma simples, direta e acessível para nos guiar. Pensamos: por que não criar algo que ajude quem está começando agora ou até mesmo quem só quer entender melhor esse universo da tecnologia? Foi aí que nasceu o projeto, com o propósito de ser uma ponte entre a vontade de aprender e o conhecimento de forma clara e divertida.
-    </p>
-  </div>
-</section>
+    <div class="sobre-container">
+      <h2>Como surgiu o projeto?</h2>
+      <p>
+        A ideia do CodeNinja surgiu quando olhamos para nós mesmos no início do curso. Lembramos das dificuldades, das
+        dúvidas, da curiosidade que parecia não ter fim — e percebemos o quanto teria sido útil ter uma plataforma
+        simples, direta e acessível para nos guiar. Pensamos: por que não criar algo que ajude quem está começando agora
+        ou até mesmo quem só quer entender melhor esse universo da tecnologia? Foi aí que nasceu o projeto, com o
+        propósito de ser uma ponte entre a vontade de aprender e o conhecimento de forma clara e divertida.
+      </p>
+    </div>
+  </section>
 
-<section class="sobre-projeto detalhes">
-  <div class="sobre-container">
-    <h2>Sobre o projeto</h2>
-    <p>
-      CodeNinja é uma iniciativa educacional que visa ensinar lógica de programação de forma clara e prática. Aqui, o conhecimento é passado de forma objetiva, com vídeos, desafios e conteúdos gamificados. Acreditamos que qualquer pessoa pode se tornar um ninja digital com as ferramentas certas e a motivação certa.
-    </p>
-  </div>
-</section>
+  <section class="sobre-projeto detalhes">
+    <div class="sobre-container">
+      <h2>Sobre o projeto</h2>
+      <p>
+        CodeNinja é uma iniciativa educacional que visa ensinar lógica de programação de forma clara e prática. Aqui, o
+        conhecimento é passado de forma objetiva, com vídeos, desafios e conteúdos gamificados. Acreditamos que qualquer
+        pessoa pode se tornar um ninja digital com as ferramentas certas e a motivação certa.
+      </p>
+    </div>
+  </section>
 
 
   <script>
@@ -91,6 +125,7 @@
       navigation.classList.toggle("active");
     });
   </script>
+  <script src="/frontend/js/dropdown.js"></script>
 </body>
 
 </html>

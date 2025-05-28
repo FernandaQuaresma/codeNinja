@@ -66,7 +66,7 @@ module.exports = function(db) {
         }
 
         req.session.usuario = email;
-        res.redirect('/perfil.html');
+        res.redirect('/frontend/pages/topicos.html');
       }
     );
   });
@@ -159,7 +159,7 @@ module.exports = function(db) {
   // Logout
   router.get('/logout', (req, res) => {
     req.session.destroy(() => {
-      res.redirect('/frontend/pages/login.html');
+      res.redirect('/frontend/pages/home.html');
     });
   });
 

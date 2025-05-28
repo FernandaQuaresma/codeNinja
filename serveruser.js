@@ -97,7 +97,7 @@ module.exports = function(db) {
         res.send(`
           <script>
             alert("Senha incorreta!");
-            window.location.href = "/login.html";
+            window.location.href = "/frontend/pages/login.html";
           </script>
         `);
       }

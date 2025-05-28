@@ -32,7 +32,7 @@ header {
 }
 
 .brand {
-  color: #7c4dff;
+  color: #ffffff;
   font-size: 1.8em;
   font-weight: 900;
   text-transform: uppercase;
@@ -153,18 +153,21 @@ header {
 }
 
 .quiz-button {
-  width: 100%;
-  max-width: 300px;
   background-color: #7c4dff;
   color: white;
   border: none;
+  padding: 14px 40px;
   border-radius: 30px;
-  padding: 18px 0;
-  font-weight: 900;
-  font-size: 1.3em;
   cursor: pointer;
-  box-shadow: 0 0 20px #7c4dffaa;
+  font-size: 16px;
+  font-weight: 700;
+  align-self: flex-end;
+  box-shadow: 0 0 15px #7c4dff88;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .quiz-button:hover {

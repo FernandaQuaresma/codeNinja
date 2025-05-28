@@ -10,7 +10,7 @@ async function loadQuestions() {
     const response = await fetch('/api/questions');
     const data = await response.json();
 
-    // Filtra apenas as questões com dificuldade "fácil"
+   
     const easyQuestions = data.filter(q => q.dificuldade?.toLowerCase() === "fácil");
 
     allQuestions = easyQuestions.map(q => ({

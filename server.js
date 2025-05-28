@@ -59,13 +59,14 @@ app.get('/api/usuarios/:id', (req, res) => {
     } else if (results.length === 0) {
       res.status(404).send('Usuário não encontrado');
     } else {
-      res.json(results[0]); // Retorna o primeiro (e único) usuário encontrado
+      res.json(results[0]); 
     }
   });
 });
 
 
 app.get('/api/game-questions', (req, res) => {
+  
   db.query('SELECT * FROM game_questions', (err, results) => {
     if (err) res.status(500).send('Erro ao obter perguntas');
     else res.json(results);

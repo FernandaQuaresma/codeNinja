@@ -20,7 +20,6 @@ module.exports = function(db) {
 
   const upload = multer({ storage });
 
-  // Middleware para proteger rotas
   function proteger(req, res, next) {
     if (req.session.usuario) {
       next();
@@ -29,12 +28,10 @@ module.exports = function(db) {
     }
   }
 
-  // Rota para página de perfil protegida
   router.get('/perfil.html', proteger, (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/pages/perfil.html'));
   });
 
-  // API para pegar dados do usuário logado
   router.get('/api/usuario', proteger, (req, res) => {
     const email = req.session.usuario;
     db.query('SELECT nome, email, foto FROM usuarios WHERE email = ?', [email], (err, results) => {
@@ -71,7 +68,6 @@ module.exports = function(db) {
     );
   });
 
-  // Login
   router.post('/login', (req, res) => {
     const { email, senha } = req.body;
 
@@ -104,7 +100,6 @@ module.exports = function(db) {
     });
   });
 
-  // Atualizar dados do usuário
   router.post('/atualizar-usuario', upload.single('foto'), proteger, async (req, res) => {
     const { nome, email, senha } = req.body;
     const foto = req.file ? req.file.filename : null;
@@ -145,7 +140,6 @@ module.exports = function(db) {
     });
   });
 
-  // Excluir conta
   router.delete('/excluir-conta', proteger, (req, res) => {
     const email = req.session.usuario;
     db.query('DELETE FROM usuarios WHERE email = ?', [email], (err) => {
@@ -156,7 +150,6 @@ module.exports = function(db) {
     });
   });
 
-  // Logout
   router.get('/logout', (req, res) => {
     req.session.destroy(() => {
       res.redirect('/frontend/pages/home.html');

@@ -11,9 +11,9 @@ async function loadQuestions() {
     const data = await response.json();
 
     // Filtra apenas as questões com dificuldade "fácil"
-   const difficultQuestions = data.filter(q => q.dificuldade?.toLowerCase() === "difícil");
+    const difficultQuestions = data.filter(q => q.dificuldade?.toLowerCase() === "difícil");
 
-    allQuestions = easyQuestions.map(q => ({
+    allQuestions = difficultQuestions.map(q => ({
       question: q.question,
       answers: [
         { text: q.answer1, correct: q.correct_answer === 1 },

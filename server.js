@@ -36,12 +36,34 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/frontend/pages/home.html'));
 });
 
+
 app.get('/api/questions', (req, res) => {
   db.query('SELECT * FROM questions', (err, results) => {
     if (err) res.status(500).send('Erro ao obter perguntas');
     else res.json(results);
   });
 });
+
+app.get('/api/usuarios', (req, res) => {
+  db.query('SELECT * FROM usuarios', (err, results) => {
+    if (err) res.status(500).send('Erro ao obter usuarios');
+    else res.json(results);
+  });
+});
+app.get('/api/usuarios/:id', (req, res) => {
+  const { id } = req.params;
+
+  db.query('SELECT * FROM usuarios WHERE id = ?', [id], (err, results) => {
+    if (err) {
+      res.status(500).send('Erro ao buscar o usuário');
+    } else if (results.length === 0) {
+      res.status(404).send('Usuário não encontrado');
+    } else {
+      res.json(results[0]); // Retorna o primeiro (e único) usuário encontrado
+    }
+  });
+});
+
 
 app.get('/api/game-questions', (req, res) => {
   db.query('SELECT * FROM game_questions', (err, results) => {

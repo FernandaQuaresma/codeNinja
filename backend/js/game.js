@@ -3,6 +3,9 @@ const gameArea = document.getElementById('gameArea');
 const pontosEl = document.getElementById('pontos');
 const vidasEl = document.getElementById('vidas');
 const perguntaEl = document.querySelector('.pergunta');
+const fimJogoEl = document.getElementById('fimJogo');
+const mensagemFinalEl = document.getElementById('mensagemFinal');
+const botoesFimEl = document.getElementById('botoesFim');
 
 let pontos = 0;
 let vidas = 3;
@@ -15,7 +18,6 @@ const limiteEsquerdo = (gameWidth - areaPermitida) / 2;
 const limiteDireito = limiteEsquerdo + areaPermitida;
 
 let ninjaX = (limiteEsquerdo + limiteDireito) / 2 - 60;
-
 let respostas = [];
 
 ninja.style.left = `${ninjaX}px`;
@@ -28,7 +30,7 @@ async function carregarPergunta() {
 
     if (perguntas.length > 0) {
       const perguntaAleatoria = perguntas[Math.floor(Math.random() * perguntas.length)];
-      perguntaEl.innerHTML = perguntaAleatoria.question;
+      perguntaEl.innerHTML = perguntaAleatoria.question + "<br><br>";
 
       const corretaIndex = perguntaAleatoria.correct_answer;
 
@@ -38,6 +40,10 @@ async function carregarPergunta() {
         { text: perguntaAleatoria.answer3, correta: corretaIndex === 3 },
         { text: perguntaAleatoria.answer4, correta: corretaIndex === 4 },
       ];
+
+      respostas.forEach((res) => {
+        perguntaEl.innerHTML += `• ${res.text}<br>`;
+      });
     }
   } catch (error) {
     console.error('Erro ao carregar pergunta:', error);
@@ -77,21 +83,18 @@ function criarOpcao(resposta) {
         pontosEl.textContent = pontos;
         perguntasRespondidas++;
 
-        // Se o jogador acertou 5 perguntas ou perdeu todas as vidas, encerra o jogo
         if (perguntasRespondidas >= 5) {
-          alert('🎉 Você venceu o jogo!');
-          location.reload();
+          mostrarFimDeJogo(true);
+        } else {
+          carregarPergunta();
         }
-        carregarPergunta(); // Carrega nova pergunta
 
       } else {
         vidas--;
         vidasEl.textContent = vidas;
 
-        // Se as vidas acabaram, encerra o jogo
         if (vidas <= 0) {
-          alert('💀 Fim de jogo!');
-          location.reload();
+          mostrarFimDeJogo(false);
         }
       }
 
@@ -128,6 +131,25 @@ document.addEventListener('keydown', (e) => {
   ninja.style.left = `${ninjaX}px`;
   ninja.src = direction === 'direita' ? '/frontend/assets/ninja-direita.png' : '/frontend/assets/ninja-esquerda.png';
 });
+
+// Mostra o menu de fim de jogo
+function mostrarFimDeJogo(vitoria) {
+  fimJogoEl.classList.remove('oculto');
+  mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
+  botoesFimEl.innerHTML = '';
+
+  const botaoMenu = document.createElement('button');
+  botaoMenu.textContent = '🏠 Voltar ao menu';
+  botaoMenu.onclick = () => window.location.href = 'topicos.html';
+  botoesFimEl.appendChild(botaoMenu);
+
+  if (!vitoria) {
+    const botaoTentar = document.createElement('button');
+    botaoTentar.textContent = '🔁 Tentar novamente';
+    botaoTentar.onclick = () => location.reload();
+    botoesFimEl.appendChild(botaoTentar);
+  }
+}
 
 // Início do jogo
 carregarPergunta();

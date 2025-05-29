@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 body {
   margin: 0;
   padding: 0;
@@ -21,6 +22,8 @@ body {
   font-size: 1.5rem;
   text-shadow: 0 0 10px #7c4dff;
   margin-bottom: 20px;
+  text-align: center;
+  padding: 0 20px;
 }
 
 #gameArea {
@@ -50,14 +53,6 @@ body {
   color: #fff;
   box-shadow: 0 0 10px rgba(124, 77, 255, 0.4);
   white-space: nowrap;
-  animation: fall 8s linear forwards;
-}
-
-@keyframes fall {
-  to {
-    top: 500px;
-    opacity: 1;
-  }
 }
 
 .placar {
@@ -67,4 +62,54 @@ body {
   justify-content: space-between;
   width: 80%;
   max-width: 600px;
+}
+
+/* Fim de jogo */
+.fim-jogo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 15, 30, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  flex-direction: column;
+}
+
+.menu-fim {
+  text-align: center;
+  color: #fff;
+  background: #2a2a40;
+  border: 2px solid #7c4dff;
+  border-radius: 20px;
+  padding: 40px 20px;
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.5);
+}
+
+.menu-fim h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.menu-fim button {
+  background: #7c4dff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.menu-fim button:hover {
+  background: #a884ff;
+}
+
+.oculto {
+  display: none;
 }

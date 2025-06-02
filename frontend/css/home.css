@@ -102,7 +102,6 @@ header .navigation .navigation-items a:hover::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('imagems-videos/fumaca-roxa.gif') center/cover no-repeat;
   opacity: 0.25;
   z-index: 1;
   pointer-events: none;
@@ -263,11 +262,10 @@ header .navigation .navigation-items a:hover::before {
 
 /* Seções "Sobre" */
 .sobre-projeto {
-  background: #120c2c;
+  background: #2e1455;
   color: #e1e1e1;
   padding: 80px 50px;
   text-align: justify;
-  border-top: 2px solid #a200ff;
   align-items: start;
 }
 
@@ -283,14 +281,13 @@ header .navigation .navigation-items a:hover::before {
   display: block;
   width: 80px;
   height: 4px;
-  background: #7c4dff;
   margin: 10px auto 0;
   border-radius: 2px;
 }
 
 .sobre-projeto p {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 2px;
   font-size: 1.1em;
   line-height: 1.8;
   color: #cfcfcf;

@@ -24,11 +24,11 @@ module.exports = function(db) {
     if (req.session.usuario) {
       next();
     } else {
-      res.redirect('/login.html');
+      res.redirect('/frontend/pages/login.html');
     }
   }
 
-  router.get('/perfil.html', proteger, (req, res) => {
+  router.get('/frontend/pages/perfil.html', proteger, (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/pages/perfil.html'));
   });
 
@@ -88,7 +88,7 @@ module.exports = function(db) {
 
       if (senhaOk) {
         req.session.usuario = usuario.email;
-        res.redirect('/perfil.html');
+        res.redirect('/frontend/pages/perfil.html');
       } else {
         res.send(`
           <script>

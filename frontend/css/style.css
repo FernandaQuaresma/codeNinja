@@ -68,7 +68,6 @@ body {
 /* Header */
 header {
   z-index: 999;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -142,33 +141,22 @@ main {
 }
 
 .box {
-  background: #1a1a1a;
-  border: 2px solid #7c4dff;
+  background: transparent;
+  border: 3px solid #5a4399; 
   border-radius: 18px;
   padding: 20px;
   text-align: center;
   font-size: 1.05rem;
   line-height: 1.6;
-  box-shadow: 0 0 12px rgba(124, 77, 255, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
   max-width: 280px;
   min-height: 180px;
   position: relative;
   overflow: hidden;
-  animation: glow 4s ease-in-out infinite;
-}
-
-@keyframes glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
-  }
-
-  50% {
-    box-shadow: 0 0 25px rgba(124, 77, 255, 0.5);
-  }
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 
 .box::before {
@@ -179,7 +167,7 @@ main {
   width: 100%;
   height: 100%;
   background: linear-gradient(120deg, transparent, #7c4dff33, transparent);
-  transition: all 0.5s ease;
+  transition: left 0.5s ease;
   z-index: 0;
 }
 
@@ -189,13 +177,14 @@ main {
 
 .box:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(124, 77, 255, 0.6);
+  background-color: #5a4399;
 }
 
 .box p {
   position: relative;
   z-index: 1;
 }
+
 
 /* RESPONSIVO */
 @media (max-width: 1024px) {
@@ -236,18 +225,19 @@ main {
     min-height: 160px;
   }
 }
-
+  h2{
+    margin-left: 50px;
+    margin-top: 20px;
+  }
 a.box {
   text-decoration: none;
   color: inherit;
 }
 
 .box-icon {
-  font-size: 1.8rem;
-  /* tamanho mais proporcional */
+  font-size: 1.3rem;
   margin-bottom: 10px;
-  color: #bda6ff;
-  text-shadow: 0 0 6px #7c4dffcc;
+  color: #ffffff;
   display: block;
 }
 

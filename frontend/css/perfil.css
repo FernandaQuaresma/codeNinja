@@ -6,13 +6,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
+
 body {
   background: #0a0a23;
   overflow-x: hidden;
   color: #fff;
+  min-height: 100vh;
 }
 
-/* Header */
 header {
   z-index: 999;
   position: absolute;
@@ -61,7 +62,6 @@ header .navigation .navigation-items a:hover::before {
 .menu-btn {
   display: none;
 }
-
 .brand-logo {
   display: flex;
   align-items: center;
@@ -73,83 +73,180 @@ header .navigation .navigation-items a:hover::before {
   width: auto;
 }
 
+/* Container geral do perfil com card */
 .perfil-container {
-  max-width: 420px;
-  margin: 60px auto;
-  padding: 30px;
-  background-color: #1a1a2e;
+  max-width: 900px;
+  margin: 80px auto 40px;
+  padding: 0 20px;
+}
+
+/* Card flex com lado esquerdo e direito */
+.perfil-card {
+  display: flex;
   border-radius: 15px;
-  color: white;
-  text-align: left;
-  box-shadow: 0 0 15px rgba(140, 82, 255, 0.2);
-  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 15px rgba(140, 82, 255, 0.3);
+  overflow: hidden;
+  background: #1a1a2e;
 }
 
-.perfil-container img {
-  display: block;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin: 0 auto 20px auto;
-  
-}
-
-.perfil-container h2 {
-  margin-bottom: 10px;
-}
-
-.perfil-container p {
-  margin: 5px 0;
-}
-
-.perfil-dados p {
-  margin: 8px 0;
-  font-size: 16px;
-}
-
-.edit-btn {
-  display: block;
-  margin: 15px auto;
-  background-color: transparent;
-  border: 1px solid #8c52ff;
-  color: #8c52ff;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.edit-btn:hover {
+/* Lado esquerdo com cor de fundo diferente */
+.card-left {
   background-color: #8c52ff;
+  color: #fff;
+  flex: 1;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-left img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid white;
+  box-shadow: 0 0 10px #a37bff;
+}
+
+.card-left h2 {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 1.8rem;
+}
+
+.card-left p {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+.card-left em {
+  font-style: normal;
+  font-weight: 600;
+  background-color: rgba(255 255 255 / 0.3);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+/* Lado direito com cor diferente */
+.card-right {
+  background-color: #282843;
+  flex: 2;
+  padding: 30px 25px;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Visualização das infos */
+#visualizacao .info-group {
+  margin-bottom: 15px;
+}
+
+#visualizacao strong {
+  display: inline-block;
+  width: 140px;
+  color: #bbb;
+  font-weight: 600;
+}
+
+#visualizacao span,
+#visualizacao ul {
+  color: #fff;
+}
+
+#visualizacao ul {
+  list-style-type: disc;
+  margin-left: 160px;
+}
+
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+/* Botões editar e excluir */
+.btn-edit,
+.btn-delete {
+  flex: 1;
+  cursor: pointer;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #2a9d8f;
   color: white;
 }
 
-#formPerfil input,
-#formPerfil input[type="file"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  background-color: #0f0f1a;
+.btn-edit:hover {
+  background-color: #21867a;
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: #c72535;
+  border: 1px solid #c72535;
+}
+
+.btn-delete:hover {
+  background-color: #c72535;
   color: white;
+  transition: 0.3s ease;
+}
+
+/* Formulário de edição */
+#formPerfil {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#formPerfil input[type="file"] {
+  padding: 5px 10px;
+}
+
+#formPerfil input[type="text"],
+#formPerfil input[type="email"],
+#formPerfil input[type="password"] {
+  background-color: #0f0f1a;
   border: 1px solid #8c52ff;
   border-radius: 8px;
+  color: white;
+  padding: 10px 15px;
+  font-size: 1rem;
+  width: 100%;
 }
 
 .form-buttons {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 15px;
 }
 
 .save-btn,
 .cancel-btn {
   flex: 1;
   padding: 10px;
+  font-weight: 700;
+  font-size: 1rem;
   border-radius: 8px;
   border: none;
-  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -159,126 +256,133 @@ header .navigation .navigation-items a:hover::before {
   color: white;
 }
 
+.save-btn:hover {
+  background-color: #21867a;
+}
+
 .cancel-btn {
   background-color: #444;
   color: #ccc;
-}
-
-.save-btn:hover {
-  background-color: #21867a;
 }
 
 .cancel-btn:hover {
   background-color: #666;
 }
 
-.logout-btn {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #e63946;
-  color: white;
+
+
+/* Dropdown do perfil - mantém como estava */
+/* (se quiser posso ajudar depois) */
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .perfil-card {
+    flex-direction: column;
+  }
+
+  .card-left,
+  .card-right {
+    flex: none;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .card-left img {
+    width: 100px;
+    height: 100px;
+  }
+
+  #visualizacao strong {
+    width: 120px;
+  }
+
+  #visualizacao ul {
+    margin-left: 140px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    width: 100%;
+  }
+}
+/* Dropdown do perfil */
+.profile-dropdown {
+  position: relative;
+  width: fit-content;
+}
+
+.profile-dropdown-btn {
+  display: flex;
+  width: 27px;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.profile-dropdown-btn i {
+  font-size: 1.8rem;
+}
+
+.profile-dropdown-btn span {
+  margin: 0 0.5rem;
+  margin-right: 0;
+}
+
+.profile-dropdown-list {
+  position: absolute;
+  top: 68px;
+  width: 220px;
+  right: 0;
+  background-color: #120c2c;
+  border-radius: 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.profile-dropdown-list.active {
+  max-height: 500px;
+}
+
+.profile-dropdown-list hr {
+  border: 0.5px solid #cccccc2f;
+}
+
+.profile-dropdown-list-item {
+  padding: 0.5rem 0 0.5rem 1rem;
+  transition: background-color 0.2s, padding-left 0.2s;
+}
+
+.profile-dropdown-list-item:hover {
+  padding-left: 1.5rem;
+  background-color: #8e6af1;
+  border-radius: 10px;
   text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
 }
 
-.logout-btn:hover {
-  background-color: #c72535;
-}
-
-.hidden {
-  display: none;
-}
-
-.delete-btn {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #000000;
-  color: white;
+.profile-dropdown-list-item a {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
 }
 
-.delete-btn:hover {
-  background-color: #4e0101;
-}
-
-.profile-dropdown{
-    position:relative;
-    width: fit-content;
-}
-
-.profile-dropdown-btn{
-    display: flex;
-    width: 27px;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 1rem;
-    font-size: 0.7rem;
-    font-weight: 400;
-    border-radius: 50px;
-    cursor: pointer;
-}
-
-.profile-dropdown-btn i{
-    font-size: 1.8rem;
-}
-
-
-.profile-dropdown-btn span{
-    margin: 0 0.5rem;
-    margin-right: 0;
-}
-
-.profile-dropdown-list{
-    position: absolute;
-    top: 68px;
-    width: 220px;
-    right: 0;
-    background-color: #120c2c;
-    border-radius: 10px;
-    max-height: 0;
-    overflow: hidden;
-}
-
-.profile-dropdown-list.active{
-    max-height: 500px;
-}
-
-.profile-dropdown-list hr{
-    border: .5px solid #cccccc2f;
-}
-
-.profile-dropdown-list-item{
-    padding: .5rem 0 .5rem 1rem;
-    transition: background-color 0.2s, padding-left 0.2s;
-}
-
-.profile-dropdown-list-item:hover{
-    padding-left: 1.5rem;
-    background-color: #8e6af1;
-    border-radius: 10px;
-    text-decoration: none;
-}
-
-.profile-dropdown-list-item a{
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    font-size: .9rem;
-    font-weight: 500;
-    color: #fff;
-}
-
-.profile-dropdown-list-item a i{
-    margin-right: 0.8rem;
-    font-size: 1.1rem;
-    width: 2.3rem;
-    color: #fff;
-    line-height: 2.3rem;
-    text-align: center;
-    text-decoration: none;
+.profile-dropdown-list-item a i {
+  margin-right: 0.8rem;
+  font-size: 1.1rem;
+  width: 2.3rem;
+  color: #fff;
+  line-height: 2.3rem;
+  text-align: center;
+  text-decoration: none;
 }

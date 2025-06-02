@@ -30,7 +30,7 @@ async function carregarPergunta() {
 
     if (perguntas.length > 0) {
       const perguntaAleatoria = perguntas[Math.floor(Math.random() * perguntas.length)];
-      perguntaEl.innerHTML = perguntaAleatoria.question + "<br><br>";
+      perguntaEl.innerHTML = `<div class="texto-pergunta">${perguntaAleatoria.question}</div>`;
 
       const corretaIndex = perguntaAleatoria.correct_answer;
 
@@ -41,9 +41,12 @@ async function carregarPergunta() {
         { text: perguntaAleatoria.answer4, correta: corretaIndex === 4 },
       ];
 
-      respostas.forEach((res) => {
-        perguntaEl.innerHTML += `• ${res.text}<br>`;
-      });
+      perguntaEl.innerHTML += `
+        <div class="alternativas-visuais">
+          ${respostas.map(res => `
+            <div class="option-visual">${res.text}</div>
+          `).join('')}
+        </div>`;
     }
   } catch (error) {
     console.error('Erro ao carregar pergunta:', error);
@@ -51,7 +54,7 @@ async function carregarPergunta() {
   }
 }
 
-// Cria uma opção visual na tela
+// Cria uma opção visual que cai do topo
 function criarOpcao(resposta) {
   const opt = document.createElement('div');
   opt.classList.add('option');
@@ -107,7 +110,7 @@ function criarOpcao(resposta) {
   }, 16);
 }
 
-// Gera opções aleatórias de tempos em tempos
+// Gera opções aleatórias
 setInterval(() => {
   if (respostas.length > 0) {
     const aleatoria = respostas[Math.floor(Math.random() * respostas.length)];

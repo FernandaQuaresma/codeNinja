@@ -10,8 +10,11 @@ async function loadQuestions() {
     const response = await fetch('/api/questions');
     const data = await response.json();
 
-   
-    const easyQuestions = data.filter(q => q.dificuldade?.toLowerCase() === "fácil");
+    // Filtra perguntas com dificuldade 'fácil' e tópico 'algoritimos'
+    const easyQuestions = data.filter(q =>
+      q.dificuldade?.toLowerCase() === "fácil" &&
+      q.topico?.toLowerCase() === "algoritimos"
+    );
 
     allQuestions = easyQuestions.map(q => ({
       question: q.question,

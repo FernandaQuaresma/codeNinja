@@ -113,3 +113,32 @@ body {
 .oculto {
   display: none;
 }
+.texto-pergunta {
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px #7c4dff;
+  margin-bottom: 10px;
+}
+
+.alternativas-visuais {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.option-visual {
+  background: #2a2a40;
+  border: 1px solid #7c4dff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(124, 77, 255, 0.3);
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: transform 0.2s;
+}
+
+.option-visual:hover {
+  transform: scale(1.05);
+}

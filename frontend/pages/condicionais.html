@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estruturas Condicionais - CodeNinja</title>
+  <link rel="stylesheet" href="/frontend/css/conteudo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <header>
+    <a href="#" class="brand">
+      <img src="/frontend/assets/ninjalogo.png" class="brand-icon" />
+      CodeNinja
+    </a>
+  </header>
+
+  <main class="container-with-toc">
+
+    <!-- TOC -->
+    <nav class="toc">
+      <h2>Índice</h2>
+      <ul>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#ifelse">Estrutura if / else</a></li>
+        <li><a href="#operadores">Condições compostas e operadores</a></li>
+        <li><a href="#switch">Estrutura switch / case</a></li>
+        <li><a href="#quando-usar">If x Switch — quando usar cada um?</a></li>
+        <li><a href="#aninhados">If e Switch aninhados</a></li>
+        <li><a href="#avancado">Conceitos Avançados e Dicas</a></li>
+        <li><a href="#resumo">Resumo Final e Boas Práticas</a></li>
+        <li><a href="#conclusao">Conclusão</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+
+      <a href="/frontend/pages/topicos.html" class="exit-button">
+        Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+
+      <h1>Estruturas Condicionais</h1>
+
+      <h2 id="introducao">Introdução</h2>
+      <p>As <strong>estruturas condicionais</strong> são um dos principais blocos da lógica de programação. Elas permitem que o programa tome decisões durante a execução, escolhendo diferentes caminhos de acordo com as condições verificadas.</p>
+      <p>Por exemplo: se um usuário estiver logado, o sistema exibe um menu personalizado; caso contrário, exibe a tela de login. Com as condicionais, podemos controlar o comportamento dos nossos programas.</p>
+
+      <h2 id="ifelse">Estrutura if / else</h2>
+      <p>A estrutura <code>if</code> verifica se uma condição é verdadeira. Se for, o código dentro do bloco <code>{ }</code> será executado:</p>
+      <div class="code-box">if (idade &gt;= 18) {
+    console.log("Você é maior de idade.");
+}</div>
+      <p>O <code>else</code> permite executar um código alternativo quando a condição não for satisfeita:</p>
+      <div class="code-box">if (idade &gt;= 18) {
+    console.log("Você é maior de idade.");
+} else {
+    console.log("Você é menor de idade.");
+}</div>
+      <p>Podemos usar <code>else if</code> para testar múltiplas condições de forma sequencial:</p>
+      <div class="code-box">if (nota &gt;= 9) {
+    console.log("Excelente!");
+} else if (nota &gt;= 7) {
+    console.log("Aprovado");
+} else if (nota &gt;= 5) {
+    console.log("Recuperação");
+} else {
+    console.log("Reprovado");
+}</div>
+      <h2 id="operadores">Condições compostas e operadores</h2>
+      <p>Uma condição pode ser simples ou composta. Para compor condições, usamos operadores relacionais e lógicos:</p>
+      <ul>
+        <li><code>==</code> Igual a</li>
+        <li><code>!=</code> Diferente de</li>
+        <li><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code> Comparações numéricas</li>
+        <li><code>&amp;&amp;</code> (AND) — verdadeiro se ambas as condições forem verdadeiras</li>
+        <li><code>||</code> (OR) — verdadeiro se pelo menos uma condição for verdadeira</li>
+        <li><code>!</code> (NOT) — inverte o valor lógico (verdadeiro vira falso e vice-versa)</li>
+      </ul>
+      <p>Exemplo com condição composta:</p>
+      <div class="code-box">if (idade &gt;= 18 &amp;&amp; idade &lt; 60) {
+    console.log("Adulto em idade ativa.");
+}</div>
+      <p>Outro exemplo com <code>OR</code>:</p>
+      <div class="code-box">if (dia == "sábado" || dia == "domingo") {
+    console.log("Fim de semana!");
+}</div>
+      <p>E com <code>NOT</code>:</p>
+      <div class="code-box">if (!usuarioLogado) {
+    console.log("Por favor, faça login.");
+}</div>
+
+      <h2 id="switch">Estrutura switch / case</h2>
+      <p>A estrutura <code>switch</code> é usada quando queremos comparar um valor com várias possibilidades fixas:</p>
+      <div class="code-box">switch (opcao) {
+    case 1:
+        console.log("Nova partida.");
+        break;
+    case 2:
+        console.log("Carregar jogo.");
+        break;
+    case 3:
+        console.log("Configurações.");
+        break;
+    default:
+        console.log("Opção inválida.");
+        break;
+}</div>
+      <p>O <code>break</code> evita que o programa continue executando os próximos <code>case</code> após encontrar um correspondente.</p>
+      <p>O <code>default</code> é executado caso nenhuma das opções corresponda ao valor da variável.</p>
+
+      <h2 id="quando-usar">If x Switch — quando usar cada um?</h2>
+      <p><strong>Use if / else quando:</strong></p>
+      <ul>
+        <li>As condições envolvem comparações complexas ou intervalos</li>
+        <li>Você precisa usar operadores lógicos (AND, OR, NOT)</li>
+        <li>As condições não são valores fixos</li>
+      </ul>
+      <p><strong>Use switch quando:</strong></p>
+      <ul>
+        <li>Está verificando um valor fixo contra várias opções</li>
+        <li>Quer deixar o código mais claro em situações com muitos <code>if / else</code> aninhados</li>
+      </ul>
+
+      <h2 id="aninhados">If e Switch aninhados</h2>
+      <p>Você pode colocar um <code>if</code> dentro de outro <code>if</code>, ou usar <code>switch</code> dentro de um bloco condicional. Isso se chama aninhamento:</p>
+      <div class="code-box">if (usuarioLogado) {
+    if (permissaoAdmin) {
+        console.log("Acesso total.");
+    } else {
+        console.log("Acesso limitado.");
+    }
+}</div>
+      <p>Exemplo de <code>switch</code> aninhado:</p>
+      <div class="code-box">if (usuarioLogado) {
+    switch (menu) {
+        case 1:
+            console.log("Perfil do usuário.");
+            break;
+        case 2:
+            console.log("Configurações.");
+            break;
+        default:
+            console.log("Opção inválida.");
+            break;
+    }
+}</div>
+
+      <h2 id="avancado">Conceitos Avançados e Dicas</h2>
+      <p>Aqui vão algumas dicas importantes para você dominar as estruturas condicionais:</p>
+
+      <h3>Associação do <code>else</code></h3>
+      <p>Quando temos <code>if</code> aninhados sem chaves <code>{}</code>, o <code>else</code> sempre se associa ao <strong>último <code>if</code> não fechado</strong>:</p>
+      <div class="code-box">if (x &gt; 5)
+    if (y &lt; 3)
+        console.log("A");
+    else
+        console.log("B");</div>
+
+      <h3>Execução sem chaves <code>{}</code></h3>
+      <p>Se não usar chaves, o <code>if</code> ou <code>else</code> executará apenas a <strong>primeira linha seguinte</strong>:</p>
+      <div class="code-box">if (condicao)
+    console.log("Linha 1");
+    console.log("Linha 2");</div>
+
+      <h3><code>Switch</code> sem <code>break</code> — comportamento em cascata</h3>
+      <p>Se você esquecer o <code>break</code> em um <code>case</code>, a execução "cai" nos próximos cases:</p>
+      <div class="code-box">switch (opcao) {
+    case 1:
+        console.log("Opção 1");
+    case 2:
+        console.log("Opção 2");
+    default:
+        console.log("Padrão");
+}</div>
+
+      <h3>Ordem de execução de <code>&&</code> e <code>||</code></h3>
+      <p>Em uma expressão como:</p>
+      <div class="code-box">if (x &gt; 5 &amp;&amp; y &lt; 10 || z == 20)</div>
+      <p>A ordem segue a <strong>precedência de operadores</strong>:</p>
+      <ol>
+        <li>O <code>&&</code> (AND) é avaliado antes do <code>||</code> (OR).</li>
+        <li>Use parênteses para tornar claro:</li>
+      </ol>
+      <div class="code-box">if ( (x &gt; 5 &amp;&amp; y &lt; 10) || z == 20 )</div>
+
+      <h3>Switch com múltiplos <code>case</code> sem código</h3>
+      <div class="code-box">switch (dia) {
+    case "sábado":
+    case "domingo":
+        console.log("Final de semana!");
+        break;
+    default:
+        console.log("Dia útil");
+}</div>
+
+      <h2 id="resumo">Resumo Final e Boas Práticas</h2>
+      <ul>
+        <li>Use <code>if</code> e <code>else</code> para condições simples e complexas.</li>
+        <li>Use <code>switch</code> para valores fixos com múltiplas opções.</li>
+        <li>Combine operadores lógicos <code>&&</code> e <code>||</code> para expressões compostas.</li>
+        <li>Evite esquecer <code>break</code> em <code>switch</code> (para não ter efeito cascata indesejado).</li>
+        <li>Use chaves <code>{}</code> mesmo em blocos de uma linha para evitar ambiguidades.</li>
+        <li>Evite aninhamentos excessivos — modularize com funções quando necessário.</li>
+        <li>Entenda a ordem de precedência de operadores para criar condições claras.</li>
+        <li>Pratique com casos reais (menus, validação de login, regras de jogo, etc).</li>
+      </ul>
+
+      <h2 id="conclusao">Conclusão</h2>
+      <p>O uso de <code>if</code>, <code>else</code> e <code>switch</code> é onipresente em qualquer linguagem de programação. Estas ferramentas são a base para criar softwares que "pensam" e respondem a diferentes situações.</p>
+      <p>Agora que você domina essas estruturas, está pronto para encarar o quiz e aplicar os conhecimentos em projetos reais!</p>
+
+      <a href="/frontend/pages/quizcondicionais.html" class="quiz-button">Começar Quiz</a>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

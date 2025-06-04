@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Tempo de geração: 03/06/2025 às 23:28
+-- Host: 127.0.0.1
+-- Tempo de geração: 04-Jun-2025 às 21:57
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `game_questions`
+-- Estrutura da tabela `emblemas`
+--
+
+CREATE TABLE `emblemas` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `imagem_url` varchar(255) NOT NULL,
+  `descricao` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `emblemas`
+--
+
+INSERT INTO `emblemas` (`id`, `nome`, `imagem_url`, `descricao`) VALUES
+(1, 'Ninja dos Algoritmos', 'frontend/assets/emblemas/niveis_algoritimos.png', 'Completou os dois níveis de algoritmos com sucesso'),
+(4, 'Ninja Gamer dos Algoritmos', 'frontend/assets/emblemas/game_algoritimos.png', 'Ganhou o game do tópico Algoritmos');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `game_questions`
 --
 
 CREATE TABLE `game_questions` (
@@ -39,7 +60,7 @@ CREATE TABLE `game_questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `game_questions`
+-- Extraindo dados da tabela `game_questions`
 --
 
 INSERT INTO `game_questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correct_answer`, `topico`) VALUES
@@ -67,7 +88,7 @@ INSERT INTO `game_questions` (`id`, `question`, `answer1`, `answer2`, `answer3`,
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `questions`
+-- Estrutura da tabela `questions`
 --
 
 CREATE TABLE `questions` (
@@ -83,7 +104,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `questions`
+-- Extraindo dados da tabela `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correct_answer`, `dificuldade`, `topico`) VALUES
@@ -128,7 +149,7 @@ INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `ans
 (39, 'No exemplo do algoritmo para preparar um café, qual a \"entrada\" implícita?', 'O café pronto.', 'A água, o pó de café e a cafeteira.', 'A espera.', 'O servir.', 2, 'Fácil', 'algoritimos'),
 (40, 'O que significa \"otimizar o desempenho de um programa\" no contexto de algoritmos?', 'Torná-lo mais lento.', 'Fazer com que ele execute mais tarefas ao mesmo tempo.', 'Fazer com que ele funcione melhor e mais rapidamente.', 'Aumentar o consumo de energia.', 3, 'Fácil', 'algoritimos'),
 (41, 'Qual é a primeira etapa na construção de um algoritmo?', 'Codificação do programa.', 'Definição do problema a ser resolvido.', 'Teste do software.', 'Criação da interface gráfica.', 2, 'Fácil', 'Algoritmos'),
-(42, 'Um algoritmo é uma \"sequência finita\". O que isso impede?', 'Que ele seja executado apenas uma vez.', 'Que ele continue para sempre em um loop infinito.', 'Que ele aceite muitas entradas.', 'Que ele tenha poucos passos.', 2, 'Fácil', 'Algoritmos'),
+(42, 'Um algoritmo é uma \"sequência finita\". O que isso impede?', 'Que ele seja executado apenas uma vez.', 'Que ele continue para sempre em um loop infinito.', 'Que ele aceite muitas entradas.', 'Que ele tenha poucos passos.', 2, 'Fácil', 'algoritmos'),
 (43, 'O que significa um algoritmo ser \"bem definido\"?', 'Ele é complicado de entender.', 'Cada passo é claro e não ambíguo.', 'Ele pode ter vários resultados possíveis.', 'Ele é escrito em uma linguagem específica.', 2, 'Fácil', 'Algoritmos'),
 (44, 'Qual a relação entre um algoritmo e um programa de computador?', 'Um algoritmo é um programa de computador.', 'Um programa de computador é uma implementação de um algoritmo.', 'Eles não têm relação.', 'Um algoritmo é uma parte do hardware.', 2, 'Fácil', 'Algoritmos'),
 (45, 'Se um algoritmo não recebe entradas, o que ele não pode fazer?', 'Gerar saídas.', 'Executar passos.', 'Ser finito.', 'Ter um tópico.', 1, 'Fácil', 'Algoritmos'),
@@ -207,36 +228,36 @@ INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `ans
 (118, 'O que é a \"sequência\" em um algoritmo?', 'A ordem dos passos.', 'A quantidade de dados.', 'A complexidade do problema.', 'A linguagem de programação.', 1, 'Fácil', 'Algoritmos'),
 (119, 'O que significa que um algoritmo deve ter \"passos bem definidos\"?', 'Que eles podem ser interpretados de várias maneiras.', 'Que cada instrução é clara e sem ambiguidade.', 'Que os passos são opcionais.', 'Que eles são apenas para especialistas.', 2, 'Fácil', 'Algoritmos'),
 (120, 'Para que serve a \"conclusão\" do texto sobre algoritmos?', 'Para introduzir um novo tema.', 'Para resumir a importância e aplicabilidade dos algoritmos.', 'Para complicar o assunto.', 'Para dar exemplos práticos.', 2, 'Fácil', 'Algoritmos'),
-(121, 'Qual notação é utilizada para descrever a complexidade assintótica de tempo e espaço de um algoritmo?', 'Notação Lambda (λ-notation).', 'Notação Big O (O-notation).', 'Notação Omega (Ω-notation).', 'Notação Theta (Θ-notation).', 2, 'Difícil', 'Algoritmos'),
-(122, 'Um algoritmo de ordenação tem complexidade de tempo O(n log n). Qual das seguintes opções representa um algoritmo com essa característica?', 'Selection Sort.', 'Insertion Sort.', 'Merge Sort.', 'Bubble Sort.', 3, 'Difícil', 'Algoritmos'),
-(123, 'Qual é a principal desvantagem do algoritmo Bubble Sort em comparação com algoritmos de ordenação mais avançados para grandes conjuntos de dados?', 'Requer memória auxiliar excessiva.', 'Possui complexidade de tempo quadrática (O(n²)) no pior caso.', 'É instável.', 'Não é um algoritmo de comparação.', 2, 'Difícil', 'Algoritmos'),
-(124, 'Em um grafo, qual algoritmo é mais adequado para encontrar o caminho mais curto entre um único vértice de origem e todos os outros vértices, onde as arestas possuem pesos não-negativos?', 'Floyd-Warshall.', 'Bellman-Ford.', 'Kruskal.', 'Dijkstra.', 4, 'Difícil', 'Algoritmos'),
-(125, 'O que caracteriza um algoritmo de \"Programação Dinâmica\"?', 'Resolve o problema dividindo-o em subproblemas independentes e combinando os resultados.', 'Toma a melhor escolha local na esperança de encontrar uma solução global ótima.', 'Armazena os resultados de subproblemas para evitar recálculos e resolver problemas sobrepostos.', 'Envolve tentativa e erro sistemáticos para encontrar uma solução.', 3, 'Difícil', 'Algoritmos'),
-(126, 'Qual a complexidade de tempo no pior caso para buscar um elemento em uma Árvore Binária de Busca (BST) não balanceada com n nós?', 'O(log n).', 'O(1).', 'O(n).', 'O(n log n).', 3, 'Difícil', 'Algoritmos'),
-(127, 'Um problema é NP-completo. O que isso implica sobre a existência de um algoritmo que o resolva eficientemente (em tempo polinomial)?', 'Tal algoritmo certamente existe e é fácil de encontrar.', 'Tal algoritmo não existe.', 'Não se sabe se tal algoritmo existe, mas a maioria acredita que não.', 'Um algoritmo de tempo exponencial é sempre a melhor opção.', 3, 'Difícil', 'Algoritmos'),
-(128, 'Em qual cenário o algoritmo de busca em largura (BFS) é mais adequado que a busca em profundidade (DFS) para encontrar o caminho mais curto em um grafo não ponderado?', 'Quando o grafo é muito denso.', 'Quando o caminho mais curto é garantido como o mais profundo.', 'Quando se busca o caminho com o menor número de arestas.', 'Quando a conectividade é mais importante que a distância.', 3, 'Difícil', 'Algoritmos'),
-(129, 'Qual o principal desafio ao projetar algoritmos paralelos?', 'Aumentar a complexidade do código sequencial.', 'Gerenciar a comunicação e sincronização entre os processos.', 'Reduzir a quantidade de hardware necessário.', 'Eliminar a necessidade de compilação.', 2, 'Difícil', 'Algoritmos'),
-(130, 'O algoritmo Quick Sort tem uma complexidade de tempo no pior caso de O(n²). Quando isso ocorre?', 'Quando os elementos estão aleatoriamente ordenados.', 'Quando a escolha do pivô sempre resulta em partições desbalanceadas.', 'Quando o número de elementos é pequeno.', 'Quando o algoritmo é implementado recursivamente.', 2, 'Difícil', 'Algoritmos'),
-(131, 'Qual estrutura de dados é fundamental para a implementação eficiente de algoritmos de busca de caminho mínimo como Dijkstra?', 'Pilha (Stack).', 'Fila (Queue).', 'Pilha de Prioridade (Priority Queue).', 'Lista Encadeada (Linked List).', 3, 'Difícil', 'Algoritmos'),
-(132, 'O que significa um algoritmo ser \"estável\" no contexto de ordenação?', 'Ele sempre termina em tempo polinomial.', 'Ele preserva a ordem relativa de elementos com chaves iguais.', 'Ele não usa memória auxiliar.', 'Ele é executado rapidamente.', 2, 'Difícil', 'Algoritmos'),
-(133, 'Qual dos seguintes problemas pode ser resolvido eficientemente usando um algoritmo guloso (greedy algorithm)?', 'O problema do Caixeiro Viajante.', 'O problema da Mochila (0/1 Knapsack Problem).', 'O problema da Árvore Geradora Mínima (Minimum Spanning Tree).', 'O problema da Subsequência Comum Mais Longa.', 3, 'Difícil', 'Algoritmos'),
-(134, 'Em que situação a programação dinâmica é mais eficiente do que a recursão pura?', 'Quando o problema não pode ser dividido em subproblemas.', 'Quando os subproblemas são independentes e não se sobrepõem.', 'Quando há subproblemas sobrepostos e uma ótima subestrutura.', 'Quando a recursão é muito superficial.', 3, 'Difícil', 'Algoritmos'),
-(135, 'Para que serve a \"Notação Big Omega (Ω-notation)\" na análise de algoritmos?', 'Para descrever o limite superior apertado do tempo de execução.', 'Para descrever o limite inferior do tempo de execução (melhor caso).', 'Para descrever a complexidade média do tempo de execução.', 'Para descrever a complexidade de espaço.', 2, 'Difícil', 'Algoritmos'),
-(136, 'Qual é o principal critério para a escolha de um algoritmo de hash?', 'Seu consumo de memória.', 'A facilidade de implementação da função de hash.', 'A capacidade de minimizar colisões e distribuir uniformemente as chaves.', 'A velocidade de criptografia.', 3, 'Difícil', 'Algoritmos'),
-(137, 'O que é \"poda de alfa-beta\" em algoritmos de jogos (Game Theory)?', 'Um método de balanceamento de árvores.', 'Uma técnica de otimização para reduzir o número de nós avaliados em árvores de jogo (Minimax).', 'Um algoritmo para gerar números aleatórios.', 'Um tipo de estrutura de dados para grafos.', 2, 'Difícil', 'Algoritmos'),
-(138, 'Qual a principal diferença entre BFS e DFS em termos de estrutura de dados auxiliar utilizada?', 'BFS usa fila, DFS usa pilha.', 'BFS usa pilha, DFS usa fila.', 'Ambos usam filas.', 'Ambos usam pilhas.', 1, 'Difícil', 'Algoritmos'),
-(139, 'No contexto de criptografia, qual o papel dos algoritmos de chave pública (assimétricos)?', 'Gerar hashes de mensagens.', 'Garantir que a mesma chave seja usada para criptografar e descriptografar.', 'Permitir que diferentes chaves (pública e privada) sejam usadas para criptografia e descriptografia.', 'Ordenar grandes volumes de dados.', 3, 'Difícil', 'Algoritmos'),
-(140, 'Qual o problema intrínseco aos algoritmos de força bruta para problemas complexos?', 'A incapacidade de encontrar uma solução.', 'O alto consumo de memória.', 'O tempo de execução exponencial, inviável para grandes entradas.', 'A necessidade de hardware especializado.', 3, 'Difícil', 'Algoritmos'),
-(141, 'Quando um algoritmo guloso falha em encontrar a solução ótima global para um problema de otimização?', 'Quando a escolha local ótima sempre leva à solução global ótima.', 'Quando o problema exibe uma ótima subestrutura.', 'Quando a natureza do problema não permite que a escolha local ótima seja parte de uma solução global ótima.', 'Quando é um problema de árvore geradora mínima.', 3, 'Difícil', 'Algoritmos'),
-(142, 'Qual é a complexidade de tempo no pior caso para inserção ou remoção em uma Árvore AVL (autobalanceada) com n nós?', 'O(n).', 'O(log n).', 'O(n log n).', 'O(1).', 2, 'Difícil', 'Algoritmos'),
-(143, 'O que um algoritmo de \"Divisão e Conquista\" tipicamente envolve?', 'Solucionar um problema resolvendo subproblemas de tamanho crescente.', 'Dividir o problema em subproblemas, resolver recursivamente e combinar os resultados.', 'Tomar decisões localmente ótimas.', 'Converter o problema em um problema de fluxo máximo.', 2, 'Difícil', 'Algoritmos'),
-(144, 'Qual o principal fator que distingue um problema P de um problema NP-completo?', 'Se ele pode ser resolvido em tempo constante.', 'Se ele pode ser resolvido em tempo polinomial por um algoritmo determinístico.', 'Se ele não pode ser verificado em tempo polinomial.', 'Se ele pode ser resolvido por força bruta.', 2, 'Difícil', 'Algoritmos'),
-(145, 'Em algoritmos de grafos, o que o \"grau de um vértice\" representa?', 'Sua cor.', 'O número de arestas incidentes a ele.', 'Sua distância do vértice de origem.', 'Seu peso.', 2, 'Difícil', 'Algoritmos'),
-(146, 'Qual o conceito de \"memoização\" em programação dinâmica?', 'Armazenar todas as entradas possíveis.', 'Armazenar os resultados de chamadas de função custosas e retornar o resultado armazenado quando as mesmas entradas ocorrem novamente.', 'Otimizar o uso de memória RAM.', 'Usar um algoritmo guloso.', 2, 'Difícil', 'Algoritmos'),
-(147, 'Por que o algoritmo de ordenação Counting Sort é considerado um algoritmo não-comparativo?', 'Porque ele usa comparações implícitas.', 'Porque ele ordena os elementos contando as ocorrências de cada valor.', 'Porque ele é baseado em trocas de elementos.', 'Porque ele é mais lento que os comparativos.', 2, 'Difícil', 'Algoritmos'),
-(148, 'Qual algoritmo é mais adequado para encontrar todos os pares de caminhos mais curtos em um grafo ponderado?', 'Dijkstra (repetidamente).', 'Bellman-Ford.', 'Floyd-Warshall.', 'Prim.', 3, 'Difícil', 'Algoritmos'),
-(149, 'O que a \"função de hash\" busca realizar?', 'Criptografar dados simetricamente.', 'Mapear dados de tamanho arbitrário para um valor de tamanho fixo.', 'Ordenar dados em ordem crescente.', 'Descomprimir arquivos.', 2, 'Difícil', 'Algoritmos'),
-(150, 'Qual o principal problema da recursão profunda sem otimização de memória em alguns algoritmos?', 'Maior velocidade de execução.', 'Overflow de pilha (Stack Overflow).', 'Menor consumo de energia.', 'Simplicidade na implementação.', 2, 'Difícil', 'Algoritmos'),
+(121, 'Qual notação é utilizada para descrever a complexidade assintótica de tempo e espaço de um algoritmo?', 'Notação Lambda (λ-notation).', 'Notação Big O (O-notation).', 'Notação Omega (Ω-notation).', 'Notação Theta (Θ-notation).', 2, 'Difícil', 'algoritmos'),
+(122, 'Um algoritmo de ordenação tem complexidade de tempo O(n log n). Qual das seguintes opções representa um algoritmo com essa característica?', 'Selection Sort.', 'Insertion Sort.', 'Merge Sort.', 'Bubble Sort.', 3, 'Difícil', 'algoritimos'),
+(123, 'Qual é a principal desvantagem do algoritmo Bubble Sort em comparação com algoritmos de ordenação mais avançados para grandes conjuntos de dados?', 'Requer memória auxiliar excessiva.', 'Possui complexidade de tempo quadrática (O(n²)) no pior caso.', 'É instável.', 'Não é um algoritmo de comparação.', 2, 'Difícil', 'algoritimos'),
+(124, 'Em um grafo, qual algoritmo é mais adequado para encontrar o caminho mais curto entre um único vértice de origem e todos os outros vértices, onde as arestas possuem pesos não-negativos?', 'Floyd-Warshall.', 'Bellman-Ford.', 'Kruskal.', 'Dijkstra.', 4, 'Difícil', 'algoritimos'),
+(125, 'O que caracteriza um algoritmo de \"Programação Dinâmica\"?', 'Resolve o problema dividindo-o em subproblemas independentes e combinando os resultados.', 'Toma a melhor escolha local na esperança de encontrar uma solução global ótima.', 'Armazena os resultados de subproblemas para evitar recálculos e resolver problemas sobrepostos.', 'Envolve tentativa e erro sistemáticos para encontrar uma solução.', 3, 'Difícil', 'algoritimos'),
+(126, 'Qual a complexidade de tempo no pior caso para buscar um elemento em uma Árvore Binária de Busca (BST) não balanceada com n nós?', 'O(log n).', 'O(1).', 'O(n).', 'O(n log n).', 3, 'Difícil', 'algoritimos'),
+(127, 'Um problema é NP-completo. O que isso implica sobre a existência de um algoritmo que o resolva eficientemente (em tempo polinomial)?', 'Tal algoritmo certamente existe e é fácil de encontrar.', 'Tal algoritmo não existe.', 'Não se sabe se tal algoritmo existe, mas a maioria acredita que não.', 'Um algoritmo de tempo exponencial é sempre a melhor opção.', 3, 'Difícil', 'algoritimos\r\n'),
+(128, 'Em qual cenário o algoritmo de busca em largura (BFS) é mais adequado que a busca em profundidade (DFS) para encontrar o caminho mais curto em um grafo não ponderado?', 'Quando o grafo é muito denso.', 'Quando o caminho mais curto é garantido como o mais profundo.', 'Quando se busca o caminho com o menor número de arestas.', 'Quando a conectividade é mais importante que a distância.', 3, 'Difícil', 'algoritimos'),
+(129, 'Qual o principal desafio ao projetar algoritmos paralelos?', 'Aumentar a complexidade do código sequencial.', 'Gerenciar a comunicação e sincronização entre os processos.', 'Reduzir a quantidade de hardware necessário.', 'Eliminar a necessidade de compilação.', 2, 'Difícil', 'algoritimos'),
+(130, 'O algoritmo Quick Sort tem uma complexidade de tempo no pior caso de O(n²). Quando isso ocorre?', 'Quando os elementos estão aleatoriamente ordenados.', 'Quando a escolha do pivô sempre resulta em partições desbalanceadas.', 'Quando o número de elementos é pequeno.', 'Quando o algoritmo é implementado recursivamente.', 2, 'Difícil', 'algoritimos'),
+(131, 'Qual estrutura de dados é fundamental para a implementação eficiente de algoritmos de busca de caminho mínimo como Dijkstra?', 'Pilha (Stack).', 'Fila (Queue).', 'Pilha de Prioridade (Priority Queue).', 'Lista Encadeada (Linked List).', 3, 'Difícil', 'algoritimos'),
+(132, 'O que significa um algoritmo ser \"estável\" no contexto de ordenação?', 'Ele sempre termina em tempo polinomial.', 'Ele preserva a ordem relativa de elementos com chaves iguais.', 'Ele não usa memória auxiliar.', 'Ele é executado rapidamente.', 2, 'Difícil', 'algoritimos'),
+(133, 'Qual dos seguintes problemas pode ser resolvido eficientemente usando um algoritmo guloso (greedy algorithm)?', 'O problema do Caixeiro Viajante.', 'O problema da Mochila (0/1 Knapsack Problem).', 'O problema da Árvore Geradora Mínima (Minimum Spanning Tree).', 'O problema da Subsequência Comum Mais Longa.', 3, 'Difícil', 'algoritimos'),
+(134, 'Em que situação a programação dinâmica é mais eficiente do que a recursão pura?', 'Quando o problema não pode ser dividido em subproblemas.', 'Quando os subproblemas são independentes e não se sobrepõem.', 'Quando há subproblemas sobrepostos e uma ótima subestrutura.', 'Quando a recursão é muito superficial.', 3, 'Difícil', 'algoritimos'),
+(135, 'Para que serve a \"Notação Big Omega (Ω-notation)\" na análise de algoritmos?', 'Para descrever o limite superior apertado do tempo de execução.', 'Para descrever o limite inferior do tempo de execução (melhor caso).', 'Para descrever a complexidade média do tempo de execução.', 'Para descrever a complexidade de espaço.', 2, 'Difícil', 'algoritimos'),
+(136, 'Qual é o principal critério para a escolha de um algoritmo de hash?', 'Seu consumo de memória.', 'A facilidade de implementação da função de hash.', 'A capacidade de minimizar colisões e distribuir uniformemente as chaves.', 'A velocidade de criptografia.', 3, 'Difícil', 'algoritimos'),
+(137, 'O que é \"poda de alfa-beta\" em algoritmos de jogos (Game Theory)?', 'Um método de balanceamento de árvores.', 'Uma técnica de otimização para reduzir o número de nós avaliados em árvores de jogo (Minimax).', 'Um algoritmo para gerar números aleatórios.', 'Um tipo de estrutura de dados para grafos.', 2, 'Difícil', 'algoritimos'),
+(138, 'Qual a principal diferença entre BFS e DFS em termos de estrutura de dados auxiliar utilizada?', 'BFS usa fila, DFS usa pilha.', 'BFS usa pilha, DFS usa fila.', 'Ambos usam filas.', 'Ambos usam pilhas.', 1, 'Difícil', 'algoritimos'),
+(139, 'No contexto de criptografia, qual o papel dos algoritmos de chave pública (assimétricos)?', 'Gerar hashes de mensagens.', 'Garantir que a mesma chave seja usada para criptografar e descriptografar.', 'Permitir que diferentes chaves (pública e privada) sejam usadas para criptografia e descriptografia.', 'Ordenar grandes volumes de dados.', 3, 'Difícil', 'algoritimos'),
+(140, 'Qual o problema intrínseco aos algoritmos de força bruta para problemas complexos?', 'A incapacidade de encontrar uma solução.', 'O alto consumo de memória.', 'O tempo de execução exponencial, inviável para grandes entradas.', 'A necessidade de hardware especializado.', 3, 'Difícil', 'algoritimos'),
+(141, 'Quando um algoritmo guloso falha em encontrar a solução ótima global para um problema de otimização?', 'Quando a escolha local ótima sempre leva à solução global ótima.', 'Quando o problema exibe uma ótima subestrutura.', 'Quando a natureza do problema não permite que a escolha local ótima seja parte de uma solução global ótima.', 'Quando é um problema de árvore geradora mínima.', 3, 'Difícil', 'algoritimos'),
+(142, 'Qual é a complexidade de tempo no pior caso para inserção ou remoção em uma Árvore AVL (autobalanceada) com n nós?', 'O(n).', 'O(log n).', 'O(n log n).', 'O(1).', 2, 'Difícil', 'algoritimos'),
+(143, 'O que um algoritmo de \"Divisão e Conquista\" tipicamente envolve?', 'Solucionar um problema resolvendo subproblemas de tamanho crescente.', 'Dividir o problema em subproblemas, resolver recursivamente e combinar os resultados.', 'Tomar decisões localmente ótimas.', 'Converter o problema em um problema de fluxo máximo.', 2, 'Difícil', 'algoritimos'),
+(144, 'Qual o principal fator que distingue um problema P de um problema NP-completo?', 'Se ele pode ser resolvido em tempo constante.', 'Se ele pode ser resolvido em tempo polinomial por um algoritmo determinístico.', 'Se ele não pode ser verificado em tempo polinomial.', 'Se ele pode ser resolvido por força bruta.', 2, 'Difícil', 'algoritimos'),
+(145, 'Em algoritmos de grafos, o que o \"grau de um vértice\" representa?', 'Sua cor.', 'O número de arestas incidentes a ele.', 'Sua distância do vértice de origem.', 'Seu peso.', 2, 'Difícil', 'algoritimos'),
+(146, 'Qual o conceito de \"memoização\" em programação dinâmica?', 'Armazenar todas as entradas possíveis.', 'Armazenar os resultados de chamadas de função custosas e retornar o resultado armazenado quando as mesmas entradas ocorrem novamente.', 'Otimizar o uso de memória RAM.', 'Usar um algoritmo guloso.', 2, 'Difícil', 'algoritimos'),
+(147, 'Por que o algoritmo de ordenação Counting Sort é considerado um algoritmo não-comparativo?', 'Porque ele usa comparações implícitas.', 'Porque ele ordena os elementos contando as ocorrências de cada valor.', 'Porque ele é baseado em trocas de elementos.', 'Porque ele é mais lento que os comparativos.', 2, 'Difícil', 'algoritimos'),
+(148, 'Qual algoritmo é mais adequado para encontrar todos os pares de caminhos mais curtos em um grafo ponderado?', 'Dijkstra (repetidamente).', 'Bellman-Ford.', 'Floyd-Warshall.', 'Prim.', 3, 'Difícil', 'algoritimos'),
+(149, 'O que a \"função de hash\" busca realizar?', 'Criptografar dados simetricamente.', 'Mapear dados de tamanho arbitrário para um valor de tamanho fixo.', 'Ordenar dados em ordem crescente.', 'Descomprimir arquivos.', 2, 'Difícil', 'algoritimos'),
+(150, 'Qual o principal problema da recursão profunda sem otimização de memória em alguns algoritmos?', 'Maior velocidade de execução.', 'Overflow de pilha (Stack Overflow).', 'Menor consumo de energia.', 'Simplicidade na implementação.', 2, 'Difícil', 'algoritimos'),
 (151, 'O que é um \"algoritmo determinístico\"?', 'Um algoritmo que usa números aleatórios.', 'Um algoritmo que sempre produz o mesmo resultado para a mesma entrada e segue um caminho único.', 'Um algoritmo que pode ter múltiplos resultados para a mesma entrada.', 'Um algoritmo que nunca termina.', 2, 'Difícil', 'Algoritmos'),
 (152, 'Qual o propósito da \"heurística\" em algoritmos de busca complexos?', 'Garantir a solução ótima em todos os casos.', 'Acelerar a busca, sacrificando a otimalidade em troca de rapidez.', 'Apenas para validar entradas.', 'Para tornar o algoritmo mais difícil de entender.', 2, 'Difícil', 'Algoritmos'),
 (153, 'No problema da mochila fracionária (Fractional Knapsack), qual paradigma de projeto de algoritmo garante a solução ótima?', 'Programação Dinâmica.', 'Divisão e Conquista.', 'Algoritmo Guloso.', 'Backtracking.', 3, 'Difícil', 'Algoritmos'),
@@ -1393,7 +1414,7 @@ INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `ans
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -1405,31 +1426,78 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `foto`) VALUES
+(8, 'igorr', 'igorr@gmail.com', '$2b$10$4ePx9pn.2q9JaRAhI0zwy.i6hNXKPyUXYVk5knw43vQ9tQKt9Mbna', '1749057201187.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario_emblemas`
+--
+
+CREATE TABLE `usuario_emblemas` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_emblema` int(11) NOT NULL,
+  `data_conquista` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `usuario_emblemas`
+--
+
+INSERT INTO `usuario_emblemas` (`id`, `id_usuario`, `id_emblema`, `data_conquista`) VALUES
+(2, 8, 1, '2025-06-04 16:35:37');
+
+--
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `game_questions`
+-- Índices para tabela `emblemas`
+--
+ALTER TABLE `emblemas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `game_questions`
 --
 ALTER TABLE `game_questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `questions`
+-- Índices para tabela `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `usuarios`
+-- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email_UNIQUE` (`email`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- Índices para tabela `usuario_emblemas`
 --
+ALTER TABLE `usuario_emblemas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_emblema` (`id_emblema`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `emblemas`
+--
+ALTER TABLE `emblemas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `game_questions`
@@ -1447,7 +1515,24 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `usuario_emblemas`
+--
+ALTER TABLE `usuario_emblemas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `usuario_emblemas`
+--
+ALTER TABLE `usuario_emblemas`
+  ADD CONSTRAINT `usuario_emblemas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `usuario_emblemas_ibfk_2` FOREIGN KEY (`id_emblema`) REFERENCES `emblemas` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Funções -  CodeNinja</title>
+    <link rel="stylesheet" href="/frontend/css/conteudo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <header>
+        <a href="#" class="brand">
+            <img src="/frontend/assets/ninjalogo.png" class="brand-icon" />
+            CodeNinja
+        </a>
+    </header>
+
+    <main class="container-with-toc">
+
+        <nav class="toc">
+            <h2>Índice</h2>
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#estrutura-basica">Estrutura básica de uma função em C</a></li>
+                <li><a href="#exemplo-simples">Exemplo simples</a></li>
+                <li><a href="#porque-usar">Por que usar funções?</a></li>
+                <li><a href="#prototipo">Protótipo de função</a></li>
+                <li><a href="#tipos-funcoes">Tipos de funções</a></li>
+                <li><a href="#passagem-parametros">Passagem de parâmetros</a></li>
+                <li><a href="#retorno-valores">Retorno de valores</a></li>
+                <li><a href="#recursivas">Funções recursivas</a></li>
+                <li><a href="#boas-praticas">Boas práticas no uso de funções</a></li>
+                <li><a href="#erros-comuns">Erros comuns</a></li>
+                <li><a href="#resumo">Resumo Final</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+            </ul>
+        </nav>
+
+        <section class="content">
+            <a href="/frontend/pages/topicos.html" class="exit-button">
+                Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+            <h1>Funções em Linguagem C</h1>
+
+            <h2 id="introducao">Introdução</h2>
+            <p>Em programação, uma função é um dos conceitos mais importantes e fundamentais. Quando escrevemos um
+                programa, nem sempre queremos que todo o código fique em um único bloco, dentro da função
+                <code>main()</code>. Isso deixaria o programa muito grande, confuso e difícil de manter.
+            </p>
+            <p>Por isso, podemos criar funções: pequenos "blocos de código" que podemos chamar quando quisermos, para
+                realizar uma determinada tarefa específica.</p>
+
+            <h2 id="oque">O que é uma Função?</h2>
+            <p>Uma função é um bloco de código nomeado, que pode receber valores de entrada (chamados de parâmetros),
+                executa um conjunto de instruções, e, se necessário, devolve um resultado (chamado de retorno).</p>
+            <p>Ou seja, funções ajudam a:</p>
+            <ul>
+                <li>✅ organizar o programa;</li>
+                <li>✅ evitar repetição de código;</li>
+                <li>✅ modularizar o programa em partes menores e mais fáceis de entender;</li>
+                <li>✅ reutilizar código em diferentes partes do programa.</li>
+            </ul>
+
+            <h2 id="estrutura-basica">Estrutura Básica</h2>
+            <p>Em C, uma função possui sempre a seguinte estrutura:</p>
+            <div class="code-box">
+                tipo_de_retorno nome_da_funcao(parâmetros)
+                {
+                // Bloco de comandos (corpo da função)
+                return valor; // se o tipo de retorno não for void
+                }
+            </div>
+            <p>Explicando cada parte:</p>
+            <ul>
+                <li><strong>tipo_de_retorno</strong>: indica o tipo de dado que a função vai retornar (ex:
+                    <code>int</code>, <code>float</code>, <code>void</code>, etc.).
+                </li>
+                <li><strong>nome_da_funcao</strong>: nome da função (descritivo e válido).</li>
+                <li><strong>parâmetros</strong>: variáveis que a função recebe. Se não tiver, usamos <code>void</code>
+                    ou <code>()</code> vazio.</li>
+                <li><strong>corpo da função</strong>: comandos entre <code>{ }</code>.</li>
+                <li><strong>return</strong>: devolve um valor (se não for <code>void</code>).</li>
+            </ul>
+
+            <h2 id="exemplo">Exemplo Simples</h2>
+            <div class="code-box">
+                int soma(int a, int b)
+                {
+                int resultado = a + b;
+                return resultado;
+                }
+            </div>
+            <p>Uso no programa:</p>
+            <div class="code-box">
+                #include &lt;stdio.h&gt;
+
+                int soma(int a, int b);
+
+                int main()
+                {
+                int resultado = soma(5, 3);
+                printf("Resultado da soma: %d\n", resultado);
+
+                return 0;
+                }
+
+                int soma(int a, int b)
+                {
+                return a + b;
+                }
+            </div>
+            <p>Saída:</p>
+            <div class="code-box">
+                Resultado da soma: 8
+            </div>
+
+            <h2 id="porque">Por que Usar Funções?</h2>
+            <p>Imagine um programa que calcula a área de diferentes figuras geométricas. Se você não usar funções, teria
+                que repetir o cálculo em vários lugares. Com funções, você cria uma função para cada cálculo e reutiliza
+                o código facilmente, tornando o programa mais modular e organizado.</p>
+
+            <h2 id="prototipo">Protótipo de Função</h2>
+            <p>Se você chama a função em <code>main()</code> mas define ela depois, precisa declarar um
+                <strong>protótipo</strong>:
+            </p>
+            <div class="code-box">
+                int soma(int a, int b); // Protótipo
+            </div>
+
+            <h2 id="tipos">Tipos de Funções</h2>
+            <p><strong>1️⃣ Com retorno e com parâmetros</strong></p>
+            <div class="code-box">
+                float calculaMedia(float a, float b)
+                {
+                return (a + b) / 2;
+                }
+            </div>
+            <p><strong>2️⃣ Sem retorno e com parâmetros</strong></p>
+            <div class="code-box">
+                void imprimeMensagem(char *mensagem)
+                {
+                printf("%s\n", mensagem);
+                }
+            </div>
+            <p><strong>3️⃣ Com retorno e sem parâmetros</strong></p>
+            <div class="code-box">
+                int valorFixo()
+                {
+                return 42;
+                }
+            </div>
+            <p><strong>4️⃣ Sem retorno e sem parâmetros</strong></p>
+            <div class="code-box">
+                void saudacao()
+                {
+                printf("Olá, bem-vindo ao programa!\n");
+                }
+            </div>
+
+            <h2 id="parametros">Passagem de Parâmetros</h2>
+            <p><strong>Por valor (padrão em C)</strong></p>
+            <div class="code-box">
+                void alteraValor(int x)
+                {
+                x = x + 10;
+                printf("Dentro da função: %d\n", x);
+                }
+
+                int main()
+                {
+                int numero = 5;
+                alteraValor(numero);
+                printf("Fora da função: %d\n", numero);
+                return 0;
+                }
+            </div>
+            <p>Saída:</p>
+            <div class="code-box">
+                Dentro da função: 15
+                Fora da função: 5
+            </div>
+            <p><strong>Por referência (simulada com ponteiros)</strong></p>
+            <div class="code-box">
+                void dobra(int *x)
+                {
+                *x = *x * 2;
+                }
+
+                int main()
+                {
+                int valor = 7;
+                dobra(&valor);
+                printf("Valor dobrado: %d\n", valor);
+                return 0;
+                }
+            </div>
+            <p>Saída:</p>
+            <div class="code-box">
+                Valor dobrado: 14
+            </div>
+
+            <h2 id="retorno">Retorno de Valores</h2>
+            <p>O comando <code>return</code> devolve um valor e encerra a função.</p>
+            <div class="code-box">
+                int quadrado(int n)
+                {
+                return n * n;
+                }
+
+                int resultado = quadrado(4); // resultado = 16
+            </div>
+
+            <h2 id="recursao">Funções Recursivas</h2>
+            <p>Função que chama a si mesma. Exemplo: Fatorial.</p>
+            <div class="code-box">
+                int fatorial(int n)
+                {
+                if (n == 0)
+                return 1;
+                else
+                return n * fatorial(n - 1);
+                }
+
+                printf("%d\n", fatorial(5)); // 120
+            </div>
+
+            <h2 id="boas">Boas Práticas</h2>
+            <ul>
+                <li>✅ Nomes descritivos</li>
+                <li>✅ Funções curtas e específicas</li>
+                <li>✅ Comentários explicativos</li>
+                <li>✅ Reutilização de código</li>
+                <li>✅ Número de parâmetros razoável</li>
+            </ul>
+
+            <h2 id="erros">Erros Comuns</h2>
+            <ul>
+                <li>❌ Esquecer do <code>return</code> em função com retorno</li>
+                <li>❌ Retornar tipo diferente do declarado</li>
+                <li>❌ Chamar função com parâmetros incorretos</li>
+                <li>❌ Usar <code>return valor;</code> em função <code>void</code></li>
+            </ul>
+
+            <h2 id="resumo">Resumo Final</h2>
+
+            <p>As funções são um dos pilares mais importantes da programação estruturada e da organização de código em
+                linguagens como C. Elas permitem que o programador escreva <strong>blocos de código
+                    reutilizáveis</strong> com um nome específico, que podem receber valores (parâmetros), realizar
+                tarefas e, opcionalmente, retornar um resultado (valor de retorno).</p>
+
+            <p>Além de reduzir a repetição de código, as funções tornam o programa mais <strong>modular</strong> e
+                organizado, permitindo que ele seja dividido em partes menores e mais fáceis de entender, testar e
+                manter. Ao usar funções, você consegue <strong>separar a lógica de diferentes partes do
+                    programa</strong>, aumentando a clareza e facilitando futuras alterações.</p>
+
+            <p>O uso correto de funções envolve conhecer bem conceitos como: passagem de parâmetros (por valor ou
+                referência), tipos de retorno, uso de protótipos, e técnicas avançadas como <strong>funções
+                    recursivas</strong>. Com isso, você consegue criar programas mais robustos e profissionais.</p>
+
+            <p>De maneira geral, podemos dizer que:</p>
+
+            <ul>
+                <li>Uma <strong>função</strong> é um bloco de código nomeado e reutilizável.</li>
+                <li>Um <strong>parâmetro</strong> é um valor que a função recebe para trabalhar.</li>
+                <li>O <strong>retorno</strong> é o valor que a função devolve para quem a chamou.</li>
+                <li>O tipo <code>void</code> indica que a função não retorna valor.</li>
+                <li>O comando <code>return</code> devolve um valor e encerra a execução da função.</li>
+                <li>A <strong>recursão</strong> é uma técnica em que a função chama a si mesma.</li>
+                <li>O <strong>protótipo</strong> serve para declarar antecipadamente uma função ao compilador.</li>
+            </ul>
+
+            <p>Dominar funções é essencial para se tornar um bom programador. Mesmo em programas pequenos, o uso de
+                funções melhora a qualidade do código. Em programas maiores, o uso de funções se torna
+                <strong>obrigatório</strong> para garantir que o código seja legível, organizado e sustentável ao longo
+                do tempo.
+            </p>
+
+            <p>Portanto, pratique bastante a criação de funções com e sem parâmetros, com e sem retorno, e experimente
+                criar programas mais modulares e organizados. Você vai perceber que seu código ficará muito mais fácil
+                de entender, modificar e reutilizar.</p>
+
+            <p>Funções são uma ferramenta poderosa: aproveite ao máximo esse recurso!</p>
+
+
+            <h2 id="conclusao">Conclusão</h2>
+
+            <p>Agora que você compreendeu como as funções funcionam em C, está pronto para estruturar seus programas de
+                forma mais clara, eficiente e profissional. Ao dividir seu código em funções bem definidas, você
+                facilita a leitura, a manutenção e a evolução dos seus programas, além de permitir a reutilização de
+                código em diferentes contextos.</p>
+
+            <p>Ao longo do tempo, você perceberá que programas mais complexos se tornam muito mais gerenciáveis quando
+                são compostos por funções bem escritas e bem nomeadas. Além disso, conceitos como passagem de
+                parâmetros, retorno de valores e o uso de recursão abrirão um leque de novas possibilidades na resolução
+                de problemas.</p>
+
+            <p>Continue praticando, experimentando diferentes tipos de funções e explorando padrões de projeto. Com o
+                tempo, o uso inteligente de funções se tornará uma habilidade natural no seu repertório como
+                programador. Parabéns por ter chegado até aqui — você já deu um passo importante rumo a um código mais
+                limpo e modular!</p>
+
+            <a href="/frontend/pages/quizfuncoes.html" class="quiz-button">Começar Quiz</a>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

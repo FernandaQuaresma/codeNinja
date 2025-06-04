@@ -155,6 +155,60 @@ module.exports = function(db) {
       res.redirect('/frontend/pages/home.html');
     });
   });
+// === ROTAS DE EMBLEMAS ===
 
+// LISTAR emblemas do usuário logado
+router.get('/api/emblemas', proteger, (req, res) => {
+  const email = req.session.usuario;
+
+  db.query('SELECT id FROM usuarios WHERE email = ?', [email], (err, results) => {
+    if (err) return res.status(500).send('Erro no banco');
+    if (results.length === 0) return res.status(404).send('Usuário não encontrado');
+
+    const id_usuario = results[0].id;
+
+    const query = `
+      SELECT e.id AS id_emblema, e.nome, e.imagem_url, ue.data_conquista
+      FROM usuario_emblemas ue
+      JOIN emblemas e ON ue.id_emblema = e.id
+      WHERE ue.id_usuario = ?
+      ORDER BY ue.data_conquista DESC
+    `;
+
+    db.query(query, [id_usuario], (err, emblemas) => {
+      if (err) return res.status(500).send('Erro ao buscar emblemas');
+      res.json(emblemas);
+    });
+  });
+});
+
+// ADICIONAR emblema para o usuário logado
+router.post('/api/emblemas', proteger, (req, res) => {
+  const email = req.session.usuario;
+  const { id_emblema } = req.body;
+
+  db.query('SELECT id FROM usuarios WHERE email = ?', [email], (err, results) => {
+    if (err) return res.status(500).send('Erro no banco');
+    if (results.length === 0) return res.status(404).send('Usuário não encontrado');
+
+    const id_usuario = results[0].id;
+
+    const insertQuery = `
+      INSERT INTO usuario_emblemas (id_usuario, id_emblema)
+      VALUES (?, ?)
+    `;
+
+    db.query(insertQuery, [id_usuario, id_emblema], (err) => {
+      if (err) {
+        console.error('Erro ao adicionar emblema:', err);
+        return res.status(500).send('Erro ao adicionar emblema');
+      }
+
+      res.json({ message: 'Emblema adicionado com sucesso!' });
+    });
+  });
+});
+
+// === FIM DAS ROTAS DE EMBLEMAS ===
   return router;
 };

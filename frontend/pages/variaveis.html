@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Algoritmos - CodeNinja</title>
+  <link rel="stylesheet" href="/frontend/css/conteudo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <a href="#" class="brand">
+      <img src="/frontend/assets/ninjalogo.png" class="brand-icon" />
+      CodeNinja
+    </a>
+  </header>
+
+  <main class="container-with-toc">
+
+    <!-- TOC -->
+    <nav class="toc">
+      <h2>Sumário</h2>
+      <ul>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#variaveis">Variáveis</a></li>
+        <li><a href="#constantes">Constantes</a></li>
+        <li><a href="#comparacao">Comparando</a></li>
+        <li><a href="#escopo">Escopo</a></li>
+        <li><a href="#mutabilidade">Mutabilidade</a></li>
+        <li><a href="#tipagem">Tipagem</a></li>
+        <li><a href="#identificadores">Identificadores</a></li>
+        <li><a href="#conclusao">Conclusão</a></li>
+      </ul>
+    </nav>
+
+    <!-- Conteúdo -->
+    <div class="content">
+
+      <a href="/frontend/pages/topicos.html" class="exit-button">
+        Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+
+      <!-- Seções completas -->
+
+<section class="lesson-box" id="introducao">
+  <h1>Variáveis e Constantes</h1>
+  <h2>Introdução</h2>
+  <p>
+    Variáveis e constantes são conceitos fundamentais em programação. Elas nos permitem armazenar e manipular informações durante a execução de um programa.
+  </p>
+  <p>
+    Variáveis são valores que podem mudar ao longo do tempo, enquanto constantes são valores fixos que não se alteram. Entender como e quando usá-las é essencial para escrever algoritmos corretos e eficientes.
+  </p>
+</section>
+
+      <section class="lesson-box" id="variaveis">
+  <h2>O que são Variáveis</h2>
+  <p>
+    Uma <strong>variável</strong> é um espaço reservado na memória do computador para armazenar um valor que pode mudar durante a execução do programa. É chamada de variável porque seu valor pode "variar" com o tempo.
+  </p>
+  <p>
+    Quando declaramos uma variável, estamos reservando um local na memória para armazenar determinado tipo de dado, como números inteiros, números decimais, texto, etc.
+  </p>
+  <h3>Exemplo:</h3>
+  <pre class="code-box">
+inteiro x
+inteiro y
+inteiro soma
+
+escreva("Digite o valor de x: ")
+leia(x)
+
+escreva("Digite o valor de y: ")
+leia(y)
+
+soma ← x + y
+
+escreva("Resultado da soma: ", soma)
+  </pre>
+  <p>
+    Neste exemplo, temos três variáveis: <code>x</code>, <code>y</code> e <code>soma</code>. O usuário fornece os valores de <code>x</code> e <code>y</code>, e o programa calcula e exibe o resultado.
+  </p>
+</section>
+<section class="lesson-box" id="constantes">
+  <h2>O que são Constantes</h2>
+  <p>
+    Uma <strong>constante</strong> também reserva um espaço na memória, mas seu valor não muda durante a execução do programa. Uma vez atribuída, a constante mantém o mesmo valor até o final.
+  </p>
+  <p>
+    Por exemplo, o número <strong>PI (π)</strong> é uma constante com valor aproximado de 3.14, que podemos usar em cálculos:
+  </p>
+  <pre class="code-box">
+real PI ← 3.14
+real raio
+real area
+
+escreva("Digite o raio do círculo: ")
+leia(raio)
+
+area ← PI * raio * raio
+
+escreva("Área do círculo: ", area)
+  </pre>
+</section>
+<section class="lesson-box" id="comparacao">
+  <h2>Diferença entre Variáveis e Constantes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Aspecto</th>
+        <th>Variável</th>
+        <th>Constante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Valor</td>
+        <td>Pode mudar durante a execução</td>
+        <td>Permanece fixo</td>
+      </tr>
+      <tr>
+        <td>Memória</td>
+        <td>Reservada dinamicamente</td>
+        <td>Reservada e protegida</td>
+      </tr>
+      <tr>
+        <td>Uso típico</td>
+        <td>Valores que dependem de entrada ou cálculo</td>
+        <td>Valores que são fixos, como PI, taxas, limites</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="lesson-box" id="escopo">
+  <h2>Escopo de Variáveis</h2>
+  <p>
+    O <strong>escopo</strong> de uma variável define <strong>onde</strong> ela pode ser utilizada dentro do programa.
+  </p>
+  <h3>Escopo Local</h3>
+  <p>
+    Uma variável declarada dentro de um bloco (ex: função, procedimento) só pode ser usada dentro daquele bloco. Após sair do bloco, ela deixa de existir.
+  </p>
+  <h3>Escopo Global</h3>
+  <p>
+    Uma variável global é declarada fora de qualquer função ou procedimento e pode ser acessada por todo o programa.
+  </p>
+  <h3>Tempo de Vida (Lifetime)</h3>
+  <p>
+    O tempo de vida de uma variável é o período durante o qual ela existe na memória:
+  </p>
+  <ul>
+    <li><strong>Variáveis locais</strong> existem enquanto o bloco em que estão definidas estiver em execução.</li>
+    <li><strong>Variáveis globais</strong> existem enquanto o programa inteiro estiver em execução.</li>
+  </ul>
+</section>
+<section class="lesson-box" id="mutabilidade">
+  <h2>Mutabilidade</h2>
+  <p>
+    Mutabilidade refere-se à capacidade de um valor ser alterado após ser atribuído.
+  </p>
+  <h3>Variáveis Mutáveis</h3>
+  <p>
+    Por padrão, variáveis são mutáveis: seu valor pode ser alterado ao longo do programa.
+  </p>
+  <h3>Constantes</h3>
+  <p>
+    Constantes são imutáveis: uma vez atribuído um valor, ele não pode mais ser alterado.
+  </p>
+  <h3>Variáveis Imutáveis (em algumas linguagens)</h3>
+  <p>
+    Algumas linguagens permitem declarar variáveis imutáveis usando palavras-chave como <code>final</code> (Java), <code>const</code> (JavaScript, C++), garantindo que seu valor não seja alterado após atribuição inicial.
+  </p>
+</section>
+<section class="lesson-box" id="tipagem">
+  <h2>Tipagem e Tratamento de Erros</h2>
+  <p>
+    Toda variável possui um <strong>tipo de dado</strong>, que define que tipo de informação ela pode armazenar.
+  </p>
+  <h3>Tipos Comuns:</h3>
+  <ul>
+    <li><code>inteiro</code> → números inteiros</li>
+    <li><code>real</code> → números decimais</li>
+    <li><code>caractere</code> → letras e símbolos</li>
+    <li><code>string</code> → texto</li>
+    <li><code>booleano</code> → verdadeiro ou falso</li>
+  </ul>
+  <h3>Tipagem Forte x Fraca</h3>
+  <ul>
+    <li><strong>Tipagem forte:</strong> não permite misturar tipos sem conversão explícita (ex: Java).</li>
+    <li><strong>Tipagem fraca:</strong> permite misturar tipos (ex: JavaScript).</li>
+  </ul>
+  <h3>Erros Comuns:</h3>
+  <ul>
+    <li>Entrar texto quando o programa espera um número.</li>
+    <li>Estouro de memória ao armazenar um número muito grande em um tipo pequeno.</li>
+    <li>Dividir por zero (não permitido).</li>
+  </ul>
+  <p>
+    Para evitar erros, usamos <strong>validações de entrada</strong> e técnicas de <strong>tratamento de exceções</strong>.
+  </p>
+</section>
+<section class="lesson-box" id="identificadores">
+  <h2>Nomes de Variáveis e Constantes (Identificadores)</h2>
+  <p>
+    <strong>Identificador</strong> é o nome que damos a uma variável ou constante.
+  </p>
+  <h3>Regras Gerais:</h3>
+  <ul>
+    <li>Deve começar com letra ou sublinhado (_)</li>
+    <li>Não pode conter espaços ou caracteres especiais</li>
+    <li>Não pode ser palavra reservada da linguagem (ex: <code>if</code>, <code>while</code>)</li>
+  </ul>
+  <h3>Case Sensitive:</h3>
+  <p>
+    Linguagens como <code>Java</code> e <code>JavaScript</code> diferenciam maiúsculas de minúsculas (<code>nome</code> ≠ <code>Nome</code>).
+  </p>
+  <h3>Boas Práticas:</h3>
+  <ul>
+    <li>Escolha nomes significativos (ex: <code>altura</code>, <code>idade</code>)</li>
+    <li>Use <code>camelCase</code> em linguagens como JavaScript (ex: <code>valorTotal</code>)</li>
+    <li>Use <code>UPPER_CASE</code> para constantes (ex: <code>TAXA_JUROS</code>)</li>
+  </ul>
+</section>
+<section class="lesson-box" id="conclusao">
+  <h2>Conclusão</h2>
+  <p>
+    Variáveis e constantes são elementos essenciais em qualquer algoritmo. 
+  </p>
+  <p>
+    Saber como e quando usá-las permite criar programas claros, corretos e eficientes.
+  </p>
+  <p>
+    Resumindo:
+  </p>
+  <ul>
+    <li><strong>Variáveis:</strong> armazenam valores que podem mudar ao longo da execução.</li>
+    <li><strong>Constantes:</strong> armazenam valores fixos e imutáveis.</li>
+    <li>Devemos sempre usar bons nomes (identificadores) e tratar erros para garantir a robustez dos nossos programas.</li>
+  </ul>
+  <p>
+    No próximo módulo, vamos aprender sobre <strong>Operações Aritméticas</strong> e como manipular dados usando operadores matemáticos.
+  </p>
+</section>
+
+
+      <!-- Botão para o quiz -->
+      <a href="/frontend/pages/quizvariaveis.html" class="quiz-link">
+        <button class="quiz-button">Começar Quiz</button>
+      </a>
+
+    </div> <!-- fim da div.content -->
+
+  </main> <!-- fim da main.container-with-toc -->
+
+</body>
+</html>
+

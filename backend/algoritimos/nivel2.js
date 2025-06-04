@@ -10,8 +10,11 @@ async function loadQuestions() {
     const response = await fetch('/api/questions');
     const data = await response.json();
 
-    // Filtra apenas as questões com dificuldade "fácil"
-    const difficultQuestions = data.filter(q => q.dificuldade?.toLowerCase() === "difícil");
+    // Filtra apenas as questões com dificuldade "difícil" e tópico "algoritimos"
+    const difficultQuestions = data.filter(q =>
+      q.dificuldade?.toLowerCase() === "difícil" &&
+      q.topico?.toLowerCase() === "algoritimos"
+    );
 
     allQuestions = difficultQuestions.map(q => ({
       question: q.question,
@@ -157,13 +160,33 @@ function finishGame() {
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
       <span>Resultado: ${message}</span><br/>
-      Redirecionando para o jogo...
+      Registrando conquista e redirecionando para o jogo...
     </p>
   `;
 
-  setTimeout(() => {
-    window.location.href = "http://localhost:3000/frontend/pages/game.html";
-  }, 3000);
+  // === POST para registrar emblema ===
+  fetch('/api/emblemas', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id_emblema: 1 }) // id do emblema "Ninja dos Algoritmos"
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Emblema de níveis registrado:', data);
+
+    // Depois que registrar o emblema, redireciona pro game
+    setTimeout(() => {
+      window.location.href = "http://localhost:3000/frontend/pages/game.html";
+    }, 2000);
+  })
+  .catch(error => {
+    console.error('Erro ao registrar emblema:', error);
+
+    // Mesmo se der erro, redireciona depois
+    setTimeout(() => {
+      window.location.href = "http://localhost:3000/frontend/pages/game.html";
+    }, 2000);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laços de Repetição - CodeNinja</title>
+  <link rel="stylesheet" href="/frontend/css/conteudo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <header>
+    <a href="#" class="brand">
+      <img src="/frontend/assets/ninjalogo.png" class="brand-icon" />
+      CodeNinja
+    </a>
+  </header>
+
+  <main class="container-with-toc">
+
+    <!-- TOC -->
+    <nav class="toc">
+      <h2>Índice</h2>
+      <ul>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#while">Laço while</a></li>
+        <li><a href="#dowhile">Laço do...while</a></li>
+        <li><a href="#for">Laço for</a></li>
+        <li><a href="#controle">Controle de fluxo: break e continue</a></li>
+        <li><a href="#aninhados">Laços aninhados</a></li>
+        <li><a href="#quando-usar">Quando usar cada laço?</a></li>
+        <li><a href="#boas-praticas">Boas práticas</a></li>
+        <li><a href="#exemplos">Exemplos práticos</a></li>
+        <li><a href="#resumo">Resumo</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+
+      <a href="/frontend/pages/topicos.html" class="exit-button">
+        Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+
+      <h1>Laços de Repetição</h1>
+
+      <h2 id="introducao">Introdução</h2>
+      <p>Os <strong>laços de repetição</strong> (ou loops) são estruturas que permitem executar um bloco de código repetidamente enquanto uma condição for verdadeira. Isso evita que você tenha que escrever o mesmo código várias vezes manualmente.</p>
+      <p>Exemplos de aplicações:</p>
+      <ul>
+        <li>Percorrer listas e arrays</li>
+        <li>Criar menus interativos</li>
+        <li>Repetir cálculos</li>
+        <li>Validar entradas</li>
+        <li>Automatizar tarefas repetitivas</li>
+      </ul>
+
+      <h2 id="while">Laço while</h2>
+      <p>O laço <code>while</code> executa o bloco enquanto a condição for <code>true</code>.</p>
+      <div class="code-box">let contador = 1;
+while (contador &lt;= 5) {
+    console.log(contador);
+    contador++;
+}</div>
+      <p>👉 Imprime: 1, 2, 3, 4, 5</p>
+      <p><strong>Cuidado:</strong> se você esquecer de atualizar a variável, o laço pode se tornar infinito!</p>
+
+      <h2 id="dowhile">Laço do...while</h2>
+      <p>O laço <code>do...while</code> garante que o código seja executado <strong>pelo menos uma vez</strong>, pois a condição é verificada no final.</p>
+      <div class="code-box">let numero = 10;
+do {
+    console.log("Executa ao menos uma vez!");
+} while (numero &lt; 5);</div>
+
+      <h2 id="for">Laço for</h2>
+      <p>O <code>for</code> é ideal para contagens controladas.</p>
+      <div class="code-box">for (let i = 0; i &lt; 5; i++) {
+    console.log(i);
+}</div>
+      <p>👉 Imprime: 0, 1, 2, 3, 4</p>
+
+      <h2 id="controle">Controle de fluxo: break e continue</h2>
+
+      <h3>break</h3>
+      <p>Interrompe o laço imediatamente.</p>
+      <div class="code-box">for (let i = 0; i &lt; 10; i++) {
+    if (i === 5) break;
+    console.log(i);
+}</div>
+
+      <h3>continue</h3>
+      <p>Pula para a próxima iteração.</p>
+      <div class="code-box">for (let i = 0; i &lt; 5; i++) {
+    if (i === 2) continue;
+    console.log(i);
+}</div>
+
+      <h2 id="aninhados">Laços aninhados</h2>
+      <p>É possível ter um laço dentro de outro:</p>
+      <div class="code-box">for (let i = 0; i &lt; 3; i++) {
+    for (let j = 0; j &lt; 3; j++) {
+        console.log(`i=${i}, j=${j}`);
+    }
+}</div>
+
+      <h2 id="quando-usar">Quando usar cada laço?</h2>
+      <ul>
+        <li><strong>while</strong>: quando não se sabe o número de repetições.</li>
+        <li><strong>do...while</strong>: quando o bloco deve executar ao menos uma vez.</li>
+        <li><strong>for</strong>: quando se sabe quantas vezes o laço deve executar.</li>
+      </ul>
+
+      <h2 id="boas-praticas">Boas práticas</h2>
+      <ul>
+        <li>Sempre garantir que a condição de parada seja atingível.</li>
+        <li>Prefira <code>for</code> para contagens conhecidas.</li>
+        <li>Use <code>do...while</code> para menus e validação.</li>
+        <li>Cuidado com loops infinitos!</li>
+      </ul>
+
+      <h2 id="exemplos">Exemplos práticos</h2>
+
+      <h3>Contagem regressiva com for</h3>
+      <div class="code-box">for (let i = 10; i &gt;= 1; i--) {
+    console.log(i);
+}</div>
+
+      <h3>Menu interativo com do...while</h3>
+      <div class="code-box">let opcao;
+do {
+    opcao = prompt("1 - Jogar\n2 - Sair");
+    console.log(`Opção escolhida: ${opcao}`);
+} while (opcao !== "2");</div>
+
+      <h3>Soma de 1 a 100 com while</h3>
+      <div class="code-box">let soma = 0;
+let i = 1;
+while (i &lt;= 100) {
+    soma += i;
+    i++;
+}
+console.log(`Soma: ${soma}`);</div>
+
+      <h2 id="resumo">Resumo</h2>
+      <ul>
+        <li>Laços tornam o código mais eficiente e repetitivo.</li>
+        <li><code>while</code>: verifica a condição antes de cada repetição.</li>
+        <li><code>do...while</code>: executa ao menos uma vez.</li>
+        <li><code>for</code>: ideal para contadores e percorrer arrays.</li>
+        <li><code>break</code>: sai do laço.</li>
+        <li><code>continue</code>: pula uma iteração.</li>
+      </ul>
+
+      <p>Agora que você aprendeu sobre laços, que tal praticar no Quiz?</p>
+
+      <a href="/frontend/pages/quizlacos.html" class="quiz-button">Começar Quiz</a>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

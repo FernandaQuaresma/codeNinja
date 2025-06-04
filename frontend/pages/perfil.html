@@ -50,7 +50,8 @@
     <div class="perfil-card">
       <!-- Lado esquerdo do card -->
       <div class="card-left">
-        <img id="foto-perfil" src="https://i.pravatar.cc/120?img=11" alt="Foto de perfil" />
+        <i id="foto-perfil" class="bi bi-person-circle" style="font-size: 120px; color: #fff;"></i>
+
         <h2 id="nomeEsquerda"></h2>
         <p id="emailEsquerda"></p>
         <p><em id="tituloUsuario"></em></p>
@@ -78,10 +79,7 @@
               <li>Carregando conquistas...</li>
             </ul>
           </div>
-          <div class="info-group">
-            <strong>Record do Game:</strong>
-            <span id="recordGame"></span>
-          </div>
+          
 
           <div class="buttons">
             <button class="btn-edit" onclick="mostrarFormulario()">
@@ -109,101 +107,157 @@
     </div>
   </main>
 
-  <script>
-    // Função para preencher dados no card
-    function preencherDados(data) {
-      // Lado esquerdo
-      document.getElementById('foto-perfil').src = data.foto
-        ? `/fotos/${data.foto}`
-        : 'https://i.pravatar.cc/120?img=11';
-      document.getElementById('nomeEsquerda').textContent = data.nome || 'Usuário';
-      document.getElementById('emailEsquerda').textContent = data.email || '';
-      document.getElementById('tituloUsuario').textContent = data.titulo || 'Premium Plus';
+  <!-- PARTE FINAL DO SEU SCRIPT -->
 
-      // Lado direito
-      document.getElementById('nomeDisplay').textContent = data.nome || '';
-      document.getElementById('emailDisplay').textContent = data.email || '';
-      document.getElementById('nome').value = data.nome || '';
-      document.getElementById('email').value = data.email || '';
+<script>
+  // === Preenche dados do usuário ===
+  function preencherDados(data) {
+    // Lado esquerdo (foto ou ícone)
+    const fotoPerfil = document.getElementById('foto-perfil');
 
-      // Conquistas (array)
-      const ul = document.getElementById('conquistasList');
-      ul.innerHTML = '';
-      if (data.conquistas && data.conquistas.length > 0) {
-        data.conquistas.forEach((item) => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          ul.appendChild(li);
-        });
-      } else {
-        ul.innerHTML = '<li>Sem conquistas</li>';
-      }
-
-      // Record do game
-      document.getElementById('recordGame').textContent = data.record || '--';
+    if (data.foto) {
+      fotoPerfil.outerHTML = `
+        <img id="foto-perfil" src="/fotos/${data.foto}" 
+          alt="Foto de perfil" 
+          style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(124, 77, 255, 0.6); margin-bottom: 20px;">
+      `;
+    } else {
+      fotoPerfil.className = 'bi bi-person-circle';
+      fotoPerfil.style.fontSize = '120px';
+      fotoPerfil.style.color = '#fff';
     }
 
-    // Busca os dados do usuário via API
-    fetch('/api/usuario')
-      .then((res) => res.json())
-      .then((data) => {
-        preencherDados(data);
-      })
-      .catch(() => {
-        alert('Erro ao carregar dados do usuário.');
-      });
+    // Lado esquerdo (nome, email, título)
+    document.getElementById('nomeEsquerda').textContent = data.nome || 'Usuário';
+    document.getElementById('emailEsquerda').textContent = data.email || '';
+    
 
+    // Lado direito (dados de exibição)
+    document.getElementById('nomeDisplay').textContent = data.nome || '';
+    document.getElementById('emailDisplay').textContent = data.email || '';
+    document.getElementById('nome').value = data.nome || '';
+    document.getElementById('email').value = data.email || '';
+  }
 
-function mostrarFormulario() {
-  document.getElementById('visualizacao').style.display = 'none';
-  document.getElementById('formPerfil').style.display = 'flex';
-}
-
-
-// Cancela edição
-function cancelarEdicao() {
-  document.getElementById('formPerfil').style.display = 'none';
-  document.getElementById('visualizacao').style.display = 'block';
-  document.getElementById('formPerfil').reset();
-}
-
-
-
-    // Envio do formulário
-    document.getElementById('formPerfil').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const form = document.getElementById('formPerfil');
-      const formData = new FormData(form);
-
-      const res = await fetch('/atualizar-usuario', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (res.ok) {
-        alert('Alterações salvas!');
-        window.location.reload();
-      } else {
-        alert('Erro ao salvar alterações.');
-      }
+  // === Busca os dados do usuário ===
+  fetch('/api/usuario')
+    .then((res) => res.json())
+    .then((data) => {
+      preencherDados(data);
+    })
+    .catch(() => {
+      alert('Erro ao carregar dados do usuário.');
     });
 
-    // Excluir conta
-    function excluirConta() {
-      if (confirm('Tem certeza que deseja excluir sua conta? Essa ação é permanente.')) {
-        fetch('/excluir-conta', {
-          method: 'DELETE',
-        }).then((res) => {
-          if (res.ok) {
-            alert('Conta excluída com sucesso.');
-            window.location.href = '/frontend/pages/login.html';
-          } else {
-            alert('Erro ao excluir a conta.');
-          }
+// === Busca as conquistas do usuário ===
+fetch('/api/emblemas')
+  .then(response => response.json())
+  .then(emblemas => {
+    console.log("Emblemas recebidos:", emblemas);
+    const ul = document.getElementById('conquistasList');
+    ul.innerHTML = '';
+
+    // === Monta os emblemas na tela
+    if (emblemas.length > 0) {
+      emblemas.forEach(emblema => {
+        const li = document.createElement('li');
+        li.style.flex = '0 0 auto';
+        li.style.textAlign = 'center';
+
+        li.innerHTML = `
+          <img src="${emblema.imagem_url}" alt="${emblema.nome}" 
+            style="width: 80px; height: 80px; object-fit: contain; display: block; margin: 0 auto 5px; border-radius: 8px; border: 2px solid rgba(124, 77, 255, 0.5); transition: transform 0.2s ease, border-color 0.2s ease;">
+          <div style="font-size: 14px; color: #fff;">${emblema.nome}</div>
+        `;
+
+        li.querySelector('img').addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.1)';
+          this.style.borderColor = '#c084fc';
         });
-      }
+        li.querySelector('img').addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.style.borderColor = 'rgba(124, 77, 255, 0.5)';
+        });
+
+        ul.appendChild(li);
+      });
+    } else {
+      ul.innerHTML = '<li>Sem conquistas</li>';
     }
-  </script>
+
+    // === CALCULA O TÍTULO DO USUÁRIO ===
+    const quantidade = emblemas.length;
+    let titulo = '';
+
+    if (quantidade === 0) {
+      titulo = 'Iniciante Ninja';
+    } else if (quantidade <= 4) {
+      titulo = 'Ninja Aprendiz';
+    } else if (quantidade <= 8) {
+      titulo = 'Ninja Guerreiro';
+    } else if (quantidade <= 12) {
+      titulo = 'Ninja Mestre';
+    } else {
+      titulo = 'Mestre Supremo Ninja';
+    }
+
+    // Atualiza o título no perfil
+    document.getElementById('tituloUsuario').textContent = titulo;
+  })
+  .catch(error => {
+    console.error('Erro ao carregar conquistas:', error);
+    document.getElementById('conquistasList').innerHTML = '<li>Erro ao carregar conquistas</li>';
+  });
+
+
+  // === Mostrar formulário ===
+  function mostrarFormulario() {
+    document.getElementById('visualizacao').style.display = 'none';
+    document.getElementById('formPerfil').style.display = 'flex';
+  }
+
+  // === Cancelar edição ===
+  function cancelarEdicao() {
+    document.getElementById('formPerfil').style.display = 'none';
+    document.getElementById('visualizacao').style.display = 'block';
+    document.getElementById('formPerfil').reset();
+  }
+
+  // === Envio do formulário ===
+  document.getElementById('formPerfil').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const form = document.getElementById('formPerfil');
+    const formData = new FormData(form);
+
+    const res = await fetch('/atualizar-usuario', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (res.ok) {
+      alert('Alterações salvas!');
+      window.location.reload();
+    } else {
+      alert('Erro ao salvar alterações.');
+    }
+  });
+
+  // === Excluir conta ===
+  function excluirConta() {
+    if (confirm('Tem certeza que deseja excluir sua conta? Essa ação é permanente.')) {
+      fetch('/excluir-conta', {
+        method: 'DELETE',
+      }).then((res) => {
+        if (res.ok) {
+          alert('Conta excluída com sucesso.');
+          window.location.href = '/frontend/pages/login.html';
+        } else {
+          alert('Erro ao excluir a conta.');
+        }
+      });
+    }
+  }
+</script>
 
   <script src="/frontend/js/dropdown.js"></script>
 </body>

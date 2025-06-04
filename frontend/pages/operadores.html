@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Algoritmos - CodeNinja</title>
+  <link rel="stylesheet" href="/frontend/css/conteudo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <a href="#" class="brand">
+      <img src="/frontend/assets/ninjalogo.png" class="brand-icon" />
+      CodeNinja
+    </a>
+  </header>
+
+  <main class="container-with-toc">
+
+    <!-- TOC -->
+    <nav class="toc">
+      <h2>Sumário</h2>
+      <ul>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#variaveis">Variáveis</a></li>
+        <li><a href="#constantes">Constantes</a></li>
+        <li><a href="#comparacao">Comparando</a></li>
+        <li><a href="#escopo">Escopo</a></li>
+        <li><a href="#mutabilidade">Mutabilidade</a></li>
+        <li><a href="#tipagem">Tipagem</a></li>
+        <li><a href="#identificadores">Identificadores</a></li>
+        <li><a href="#conclusao">Conclusão</a></li>
+      </ul>
+    </nav>
+
+    <!-- Conteúdo -->
+    <div class="content">
+
+      <a href="/frontend/pages/topicos.html" class="exit-button">
+        Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+
+      <!-- Seções completas -->
+
+<section class="lesson-box" id="introducao">
+  <h1>Operadores e Expressões</h1>
+
+  <h2>Introdução</h2>
+  <p>
+    Operadores e expressões são componentes fundamentais de qualquer algoritmo ou linguagem de programação. 
+    Eles permitem realizar cálculos, comparar valores e controlar o fluxo de execução de programas. 
+    Uma <strong>expressão</strong> combina valores, variáveis, operadores e funções, e seu resultado pode ser um número, um texto ou um valor lógico (verdadeiro ou falso).
+  </p>
+  <p>
+    Os operadores são classificados em três categorias principais:
+  </p>
+  <ul>
+    <li>Operadores Aritméticos</li>
+    <li>Operadores Relacionais (Comparação)</li>
+    <li>Operadores Lógicos</li>
+  </ul>
+</section>
+
+<section class="lesson-box" id="operadores-aritmeticos">
+  <h2>Operadores Aritméticos</h2>
+  <p>
+    Os <strong>operadores aritméticos</strong> executam operações matemáticas. Podem ser:
+  </p>
+  <ul>
+    <li><strong>Unários</strong> — agem sobre um único operando (ex: <code>-a</code>)</li>
+    <li><strong>Binários</strong> — agem sobre dois operandos (ex: <code>a + b</code>)</li>
+  </ul>
+
+  <h3>Operadores Unários</h3>
+  <p>
+    O operador unário mais comum é o <code>-</code>, que inverte o sinal de um número:
+  </p>
+  <pre class="code-box">
+a = -10  // a agora é -10
+  </pre>
+
+  <h3>Operadores Binários</h3>
+  <table class="code-box">
+    <tr><th>Operador</th><th>Operação</th><th>Exemplo</th><th>Resultado</th></tr>
+    <tr><td>+</td><td>Adição</td><td>5 + 3</td><td>8</td></tr>
+    <tr><td>-</td><td>Subtração</td><td>5 - 3</td><td>2</td></tr>
+    <tr><td>*</td><td>Multiplicação</td><td>5 * 3</td><td>15</td></tr>
+    <tr><td>/</td><td>Divisão</td><td>6 / 2</td><td>3</td></tr>
+    <tr><td>**</td><td>Potência</td><td>2 ** 3</td><td>8</td></tr>
+    <tr><td>%</td><td>Módulo (resto da divisão)</td><td>7 % 3</td><td>1</td></tr>
+  </table>
+</section>
+
+<section class="lesson-box" id="precedencia">
+  <h2>Precedência dos Operadores</h2>
+  <p>
+    A <strong>precedência</strong> define a ordem em que as operações em uma expressão são executadas.
+  </p>
+  <ol>
+    <li>Parênteses <code>()</code></li>
+    <li>Unário negativo <code>-</code></li>
+    <li>Potência <code>**</code></li>
+    <li>Multiplicação, Divisão, Módulo <code>*</code>, <code>/</code>, <code>%</code></li>
+    <li>Adição e Subtração <code>+</code>, <code>-</code></li>
+  </ol>
+  <p>Exemplo:</p>
+  <pre class="code-box">
+Resultado = 10 / 2 * 5
+// 10 / 2 = 5
+// 5 * 5 = 25
+  </pre>
+</section>
+
+<section class="lesson-box" id="operador-atribuicao">
+  <h2>Operador de Atribuição</h2>
+  <p>
+    O operador <code>=</code> é usado para <strong>atribuir</strong> um valor a uma variável:
+  </p>
+  <pre class="code-box">
+x = 10
+y = x + 5  // y agora vale 15
+  </pre>
+</section>
+
+<section class="lesson-box" id="operadores-relacionais">
+  <h2>Operadores Relacionais (Comparação)</h2>
+  <p>
+    Operadores relacionais comparam dois valores e retornam um valor <code>true</code> (verdadeiro) ou <code>false</code> (falso).
+  </p>
+  <table class="code-box">
+    <tr><th>Operador</th><th>Operação</th><th>Exemplo</th><th>Resultado</th></tr>
+    <tr><td>&lt;</td><td>Menor que</td><td>3 &lt; 5</td><td>true</td></tr>
+    <tr><td>&gt;</td><td>Maior que</td><td>5 &gt; 3</td><td>true</td></tr>
+    <tr><td>==</td><td>Igual a</td><td>5 == 5</td><td>true</td></tr>
+    <tr><td>!=</td><td>Diferente de</td><td>5 != 3</td><td>true</td></tr>
+    <tr><td>&lt;=</td><td>Menor ou igual a</td><td>3 &lt;= 5</td><td>true</td></tr>
+    <tr><td>&gt;=</td><td>Maior ou igual a</td><td>5 &gt;= 5</td><td>true</td></tr>
+  </table>
+
+  <p>
+    Comparações de strings (cadeias de caracteres) respeitam maiúsculas e minúsculas:
+  </p>
+  <pre class="code-box">
+str1 = "abc"
+str2 = "ABC"
+
+str1 == str2  // false
+  </pre>
+</section>
+
+<section class="lesson-box" id="operadores-logicos">
+  <h2>Operadores Lógicos</h2>
+  <p>
+    Usados para combinar expressões booleanas:
+  </p>
+  <table class="code-box">
+    <tr><th>Operador</th><th>Operação</th><th>Exemplo</th><th>Resultado</th></tr>
+    <tr><td>&&</td><td>AND (E)</td><td>(5 &gt; 3) && (2 &lt; 4)</td><td>true</td></tr>
+    <tr><td>||</td><td>OR (OU)</td><td>(5 &lt; 3) || (2 &lt; 4)</td><td>true</td></tr>
+    <tr><td>!</td><td>NOT (NÃO)</td><td>!(5 == 5)</td><td>false</td></tr>
+  </table>
+</section>
+
+<section class="lesson-box" id="concatenacao">
+  <h2>Operador de Concatenação de Strings</h2>
+  <p>
+    O operador <code>+</code> pode ser usado para concatenar (juntar) strings:
+  </p>
+  <pre class="code-box">
+str1 = "Olá, "
+str2 = "mundo!"
+resultado = str1 + str2  // "Olá, mundo!"
+  </pre>
+</section>
+
+<section class="lesson-box" id="exemplos-completos">
+  <h2>Exemplos Completos</h2>
+  <p>Exemplo com operadores mistos:</p>
+  <pre class="code-box">
+Resultado = (5 + 3) * 2 > 10 && (7 % 2 == 1)
+
+// Passo a passo:
+// (5 + 3) = 8
+// 8 * 2 = 16
+// 16 > 10 = true
+// 7 % 2 = 1 → 1 == 1 → true
+// true && true = true
+  </pre>
+</section>
+
+<section class="lesson-box" id="resumo">
+  <h2>Resumo</h2>
+  <ul>
+    <li>Operadores aritméticos realizam cálculos matemáticos (+, -, *, /, %, **).</li>
+    <li>Operadores relacionais comparam valores e retornam true ou false (==, !=, &lt;, &gt;, &lt;=, &gt;=).</li>
+    <li>Operadores lógicos combinam condições (&&, ||, !).</li>
+    <li>A precedência dos operadores determina a ordem de execução das operações.</li>
+    <li>Operadores de concatenação <code>+</code> unem strings.</li>
+    <li>Operadores de atribuição <code>=</code> armazenam valores em variáveis.</li>
+  </ul>
+</section>
+
+
+      <!-- Botão para o quiz -->
+      <a href="/frontend/pages/quizoperadores.html" class="quiz-link">
+        <button class="quiz-button">Começar Quiz</button>
+      </a>
+
+    </div> <!-- fim da div.content -->
+
+  </main> <!-- fim da main.container-with-toc -->
+
+</body>
+</html>
+

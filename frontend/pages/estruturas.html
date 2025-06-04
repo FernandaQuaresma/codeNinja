@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Estrutura de Programas - CodeNinja</title>
+    <link rel="stylesheet" href="/frontend/css/conteudo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <header>
+        <a href="#" class="brand">
+            <img src="/frontend/assets/ninjalogo.png" class="brand-icon" />
+            CodeNinja
+        </a>
+    </header>
+    <main class="container-with-toc">
+        <nav class="toc">
+            <h2>Índice</h2>
+            <ul>
+                <li><a href="#introducao">Introdução</a></li>
+                <li><a href="#estrutura">Estrutura básica de um programa</a></li>
+                <li><a href="#comentarios">Comentários</a></li>
+                <li><a href="#indentacao">Indentação e formatação</a></li>
+                <li><a href="#nomes-variaveis">Boas práticas de nomenclatura</a></li>
+                <li><a href="#modularizacao">Modularização e funções</a></li>
+                <li><a href="#erros">Erros comuns a evitar</a></li>
+                <li><a href="#resumo">Resumo Final</a></li>
+                <li><a href="#conclusao">Conclusão</a></li>
+            </ul>
+        </nav>
+
+        <section class="content">
+            <a href="/frontend/pages/topicos.html" class="exit-button">
+                Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+            <h1>Estrutura de Programas em C</h1>
+
+            <h2 id="introducao">Introdução</h2>
+            <p>Quando desenvolvemos programas em C, é fundamental que nosso código seja organizado e estruturado de
+                forma clara e consistente. A organização do programa facilita a leitura, a manutenção, o trabalho em
+                equipe e a evolução do projeto.</p>
+            <p>Além de escrever um código que funcione, é importante escrever um código que seja fácil de entender — por
+                você mesmo no futuro e por outros desenvolvedores. A "estrutura de programas em C" refere-se justamente
+                a isso: como organizar seu código, escolher bons nomes, usar comentários e funções corretamente.</p>
+
+            <h2 id="estrutura">Estrutura básica de um programa</h2>
+            <p>Todo programa em C segue uma estrutura geral que normalmente inclui:</p>
+            <ul>
+                <li>Inclusão de bibliotecas (<code>#include</code>);</li>
+                <li>Definição de constantes (<code>#define</code>);</li>
+                <li>Declaração de protótipos de funções (opcional, mas recomendado);</li>
+                <li>Função principal <code>main()</code> — ponto de entrada do programa;</li>
+                <li>Funções auxiliares.</li>
+            </ul>
+            <p>Exemplo:</p>
+            <div class="code-box">
+                #include &lt;stdio.h&gt;
+
+                #define PI 3.14
+
+                float calculaArea(float raio);
+
+                int main() {
+                float raio = 5.0;
+                float area = calculaArea(raio);
+
+                printf("Área do círculo: %.2f\n", area);
+
+                return 0;
+                }
+
+                float calculaArea(float raio) {
+                return PI * raio * raio;
+                }
+            </div>
+
+            <h2 id="comentarios">Comentários</h2>
+            <p>Comentários servem para explicar o código. Eles não são executados e ajudam na manutenção e compreensão
+                futura.</p>
+            <p>Existem dois tipos de comentários em C:</p>
+            <ul>
+                <li><strong>Comentário de linha única:</strong> <code>// Comentário aqui</code></li>
+                <li><strong>Comentário de múltiplas linhas:</strong> <code>/* Comentário aqui */</code></li>
+            </ul>
+            <p>Boas práticas para comentários:</p>
+            <ul>
+                <li>Explicar o "porquê" do código, não apenas o "o que";</li>
+                <li>Não comentar o óbvio;</li>
+                <li>Manter os comentários atualizados.</li>
+            </ul>
+
+            <h2 id="indentacao">Indentação e formatação</h2>
+            <p>A indentação não altera o funcionamento do programa, mas melhora muito a legibilidade. Um código bem
+                indentado facilita a leitura e compreensão da lógica.</p>
+            <p>Regras básicas:</p>
+            <ul>
+                <li>Usar sempre indentação consistente (espaços ou tabulações);</li>
+                <li>Indentação dentro de blocos <code>{ }</code>;</li>
+                <li>Separar visualmente blocos de código por linhas em branco quando apropriado.</li>
+            </ul>
+
+            <h2 id="nomes-variaveis">Boas práticas de nomenclatura</h2>
+            <p>Escolher nomes significativos para variáveis e funções é essencial para um código legível.</p>
+            <p>Boas práticas:</p>
+            <ul>
+                <li>Usar nomes descritivos que indiquem o propósito da variável ou função;</li>
+                <li>Evitar nomes genéricos como <code>x</code>, <code>y</code>, <code>temp</code> (exceto em casos muito
+                    simples);</li>
+                <li>Seguir um padrão consistente de nomenclatura (ex: <code>camelCase</code> ou
+                    <code>snake_case</code>);</li>
+                <li>Evitar abreviações excessivas.</li>
+            </ul>
+
+            <h2 id="modularizacao">Modularização e funções</h2>
+            <p>Um dos princípios mais importantes da estrutura de programas é a <strong>modularização</strong>.</p>
+            <p>Significa dividir o programa em funções bem definidas, onde cada função tem uma responsabilidade clara.
+            </p>
+            <p>Vantagens da modularização:</p>
+            <ul>
+                <li>Código mais organizado e fácil de entender;</li>
+                <li>Facilidade de reutilização de funções;</li>
+                <li>Facilidade de testes (testar funções individualmente);</li>
+                <li>Facilidade de manutenção e evolução do programa.</li>
+            </ul>
+            <p>Evite escrever todo o código dentro da função <code>main()</code>. Utilize funções para dividir o
+                trabalho em partes menores e mais gerenciáveis.</p>
+
+            <h2 id="erros">Erros comuns a evitar</h2>
+            <ul>
+                <li>Não usar indentação ou indentação inconsistente;</li>
+                <li>Usar nomes de variáveis genéricos ou confusos;</li>
+                <li>Escrever funções muito longas que fazem muitas coisas;</li>
+                <li>Duplicação de código — preferir criar funções reutilizáveis;</li>
+                <li>Comentários desatualizados ou redundantes;</li>
+                <li>Uso excessivo de variáveis globais (prefira variáveis locais quando possível);</li>
+                <li>Falta de modularização — código todo no <code>main()</code>;</li>
+                <li>Código sem comentários ou mal documentado.</li>
+            </ul>
+
+            <h2 id="resumo">Resumo Final</h2>
+            <p>Estruturar corretamente seus programas em C é uma das habilidades mais importantes que você pode
+                desenvolver como programador. Um código bem estruturado não apenas funciona corretamente, mas também é
+                fácil de entender, manter e evoluir.</p>
+            <p>Resumidamente:</p>
+            <ul>
+                <li>Use uma estrutura básica consistente (includes, main, funções);</li>
+                <li>Comente seu código de maneira útil e atualizada;</li>
+                <li>Mantenha uma indentação clara e consistente;</li>
+                <li>Escolha nomes de variáveis e funções que reflitam seu propósito;</li>
+                <li>Modularize seu código: escreva funções bem definidas e reutilizáveis;</li>
+                <li>Evite práticas que prejudicam a manutenção e a clareza do código.</li>
+            </ul>
+            <p>Lembre-se: um código que você escreve hoje deve ser legível e compreensível para você ou para outros
+                desenvolvedores daqui a meses ou anos.</p>
+
+            <h2 id="conclusao">Conclusão</h2>
+            <p>Dominar a estruturação de programas em C é um passo essencial para se tornar um programador mais
+                profissional. Um código bem estruturado facilita o trabalho em equipe, permite que bugs sejam
+                identificados mais facilmente, e torna o projeto mais sustentável ao longo do tempo.</p>
+            <p>Continue praticando a organização, modularização e documentação do seu código. Essas boas práticas são
+                fundamentais não só em C, mas em qualquer linguagem de programação. Ao adotar esses hábitos, você
+                garantirá que seus programas sejam mais claros, robustos e profissionais.</p>
+            <p>Bons estudos e mãos à obra!</p>
+            <a href="/frontend/pages/quizestrutura.html" class="quiz-button">Começar Quiz</a>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

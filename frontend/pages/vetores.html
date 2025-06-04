@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vetores e Matrizes - CodeNinja</title>
+  <link rel="stylesheet" href="/frontend/css/conteudo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <header>
+    <a href="#" class="brand">
+      <img src="/frontend/assets/ninjalogo.png" class="brand-icon" />
+      CodeNinja
+    </a>
+  </header>
+
+  <main class="container-with-toc">
+
+    <!-- TOC -->
+    <nav class="toc">
+      <h2>Índice</h2>
+      <ul>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#vetores">Vetores (Arrays)</a></li>
+        <li><a href="#sintaxe-vetores">Sintaxe de declaração de vetores</a></li>
+        <li><a href="#acesso-vetores">Acesso aos elementos</a></li>
+        <li><a href="#percorrer-vetores">Percorrer vetores com laços</a></li>
+        <li><a href="#matrizes">Matrizes (Arrays multidimensionais)</a></li>
+        <li><a href="#sintaxe-matrizes">Sintaxe de declaração de matrizes</a></li>
+        <li><a href="#acesso-matrizes">Acesso aos elementos da matriz</a></li>
+        <li><a href="#percorrer-matrizes">Percorrer matrizes com laços</a></li>
+        <li><a href="#boas-praticas">Boas práticas</a></li>
+        <li><a href="#exemplos">Exemplos práticos</a></li>
+        <li><a href="#resumo">Resumo</a></li>
+      </ul>
+    </nav>
+
+    <div class="content">
+
+      <a href="/frontend/pages/topicos.html" class="exit-button">
+        Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+
+      <h1>Vetores e Matrizes</h1>
+
+      <h2 id="introducao">Introdução</h2>
+      <p>Quando precisamos armazenar **vários valores relacionados**, como uma lista de números, nomes ou notas, utilizamos <strong>vetores</strong> e <strong>matrizes</strong>.</p>
+      <p>Essas estruturas permitem organizar os dados de forma eficiente e acessar qualquer elemento de maneira rápida, utilizando um **índice** (posição).</p>
+
+      <h2 id="vetores">Vetores (Arrays)</h2>
+      <p>Um <strong>vetor</strong> é uma estrutura que armazena uma <strong>sequência de valores do mesmo tipo</strong>, dispostos em uma linha (estrutura unidimensional).</p>
+      <p>Cada elemento do vetor é identificado por um **índice**. Na maioria das linguagens, o índice começa em <code>0</code>.</p>
+
+      <h2 id="sintaxe-vetores">Sintaxe de declaração de vetores</h2>
+      <div class="code-box">int v[5];  // vetor de 5 inteiros em C
+String nomes[10];  // vetor de 10 strings em Java</div>
+
+      <h2 id="acesso-vetores">Acesso aos elementos</h2>
+      <p>Para acessar um elemento usamos:</p>
+      <div class="code-box">v[0];  // primeiro elemento
+v[4];  // quinto elemento (índice 4)</div>
+
+      <h2 id="percorrer-vetores">Percorrer vetores com laços</h2>
+      <p>Geralmente utilizamos um <code>for</code> para percorrer os elementos:</p>
+      <div class="code-box">for (int i = 0; i &lt; 5; i++) {
+    printf("%d\n", v[i]);
+}</div>
+
+      <h2 id="matrizes">Matrizes (Arrays multidimensionais)</h2>
+      <p>Uma <strong>matriz</strong> é um **array de duas dimensões**, organizada em **linhas e colunas**.</p>
+      <p>Cada elemento é acessado com <strong>dois índices</strong>: <code>linha</code> e <code>coluna</code>.</p>
+
+      <h2 id="sintaxe-matrizes">Sintaxe de declaração de matrizes</h2>
+      <div class="code-box">int m[3][4];  // matriz de 3 linhas e 4 colunas</div>
+
+      <h2 id="acesso-matrizes">Acesso aos elementos da matriz</h2>
+      <div class="code-box">m[0][0];  // 1ª linha, 1ª coluna
+m[2][3];  // 3ª linha, 4ª coluna</div>
+
+      <h2 id="percorrer-matrizes">Percorrer matrizes com laços</h2>
+      <p>Utilizamos <strong>dois laços for aninhados</strong>:</p>
+      <div class="code-box">for (int i = 0; i &lt; 3; i++) {
+    for (int j = 0; j &lt; 4; j++) {
+        printf("%d ", m[i][j]);
+    }
+    printf("\n");
+}</div>
+
+      <h2 id="boas-praticas">Boas práticas</h2>
+      <ul>
+        <li>Inicialize sempre o vetor ou matriz antes de usar.</li>
+        <li>Verifique sempre os limites de índice para evitar <strong>erros de acesso inválido</strong>.</li>
+        <li>Utilize nomes descritivos para seus vetores e matrizes.</li>
+        <li>Lembre-se que o último índice válido é <code>tamanho - 1</code>.</li>
+      </ul>
+
+      <h2 id="exemplos">Exemplos práticos</h2>
+
+      <h3>Exemplo 1 - Preencher e exibir um vetor</h3>
+      <div class="code-box">int v[5];
+for (int i = 0; i &lt; 5; i++) {
+    v[i] = i + 1;
+}
+
+for (int i = 0; i &lt; 5; i++) {
+    printf("v[%d] = %d\n", i, v[i]);
+}</div>
+
+      <h3>Exemplo 2 - Preencher uma matriz com valores crescentes</h3>
+      <div class="code-box">int m[3][3];
+int valor = 1;
+
+for (int i = 0; i &lt; 3; i++) {
+    for (int j = 0; j &lt; 3; j++) {
+        m[i][j] = valor++;
+    }
+}
+
+for (int i = 0; i &lt; 3; i++) {
+    for (int j = 0; j &lt; 3; j++) {
+        printf("%d ", m[i][j]);
+    }
+    printf("\n");
+}</div>
+
+      <h2 id="resumo">Resumo</h2>
+      <ul>
+        <li><strong>Vetores</strong>: armazenam uma sequência de valores do mesmo tipo.</li>
+        <li>Índices começam em <code>0</code>.</li>
+        <li>Utilizamos <code>for</code> para percorrer vetores.</li>
+        <li><strong>Matrizes</strong>: armazenam valores em formato de tabela (linhas e colunas).</li>
+        <li>Utilizamos **dois laços for aninhados** para percorrer uma matriz.</li>
+        <li>Evite **acesso fora dos limites** (gera comportamento indefinido ou erro).</li>
+      </ul>
+
+      <p>Agora que você aprendeu sobre vetores e matrizes, que tal praticar no nosso Quiz?</p>
+
+      <a href="/frontend/pages/quizvetores.html" class="quiz-button">Começar Quiz</a>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

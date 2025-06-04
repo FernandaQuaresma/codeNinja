@@ -146,7 +146,21 @@ function mostrarFimDeJogo(vitoria) {
   botaoMenu.onclick = () => window.location.href = 'topicos.html';
   botoesFimEl.appendChild(botaoMenu);
 
-  if (!vitoria) {
+  if (vitoria) {
+    // === POST para registrar emblema de game ===
+    fetch('/api/emblemas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_emblema: 2 }) // id do emblema "Mestre Ninja dos Algoritmos"
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Emblema de game registrado:', data);
+    })
+    .catch(error => {
+      console.error('Erro ao registrar emblema de game:', error);
+    });
+  } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';
     botaoTentar.onclick = () => location.reload();

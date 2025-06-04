@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Algoritmos</title>
+  <title>Algoritmos - Curso CodeNinja</title>
   <link rel="stylesheet" href="/frontend/css/conteudo.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
@@ -18,48 +17,163 @@
     </a>
   </header>
 
-  <main class="container">
-    <a href="/frontend/pages/topicos.html" class="exit-button">
-      Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
-    </a>
+  <main class="container-with-toc">
 
-    <section class="lesson-box">
-      <h1>Algoritmos</h1>
-      <p>
-        Um <strong>algoritmo</strong> é uma sequência finita de passos bem definidos que levam à resolução de um
-        problema ou execução de uma tarefa específica. Em outras palavras, é uma receita de instruções que, quando
-        seguidas corretamente, nos permitem alcançar um resultado desejado. Os algoritmos são fundamentais para a
-        computação, pois eles formam a base de qualquer software ou aplicação.
-      </p>
-      <p>
-        O conceito de algoritmo pode ser observado em diversas áreas além da programação, como no cotidiano. Imagine,
-        por exemplo, a forma como você prepara um prato de comida. Uma receita é, basicamente, um algoritmo: ela define
-        as etapas e os ingredientes necessários para realizar a tarefa de forma bem-sucedida. Caso você siga a receita
-        corretamente, o resultado será sempre o mesmo, assim como um algoritmo bem definido.
-      </p>
-      <h2>Características dos Algoritmos</h2>
-      <p>
-        Para que um conjunto de instruções seja considerado um algoritmo, ele precisa ter algumas características
-        importantes:
-      </p>
+    <!-- TOC -->
+    <nav class="toc">
+      <h2>Sumário</h2>
       <ul>
-        <li><strong>Definição clara</strong>: Cada passo do algoritmo deve ser descrito de forma clara e sem
-          ambiguidades.</li>
-        <li><strong>Finito</strong>: Um algoritmo deve sempre ter um número finito de passos, ou seja, ele deve ser
-          capaz de ser executado dentro de um tempo limitado.</li>
-        <li><strong>Entradas e saídas</strong>: Todo algoritmo recebe entradas (dados) e gera saídas (resultados) ao fim
-          de sua execução.</li>
-        <li><strong>Eficiência</strong>: Embora a eficiência não seja uma característica fundamental para que algo seja
-          considerado um algoritmo, ela é desejável em muitos contextos. Algoritmos eficientes resolvem problemas mais
-          rapidamente, com menos recursos computacionais.</li>
+        <li><a href="#introducao">Introdução</a></li>
+        <li><a href="#caracteristicas">Características dos Algoritmos</a></li>
+        <li><a href="#exemplo-cotidiano">Exemplo do Mundo Real</a></li>
+        <li><a href="#exemplo-programacao">Exemplo Prático</a></li>
+        <li><a href="#pseudocodigo">Pseudocódigo</a></li>
+        <li><a href="#importancia">Importância</a></li>
+        <li><a href="#eficiencia">Eficiência</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#conclusao">Conclusão</a></li>
       </ul>
+    </nav>
 
-      <h2>Exemplo Prático de Algoritmo</h2>
-      <p>
-        Vamos considerar um exemplo prático: você deseja calcular a média de três números. O algoritmo para resolver
-        esse problema pode ser descrito da seguinte forma:
-      </p>
-      <pre class="code-box">
+    <!-- Conteúdo -->
+    <div class="content">
+
+      <a href="/frontend/pages/topicos.html" class="exit-button">
+        Sair da Lição <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+
+      <!-- Seções completas -->
+
+      <section class="lesson-box" id="introducao">
+        <h1>Algoritmos</h1>
+
+        <h2>Introdução</h2>
+        <p>
+          Você já seguiu uma receita de bolo? Já montou um móvel com um manual de instruções? 
+          Se sim, você já executou um algoritmo — mesmo sem perceber!
+        </p>
+        <p>
+          No mundo da computação, <strong>algoritmos</strong> são a espinha dorsal de qualquer software ou aplicação. 
+          Eles descrevem, de forma clara e estruturada, os passos necessários para resolver um problema ou realizar uma tarefa.
+        </p>
+        <p>
+          Neste conteúdo, você vai entender desde os conceitos básicos até tópicos mais avançados sobre algoritmos, com exemplos práticos e aplicações no mundo real.
+        </p>
+
+        <h2 id="oque-e-algoritmo">O que é um Algoritmo?</h2>
+        <p>
+          <strong>Algoritmo</strong> é uma <em>sequência finita de passos bem definidos</em> que, quando seguidos, levam à resolução de um problema ou à execução de uma tarefa específica.
+        </p>
+        <p>
+          Podemos pensar em um algoritmo como uma "receita de instruções". Assim como uma receita de bolo define cada etapa (misturar ingredientes, levar ao forno, etc.), um algoritmo orienta o computador sobre como processar dados para obter um resultado.
+        </p>
+        <p>
+          De forma formal, um algoritmo possui:
+        </p>
+        <ul>
+          <li><strong>Início bem definido</strong>;</li>
+          <li><strong>Sequência de passos claros e não ambíguos</strong>;</li>
+          <li><strong>Finitude</strong> — ele deve terminar após um número limitado de passos;</li>
+          <li><strong>Entradas</strong> (dados recebidos);</li>
+          <li><strong>Saídas</strong> (resultados produzidos).</li>
+        </ul>
+
+        <p>
+          Exemplo simples: algoritmo para somar dois números:
+        </p>
+        <pre class="code-box">
+Início
+  Ler número1
+  Ler número2
+  Soma ← número1 + número2
+  Escrever Soma
+Fim
+        </pre>
+
+        <p>
+          Esse é um exemplo de <strong>pseudocódigo</strong> — uma forma simples de descrever algoritmos de maneira próxima à linguagem humana, sem se preocupar com a sintaxe de uma linguagem de programação.
+        </p>
+      </section>
+
+      <section class="lesson-box" id="caracteristicas">
+        <h2>Características Fundamentais de um Algoritmo</h2>
+        <p>
+          Para que um conjunto de instruções seja considerado um algoritmo, ele deve possuir algumas características essenciais:
+        </p>
+
+        <h3>1. Definição Clara</h3>
+        <p>
+          Cada passo do algoritmo deve ser descrito de forma <strong>não ambígua</strong>. 
+          Isso garante que qualquer pessoa (ou computador) possa executar as instruções corretamente.
+        </p>
+
+        <h3>2. Finitude</h3>
+        <p>
+          Um algoritmo deve ter um número <strong>finito de etapas</strong>. 
+          Ou seja, ele precisa terminar em um tempo limitado — não deve entrar em um "loop infinito".
+        </p>
+
+        <h3>3. Entradas e Saídas</h3>
+        <p>
+          Todo algoritmo recebe <strong>entradas</strong> (dados fornecidos pelo usuário, sensores ou outros sistemas) e gera <strong>saídas</strong> (resultados, respostas ou ações).
+        </p>
+        <p>
+          Exemplo:
+        </p>
+        <pre class="code-box">
+Entradas → Números a serem somados
+Processamento → Realizar a soma
+Saídas → Exibir o resultado da soma
+        </pre>
+
+        <h3>4. Eficiência</h3>
+        <p>
+          Embora não seja uma característica obrigatória para que algo seja considerado um algoritmo, a <strong>eficiência</strong> é altamente desejável.
+        </p>
+        <p>
+          Um algoritmo eficiente consegue resolver problemas de forma mais rápida e com menor uso de recursos computacionais (como memória e processamento).
+        </p>
+
+        <h3>Resumo das Características</h3>
+        <ul>
+          <li><strong>Definição clara</strong>: cada passo é bem definido e sem ambiguidades;</li>
+          <li><strong>Finitude</strong>: o algoritmo deve terminar após um número finito de etapas;</li>
+          <li><strong>Entradas e saídas</strong>: recebe dados e gera resultados;</li>
+          <li><strong>Eficiência</strong>: desejável para otimizar recursos e tempo de execução.</li>
+        </ul>
+      </section>
+
+            <section class="lesson-box" id="exemplo-cotidiano">
+        <h2>Exemplo do Mundo Real: Preparar um Café ☕</h2>
+        <p>
+          Um algoritmo não está restrito apenas ao mundo da computação. 
+          Muitos processos do nosso dia a dia também seguem um conjunto ordenado de passos — ou seja, um algoritmo.
+        </p>
+        <p>
+          Vamos ver um exemplo simples: <strong>fazer um café</strong>.
+        </p>
+        <pre class="code-box">
+Início
+  Aquecer água até ferver
+  Colocar o pó de café no filtro
+  Despejar a água quente sobre o pó
+  Esperar o café ser filtrado
+  Servir o café
+Fim
+        </pre>
+        <p>
+          Repare que temos uma <strong>sequência de passos bem definida e finita</strong>. 
+          Se o processo for seguido corretamente, sempre teremos o mesmo resultado: um café pronto! ☕
+        </p>
+      </section>
+
+      <section class="lesson-box" id="exemplo-programacao">
+        <h2>Exemplo Prático: Calcular a Média de Três Números</h2>
+        <p>
+          Agora, vejamos um exemplo clássico de algoritmo no contexto de programação:
+          calcular a <strong>média de três números</strong>.
+        </p>
+        <pre class="code-box">
 Início
   Ler número1
   Ler número2
@@ -67,74 +181,117 @@ Início
   Média ← (número1 + número2 + número3) / 3
   Escrever Média
 Fim
-      </pre>
-      <p>
-        Este é um exemplo simples de algoritmo que segue os passos claramente definidos. Quando você o executa, ele gera
-        um resultado, que é a média dos três números fornecidos.
-      </p>
+        </pre>
+        <p>
+          Simples, não é? 📐  
+          O algoritmo recebe três números como entrada, faz o cálculo da média e exibe o resultado.
+        </p>
+      </section>
 
-      <h2>Exemplo do Mundo Real: Algoritmo para Preparar um Café</h2>
-      <p>
-        Um exemplo do mundo real de um algoritmo seria a receita para fazer um café. Vamos descrever esse algoritmo de
-        maneira simples:
-      </p>
-      <pre class="code-box">
-Início
-  Aquecer água até ferver
-  Colocar o pó de café na cafeteira
-  Despejar a água quente sobre o pó de café
-  Esperar o café ser filtrado
-  Servir o café
-Fim
-      </pre>
-      <p>
-        Perceba que, assim como no exemplo anterior, as etapas são finitas, bem definidas e claras. O processo de fazer
-        café tem um começo e um fim, e se seguidas corretamente, as etapas resultarão em um café pronto para ser
-        servido. Este é um exemplo perfeito de como algoritmos podem ser aplicados em situações cotidianas.
-      </p>
+      <section class="lesson-box" id="pseudocodigo">
+        <h2>Pseudocódigo: Uma Forma Simples de Descrever Algoritmos</h2>
+        <p>
+          O <strong>pseudocódigo</strong> é uma forma de representar algoritmos de maneira <strong>simples e intuitiva</strong>, sem se preocupar com a sintaxe de uma linguagem de programação específica.
+        </p>
+        <p>
+          É muito útil para:
+        </p>
+        <ul>
+          <li>Planejar a lógica de um algoritmo antes de escrever o código;</li>
+          <li>Comunicar ideias entre desenvolvedores e equipes de forma clara;</li>
+          <li>Documentar algoritmos de forma que qualquer pessoa possa entender.</li>
+        </ul>
 
-      <h2>Representação em Pseudocódigo</h2>
-      <p>
-        O <strong>pseudocódigo</strong> é uma ferramenta muito útil para descrever algoritmos de forma simplificada, sem
-        se preocupar com a sintaxe exata de uma linguagem de programação. Ele mistura a lógica de programação com o
-        idioma natural, tornando o entendimento do algoritmo mais acessível. O pseudocódigo serve como um esboço que
-        pode ser facilmente convertido para uma linguagem de programação real mais tarde.
-      </p>
-      <p><em>Exemplo:</em></p>
-      <pre class="code-box">
+        <p>
+          Veja um exemplo de pseudocódigo para somar dois números:
+        </p>
+        <pre class="code-box">
 Início
   Ler número1
   Ler número2
   Soma ← número1 + número2
   Escrever Soma
 Fim
-      </pre>
-      <p>
-        Neste pseudocódigo, temos uma sequência simples de passos que somam dois números. Esse tipo de representação
-        pode ser facilmente convertido para qualquer linguagem de programação.
-      </p>
+        </pre>
 
-      <h2>Importância dos Algoritmos</h2>
-      <p>
-        A construção de algoritmos bem definidos é crucial para o desenvolvimento de sistemas eficientes e confiáveis.
-        Um bom algoritmo pode otimizar o desempenho de um programa, reduzir o consumo de recursos e até mesmo evitar
-        erros durante a execução. A lógica por trás dos algoritmos também é fundamental para resolver problemas de
-        maneira mais eficiente, sendo uma habilidade essencial para qualquer programador ou desenvolvedor.
-      </p>
+        <h3>Vantagens do Pseudocódigo</h3>
+        <ul>
+          <li>Fácil de entender;</li>
+          <li>Independe de linguagem de programação;</li>
+          <li>Ajuda no planejamento da solução.</li>
+        </ul>
+      </section>
 
-      <h2>Conclusão</h2>
-      <p>
-        Em resumo, algoritmos são a espinha dorsal da programação e da resolução de problemas computacionais. Eles nos
-        permitem descrever soluções de maneira clara e precisa, sendo aplicáveis em uma infinidade de contextos, tanto
-        na programação quanto no dia a dia. Ao entender e praticar a construção de algoritmos, você estará desenvolvendo
-        habilidades que são essenciais para se tornar um programador ou profissional da área de tecnologia.
-      </p>
-    </section>
+      <section class="lesson-box" id="importancia">
+        <h2>Importância dos Algoritmos</h2>
+        <p>
+          Entender e construir algoritmos é uma das <strong>habilidades mais essenciais para qualquer programador ou profissional de tecnologia</strong>.
+        </p>
+        <p>
+          Um algoritmo bem definido permite que programas sejam:
+        </p>
+        <ul>
+          <li><strong>Eficientes</strong> — consomem menos memória e processamento;</li>
+          <li><strong>Confiáveis</strong> — produzem resultados corretos e previsíveis;</li>
+          <li><strong>Manuteníveis</strong> — são mais fáceis de entender e atualizar.</li>
+        </ul>
+        <p>
+          Além disso, algoritmos otimizados são capazes de resolver problemas em <strong>menos tempo</strong>, com um <strong>uso mínimo de recursos computacionais</strong>. 
+          Isso é crucial em sistemas embarcados, aplicações web, apps mobile e até mesmo em inteligência artificial.
+        </p>
+      </section>
 
-    <a href="/frontend/pages/quiz.html" class="quiz-link">
-      <button class="quiz-button">Começar Quiz</button>
-    </a>
-  </main>
+      <section class="lesson-box" id="eficiencia">
+        <h2>O que é Eficiência em um Algoritmo?</h2>
+        <p>
+          A eficiência de um algoritmo se refere a <strong>quão rápido</strong> e <strong>com quanta memória</strong> ele consegue resolver um problema.
+        </p>
+        <p>
+          Existem algoritmos que funcionam bem em problemas pequenos, mas se tornam inviáveis em problemas grandes. 
+          Por isso, conhecer a <strong>complexidade de tempo e de espaço</strong> de um algoritmo é fundamental.
+        </p>
+
+        <h3>Exemplo:</h3>
+        <p>
+          Imagine um algoritmo de ordenação. Se ele for ineficiente, ordenar uma lista de 10 elementos pode ser rápido, mas para uma lista de 1 milhão de elementos, pode demorar horas!
+        </p>
+      </section>
+
+      <section class="lesson-box" id="habilidades">
+        <h2>Habilidades que Você Desenvolve ao Estudar Algoritmos</h2>
+        <p>
+          Quando você pratica a construção de algoritmos, desenvolve habilidades valiosas como:
+        </p>
+        <ul>
+          <li><strong>Pensamento lógico</strong> — aprender a quebrar um problema complexo em etapas simples;</li>
+          <li><strong>Resolução de problemas</strong> — criar soluções elegantes e eficazes para diversos desafios;</li>
+          <li><strong>Raciocínio abstrato</strong> — entender conceitos que podem ser aplicados em diferentes contextos;</li>
+          <li><strong>Otimização</strong> — melhorar o desempenho de programas e sistemas.</li>
+        </ul>
+      </section>
+
+      <section class="lesson-box" id="conclusao">
+        <h2>Conclusão</h2>
+        <p>
+          Os <strong>algoritmos</strong> são a <strong>espinha dorsal da programação</strong> e da computação moderna.
+        </p>
+        <p>
+          Eles não só nos ajudam a resolver problemas de forma eficaz e organizada, mas também fazem parte de <strong>quase tudo que usamos no dia a dia</strong> — desde um simples app de celular até um sistema bancário ou um motor de busca.
+        </p>
+        <p>
+          Quanto mais você praticar e entender algoritmos, mais preparado estará para atuar como programador e para criar soluções inteligentes e eficientes.
+        </p>
+      </section>
+
+      <!-- Botão para o quiz -->
+      <a href="/frontend/pages/quiz.html" class="quiz-link">
+        <button class="quiz-button">Começar Quiz</button>
+      </a>
+
+    </div> <!-- fim da div.content -->
+
+  </main> <!-- fim da main.container-with-toc -->
+
 </body>
-
 </html>
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    button {
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    /* Container principal que segura todas as perguntas */
+    .questions-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+      max-width: 1300px; /* Garante espaço para 4 cartões */
+      flex-wrap: wrap; /* Permite quebra de linha, mas controlada */
+      margin-bottom: 2rem;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    /* Cartões de pergunta */
+    .question-card {
+      background-color: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px rgba(140, 85, 255, 0.1);
+      width: 280px; /* Largura fixa para garantir 4 perguntas alinhadas */
+      flex-shrink: 0; /* Impede que os cartões encolham */
+    }
+
+    /* Texto da pergunta */
+    .question-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    /* Botões de resposta */
+    .answer {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background-color: #21262d;
+      border: 1px solid #30363d;
+      color: #c9d1d9;
+      padding: 0.75rem 1rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .answer:hover:not(:disabled) {
+      background-color: #2d333b;
+      border-color: #8f57ff;
+    }
+
+    /* Cores ao selecionar */
+    .correct {
+      background-color: #238636 !important;
+      border-color: #2ea043 !important;
+    }
+
+    .incorrect {
+      background-color: #da3633 !important;
+      border-color: #f85149 !important;
+    }
+
+    .answer:disabled {
+      opacity: 0.8;
+      cursor: not-allowed;
+    }
+
+    /* Botões principais */
+    .button {
+      background-color: #8f57ff;
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      margin-top: 1.5rem;
+    }
+
+    .button:hover {
+      background-color: #7a42f6;
+    }
+
+    /* Mensagem final */
+    .final-message {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .final-message span {
+      display: block;
+      margin-top: 0.5rem;
+      color: #8f57ff;
+      font-size: 1.5rem;
+    }
+
+    /* Botão de iniciar */
+    .start-quiz {
+      background-color: #8f57ff;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .start-quiz:hover {
+      background-color: #7a42f6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Container de todas as questões (4 por vez) -->
+  <div class="questions-container hide"></div>
+
+  <script src="/backend/algoritimos/vetores2.js"></script>
+</body>
+</html>

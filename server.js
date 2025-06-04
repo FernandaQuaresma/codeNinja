@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const path = require('path');
 const session = require('express-session');
+const { log } = require('console');
 const app = express();
 const port = 3000;
 
@@ -11,7 +12,7 @@ const db = mysql.createConnection({
   user: 'root',
   password: '',
   database: 'quiz',
-  port:'3306'
+  port:'3307'
 });
 db.connect((err) => {
   if (err) console.error('Erro ao conectar:', err);
@@ -42,6 +43,7 @@ app.get('/api/questions', (req, res) => {
   db.query('SELECT * FROM questions', (err, results) => {
     if (err) res.status(500).send('Erro ao obter perguntas');
     else res.json(results);
+   
   });
 });
 

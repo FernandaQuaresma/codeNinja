@@ -164,7 +164,7 @@ function finishGame() {
   `;
 
   setTimeout(() => {
-    window.location.href = "http://localhost:3000/frontend/pages/game.html";
+    window.location.href = "http://localhost:3000/frontend/pages/gamecondicionais.html";
   }, 3000);
 }
 

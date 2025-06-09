@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeNinja - Jogo</title>
+  <link rel="stylesheet" href="/frontend/css/game.css" />
+</head>
+<body>
+  <div class="game-container">
+    <h2 class="pergunta">Carregando pergunta...</h2>
+
+    <div id="gameArea">
+      <img id="ninja" src="/frontend/assets/ninja-direita.png" alt="Ninja">
+    </div>
+
+    <div class="placar">
+      <span>💥 Pontos: <span id="pontos">0</span></span>
+      <span>❤️ Vidas: <span id="vidas">3</span></span>
+    </div>
+  </div>
+
+  <!-- Menu de fim de jogo -->
+  <div class="fim-jogo oculto" id="fimJogo">
+    <div class="menu-fim">
+      <h2 id="mensagemFinal">Fim de jogo!</h2>
+      <div id="botoesFim"></div>
+    </div>
+  </div>
+
+  <script src="/backend/algoritimos/gamefucoes.js"></script>
+</body>
+</html>

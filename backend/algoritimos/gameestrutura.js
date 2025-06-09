@@ -30,8 +30,8 @@ async function carregarPergunta() {
 
     // === Filtro por dificuldade e tópico ===
     const perguntasFiltradas = perguntas.filter(q =>
-      q.dificuldade?.toLowerCase() === "fácil" &&  // troque por "medio" ou "dificil" se quiser
-      q.topico?.toLowerCase() === "algoritimos"          // troque pelo tópico que você quiser
+      q.dificuldade?.toLowerCase() === "facil" &&  // troque por "medio" ou "dificil" se quiser
+      q.topico?.toLowerCase() === "estrutura"          // troque pelo tópico que você quiser
     );
 
     if (perguntasFiltradas.length > 0) {

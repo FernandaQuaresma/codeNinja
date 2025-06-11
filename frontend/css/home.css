@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -263,7 +264,6 @@ header .navigation .navigation-items a:hover::before {
   background-image: url('/frontend/assets/kamilla.jpg');
 }
 
-
 .dev-img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 25px #7c4dff80;
@@ -310,8 +310,6 @@ header .navigation .navigation-items a:hover::before {
   color: #cfcfcf;
 }
 
-
-
 /* Responsividade */
 @media (max-width: 1040px) {
   header {
@@ -338,8 +336,9 @@ header .navigation .navigation-items a:hover::before {
     background-size: 30px;
   }
 
+  /* ALTERAÇÃO AQUI */
   header .navigation {
-    display: none;
+    display: block;
   }
 
   header .navigation.active {
@@ -355,7 +354,7 @@ header .navigation .navigation-items a:hover::before {
   }
 
   header .navigation .navigation-items {
-    background: #fff;
+    background: none;
     padding: 40px;
     border-radius: 10px;
     display: flex;
@@ -364,7 +363,7 @@ header .navigation .navigation-items a:hover::before {
   }
 
   header .navigation .navigation-items a {
-    color: #111;
+    color: #ffffff;
     font-size: 1.2em;
   }
 
@@ -453,6 +452,7 @@ header .navigation .navigation-items a:hover::before {
     font-size: 1.2em;
   }
 }
+
 
 .profile-dropdown{
     position:relative;

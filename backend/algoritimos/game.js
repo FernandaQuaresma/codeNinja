@@ -13,7 +13,7 @@ let direction = 'direita';
 let perguntasRespondidas = 0;
 
 const gameWidth = gameArea.clientWidth;
-const areaPermitida = gameWidth * 0.6;
+const areaPermitida = gameWidth * 0.9;
 const limiteEsquerdo = (gameWidth - areaPermitida) / 2;
 const limiteDireito = limiteEsquerdo + areaPermitida;
 

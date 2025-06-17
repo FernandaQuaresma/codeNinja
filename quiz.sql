@@ -40,7 +40,7 @@ CREATE TABLE `emblemas` (
 
 INSERT INTO `emblemas` (`id`, `nome`, `imagem_url`, `descricao`) VALUES
 (1, 'Ninja dos Algoritmos', 'frontend/assets/emblemas/niveis_algoritimos.png', 'Completou os dois níveis de algoritmos com sucesso'),
-(4, 'Ninja Gamer dos Algoritmos', 'frontend/assets/emblemas/game_algoritimos.png', 'Ganhou o game do tópico Algoritmos');
+(2, 'Ninja Gamer dos Algoritmos', 'frontend/assets/emblemas/game_algoritimos.png', 'Ganhou o game do tópico Algoritmos');
 
 -- --------------------------------------------------------
 

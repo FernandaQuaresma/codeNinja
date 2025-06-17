@@ -157,11 +157,14 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // === POST para registrar emblema de game ===
+    // ✅ Salva localmente o emblema do game de vetores
+    localStorage.setItem("emblema_game_vetores", "true");
+
+    // (opcional: manter no banco de dados também)
     fetch('/api/emblemas', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id_emblema: 2 }) // id do emblema "Mestre Ninja dos Algoritmos"
+      body: JSON.stringify({ id_emblema: 10 }) // ID do emblema "Game - Vetores"
     })
     .then(response => response.json())
     .then(data => {

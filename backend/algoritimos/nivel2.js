@@ -156,6 +156,9 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
+  // === Salva localmente que o usuário ganhou o emblema de algoritmos (nível)
+  localStorage.setItem("emblema_niveis_algoritimos", "true");
+
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
@@ -164,30 +167,11 @@ function finishGame() {
     </p>
   `;
 
-  // === POST para registrar emblema ===
-  fetch('/api/emblemas', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id_emblema: 1 }) // id do emblema "Ninja dos Algoritmos"
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Emblema de níveis registrado:', data);
-
-    // Depois que registrar o emblema, redireciona pro game
-    setTimeout(() => {
-      window.location.href = "http://localhost:3000/frontend/pages/game.html";
-    }, 2000);
-  })
-  .catch(error => {
-    console.error('Erro ao registrar emblema:', error);
-
-    // Mesmo se der erro, redireciona depois
-    setTimeout(() => {
-      window.location.href = "http://localhost:3000/frontend/pages/game.html";
-    }, 2000);
-  });
+  setTimeout(() => {
+    window.location.href = "http://localhost:3000/frontend/pages/game.html";
+  }, 2000);
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();

@@ -155,6 +155,9 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
+  // ✅ Salva o emblema "niveis_vetores"
+  localStorage.setItem("emblema_niveis_vetores", "true");
+
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>

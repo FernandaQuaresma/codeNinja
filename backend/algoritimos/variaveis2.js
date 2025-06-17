@@ -155,6 +155,9 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
+  // === Marca emblema como conquistado (níveis - variáveis)
+  localStorage.setItem("emblema_niveis_variaveis", "true");
+
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
@@ -167,6 +170,7 @@ function finishGame() {
     window.location.href = "http://localhost:3000/frontend/pages/gamevariaveis.html";
   }, 3000);
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();

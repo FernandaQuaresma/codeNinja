@@ -155,6 +155,9 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
+  // ✅ Marca emblema como conquistado (níveis - operadores)
+  localStorage.setItem("emblema_niveis_operadores", "true");
+
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>

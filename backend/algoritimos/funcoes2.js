@@ -155,6 +155,9 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
+  // ✅ Salva o emblema "niveis_funcoes" no localStorage
+  localStorage.setItem("emblema_niveis_funcoes", "true");
+
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
@@ -164,9 +167,10 @@ function finishGame() {
   `;
 
   setTimeout(() => {
-    window.location.href = "http://localhost:3000/frontend/pages/gamefuncoes.html";
+    window.location.href = "http://localhost:3000/frontend/pages/gamefucoes.html";
   }, 3000);
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();

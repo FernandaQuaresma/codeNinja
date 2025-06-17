@@ -155,6 +155,9 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
+  // ✅ Marca o emblema "niveis_condicionais" como conquistado
+  localStorage.setItem("emblema_niveis_condicionais", "true");
+
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>

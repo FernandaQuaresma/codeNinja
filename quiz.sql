@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 04-Jun-2025 às 21:57
+-- Host: 127.0.0.1:3307
+-- Tempo de geração: 17/06/2025 às 21:40
 -- Versão do servidor: 10.4.32-MariaDB
--- versão do PHP: 8.2.12
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `emblemas`
+-- Estrutura para tabela `emblemas`
 --
 
 CREATE TABLE `emblemas` (
@@ -35,17 +35,17 @@ CREATE TABLE `emblemas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `emblemas`
+-- Despejando dados para a tabela `emblemas`
 --
 
 INSERT INTO `emblemas` (`id`, `nome`, `imagem_url`, `descricao`) VALUES
-(1, 'Ninja dos Algoritmos', 'frontend/assets/emblemas/niveis_algoritimos.png', 'Completou os dois níveis de algoritmos com sucesso'),
-(2, 'Ninja Gamer dos Algoritmos', 'frontend/assets/emblemas/game_algoritimos.png', 'Ganhou o game do tópico Algoritmos');
+(1, 'Ninja dos Algoritmos', 'frontend/fotos/niveis_algoritimos.png', 'Completou os dois níveis de algoritmos com sucesso'),
+(4, 'Ninja Gamer dos Algoritmos', 'frontend/assets/emblemas/game_algoritimos.png', 'Ganhou o game do tópico Algoritmos');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `game_questions`
+-- Estrutura para tabela `game_questions`
 --
 
 CREATE TABLE `game_questions` (
@@ -60,7 +60,7 @@ CREATE TABLE `game_questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `game_questions`
+-- Despejando dados para a tabela `game_questions`
 --
 
 INSERT INTO `game_questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correct_answer`, `topico`) VALUES
@@ -88,7 +88,7 @@ INSERT INTO `game_questions` (`id`, `question`, `answer1`, `answer2`, `answer3`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `questions`
+-- Estrutura para tabela `questions`
 --
 
 CREATE TABLE `questions` (
@@ -104,7 +104,7 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `questions`
+-- Despejando dados para a tabela `questions`
 --
 
 INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correct_answer`, `dificuldade`, `topico`) VALUES
@@ -542,9 +542,9 @@ INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `ans
 (431, 'O operador % é também conhecido como:', 'operador de soma', 'operador de divisão', 'operador de módulo', 'operador lógico', 3, 'facil', 'operadores'),
 (432, 'Qual será o resultado de 12 / 4?', '2', '3', '4', '6', 2, 'facil', 'operadores'),
 (433, 'Qual operador representa \"menor ou igual a\"?', '<=', '>=', '==', '!=', 1, 'facil', 'operadores'),
-(434, 'Qual será o resultado de (7 < 9) || (4 > 5)?', 'verdadeiro', 'falso', '7', '9', 1, 'facil', 'operadores'),
-(435, 'Qual o resultado de 5 * (2 + 3)?', '10', '15', '25', '20', 3, 'facil', 'operadores');
+(434, 'Qual será o resultado de (7 < 9) || (4 > 5)?', 'verdadeiro', 'falso', '7', '9', 1, 'facil', 'operadores');
 INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correct_answer`, `dificuldade`, `topico`) VALUES
+(435, 'Qual o resultado de 5 * (2 + 3)?', '10', '15', '25', '20', 3, 'facil', 'operadores'),
 (436, 'O que representa o operador &&?', 'OU', 'NÃO', 'E', 'Igualdade', 3, 'facil', 'operadores'),
 (437, 'O operador OR retorna verdadeiro quando:', 'Ambas as condições são falsas', 'Pelo menos uma condição é verdadeira', 'Todas as condições são falsas', 'Nenhuma condição é avaliada', 2, 'facil', 'operadores'),
 (438, 'O operador NOT inverte:', 'Um número', 'Uma string', 'Um valor booleano', 'Uma variável', 3, 'facil', 'operadores'),
@@ -935,9 +935,9 @@ INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `ans
 (863, 'Em while (x>0), se x == -1:', 'Executa', 'Não executa', 'Erro', 'Executa uma vez', 2, 'dificil', 'laços'),
 (864, 'for(int i=0; i<5; ++i) é equivalente a:', 'i--', 'i = i + 1', 'i = i * 2', 'i = i - 1', 2, 'dificil', 'laços'),
 (865, 'Qual saída de: do { print(x); x++; } while(x<3); (se x = 1 inicialmente)', '1', '1 2', '1 2 3', 'Nenhuma', 2, 'dificil', 'laços'),
-(866, 'O que acontece se continue em for estiver antes do incremento?', 'Não executa', 'Incremento não ocorre', 'Incremento ocorre normalmente', 'Erro', 3, 'dificil', 'laços'),
-(867, 'Em laço aninhado, quantas iterações em: for i=0 to 2; for j=0 to 2', '3', '6', '9', 'Erro', 3, 'dificil', 'laços');
+(866, 'O que acontece se continue em for estiver antes do incremento?', 'Não executa', 'Incremento não ocorre', 'Incremento ocorre normalmente', 'Erro', 3, 'dificil', 'laços');
 INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `answer4`, `correct_answer`, `dificuldade`, `topico`) VALUES
+(867, 'Em laço aninhado, quantas iterações em: for i=0 to 2; for j=0 to 2', '3', '6', '9', 'Erro', 3, 'dificil', 'laços'),
 (868, 'Qual laço mais flexível para entradas variáveis?', 'for', 'while', 'do...while', 'if', 2, 'dificil', 'laços'),
 (869, 'do...while é preferido quando:', 'Entrada já válida', 'Precisa executar uma vez antes de testar', 'Condição externa', 'Loop infinito', 2, 'dificil', 'laços'),
 (870, 'Um while (x < 5) com x+=2 executa:', '5 vezes', 'Não executa', '3 vezes (x = 0, 2, 4)', 'Loop infinito', 3, 'dificil', 'laços'),
@@ -1409,12 +1409,62 @@ INSERT INTO `questions` (`id`, `question`, `answer1`, `answer2`, `answer3`, `ans
 (1335, 'Qual prática deve ser evitada?', 'modularização', 'indentação', 'código duplicado', 'uso de funções', 3, 'dificil', 'estrutura'),
 (1336, 'Em um código bem estruturado, as funções:', 'têm nomes genéricos', 'fazem uma coisa bem definida', 'são muito longas', 'substituem variáveis', 2, 'dificil', 'estrutura'),
 (1337, 'Boas práticas ajudam principalmente em:', 'performance', 'uso de RAM', 'manutenção e colaboração', 'loops aninhados', 3, 'dificil', 'estrutura'),
-(1338, 'Qual é a maior vantagem de código bem comentado?', 'aumenta performance', 'reduz uso de CPU', 'facilita entendimento e manutenção', 'gera menos arquivos', 3, 'dificil', 'estrutura');
+(1338, 'Qual é a maior vantagem de código bem comentado?', 'aumenta performance', 'reduz uso de CPU', 'facilita entendimento e manutenção', 'gera menos arquivos', 3, 'dificil', 'estrutura'),
+(1339, 'Qual o resultado da expressão: 5 - 8?', 'A) -4', 'B) -3', 'C) -1', 'D) -2', 2, 'Facil', 'Operadores'),
+(1340, 'Considere o seguinte trecho: x = 5 y = x + 3 Qual o valor final de y?', 'A) 5', 'B) 3', 'C) 8', 'D) 10', 3, 'Facil', 'Operadores'),
+(1341, 'Considere o seguinte trecho: x = 5 y = x + 3 Qual o valor final de y?', 'A) 8', 'B) 3', 'C) 5', 'D) 10', 1, 'Facil', 'Operadores'),
+(1342, 'Qual o resultado da expressão: (5 + 3) * 2 > 10 && (7 % 2 == 1)?', 'A) 0', 'B) true', 'C) false', 'D) 1', 2, 'Medio', 'Operadores'),
+(1343, 'Qual o resultado da expressão: (5 + 3) * 2 > 10 && (7 % 2 == 1)?', 'A) 0', 'B) false', 'C) 1', 'D) true', 4, 'Medio', 'Operadores'),
+(1344, 'O que será armazenado em resultado após a execução do código abaixo? str1 = \"Hello, \" str2 = \"world!\" resultado = str1 + str2', 'A) Hello world!', 'B) Hello, world!', 'C) Hello, world', 'D) Hello + world!', 2, 'Facil', 'Operadores'),
+(1345, 'Qual o resultado da expressão: 5 ** 2?', 'A) 10', 'B) 25', 'C) 7', 'D) 12', 2, 'Facil', 'Operadores'),
+(1346, 'Qual o resultado da expressão: 10 / 2 * 5?', 'A) 25', 'B) 5', 'C) 10', 'D) 15', 1, 'Medio', 'Operadores'),
+(1347, 'Qual o resultado da expressão lógica: (4 < 6) && (10 > 2)?', 'A) true', 'B) false', 'C) true', 'D) false', 1, 'Facil', 'Operadores'),
+(1348, 'Qual o resultado da expressão: 7 % 3?', 'A) 1', 'B) 2', 'C) 0', 'D) 3', 2, 'Facil', 'Operadores'),
+(1349, 'Qual o resultado da expressão: 6 * 3 - 2?', 'A) 18', 'B) 16', 'C) 15', 'D) 14', 2, 'Facil', 'Operadores'),
+(1350, 'Qual o resultado lógico da expressão: 7 >= 10?', 'A) false', 'B) true', 'C) true', 'D) false', 1, 'Facil', 'Operadores'),
+(1351, 'O que será armazenado em resultado? str1 = \"Boa \" str2 = \"noite\" resultado = str1 + str2', 'A) \"Boa noite\"', 'B) \"Boanoite\"', 'C) \"Boa + noite\"', 'D) \"Boa noite!\"', 1, 'Facil', 'Operadores'),
+(1352, 'Qual o valor de x após x = 4 * (2 + 3)?', 'A) 20', 'B) 14', 'C) 10', 'D) 12', 3, 'Facil', 'Operadores'),
+(1353, 'Qual o resultado da expressão: 12 / 3 + 1?', 'A) 5', 'B) 6', 'C) 4', 'D) 7', 1, 'Facil', 'Operadores'),
+(1354, 'Qual o resultado lógico da expressão: (2 > 5) || (3 < 4)?', 'A) false', 'B) true', 'C) true', 'D) false', 2, 'Facil', 'Operadores'),
+(1355, 'Qual das alternativas respeita a precedência correta dos operadores?', 'A) 5 + (3 * 2)', 'B) (5 + 3) * 2', 'C) 5 + 3 * 2', 'D) (5 + 3 * 2)', 2, 'Medio', 'Operadores'),
+(1356, 'Qual o resultado da expressão: -5 + 2 * 3?', 'A) 1', 'B) -1', 'C) 5', 'D) -11', 1, 'Medio', 'Operadores'),
+(1357, 'Qual o resultado da expressão: 3 ** 2 + 1?', 'A) 10', 'B) 8', 'C) 9', 'D) 7', 1, 'Facil', 'Operadores'),
+(1358, 'Qual o valor retornado por 8 != 8?', 'A) true', 'B) false', 'C) 0', 'D) 1', 2, 'Facil', 'Operadores'),
+(1359, 'Qual o resultado de: 10 % 4?', 'A) 2', 'B) 3', 'C) 0', 'D) 4', 1, 'Facil', 'Operadores'),
+(1360, 'Qual o resultado de: 2 + 3 * 4?', 'A) 20', 'B) 14', 'C) 12', 'D) 10', 2, 'Facil', 'Operadores'),
+(1361, 'Qual o valor lógico de !(10 == 10)?', 'A) false', 'B) true', 'C) 0', 'D) 1', 1, 'Facil', 'Operadores'),
+(1362, 'O que acontece com o valor de y em: x = 3 y = x * 2 + 1', 'A) 5', 'B) 7', 'C) 6', 'D) 8', 2, 'Facil', 'Operadores'),
+(1363, 'Qual o resultado da expressão: 2 * (3 + 4) - 5?', 'A) 9', 'B) 10', 'C) 11', 'D) 13', 1, 'Medio', 'Operadores'),
+(1364, 'Qual o valor lógico da expressão: (3 > 1) && (2 == 2)?', 'A) true', 'B) false', 'C) 0', 'D) 1', 1, 'Facil', 'Operadores'),
+(1365, 'Qual o resultado da expressão: 4 ** 2 / 2?', 'A) 8', 'B) 4', 'C) 16', 'D) 2', 1, 'Medio', 'Operadores'),
+(1366, 'Qual o resultado da expressão: 9 - 3 * 2?', 'A) 3', 'B) 0', 'C) 6', 'D) 9', 3, 'Facil', 'Operadores'),
+(1367, 'Qual o valor da expressão: !(7 < 2)?', 'A) true', 'B) false', 'C) 0', 'D) 1', 1, 'Facil', 'Operadores'),
+(1368, 'Qual o resultado da expressão: (2 + 3) * (4 - 1)?', 'A) 15', 'B) 10', 'C) 12', 'D) 9', 1, 'Facil', 'Operadores'),
+(1369, 'O que será exibido após: str1 = \"Oi, \" str2 = \"tudo bem?\" resultado = str1 + str2', 'A) Oi, tudo bem?', 'B) Oi+tudo bem?', 'C) Oi,tudo bem?', 'D) Oi. tudo bem?', 1, 'Facil', 'Operadores'),
+(1370, 'Qual o valor final da variável z? x = 2 y = 3 z = x * y + 1', 'A) 5', 'B) 7', 'C) 6', 'D) 8', 2, 'Facil', 'Operadores'),
+(1371, 'Qual o resultado da expressão lógica: (10 <= 5) || (6 > 3)?', 'A) true', 'B) false', 'C) 1', 'D) 0', 1, 'Medio', 'Operadores'),
+(1372, 'Qual o valor de 3 ** 2 ** 1?', 'A) 9', 'B) 6', 'C) 3', 'D) 8', 1, 'Medio', 'Operadores'),
+(1373, 'Qual o resultado da expressão: (6 + 2) / 2 * 3?', 'A) 12', 'B) 9', 'C) 15', 'D) 6', 2, 'Medio', 'Operadores'),
+(1374, 'Qual o valor lógico de 10 == 5 + 5?', 'A) true', 'B) false', 'C) 0', 'D) 1', 1, 'Facil', 'Operadores'),
+(1375, 'Qual o valor da variável total após: total = (4 + 2) * 3', 'A) 12', 'B) 18', 'C) 14', 'D) 20', 2, 'Facil', 'Operadores'),
+(1376, 'Qual o resultado da operação 8 / 2 * (2 + 2)?', 'A) 8', 'B) 16', 'C) 10', 'D) 12', 2, 'Medio', 'Operadores'),
+(1377, 'Qual o valor da expressão: (3 + 2) ** 2?', 'A) 25', 'B) 10', 'C) 9', 'D) 15', 1, 'Facil', 'Operadores'),
+(1378, 'Qual o resultado lógico de (5 != 5) && (2 < 3)?', 'A) true', 'B) false', 'C) 0', 'D) 1', 2, 'Facil', 'Operadores'),
+(1379, 'Qual a ordem de precedência correta para a expressão: -3 ** 2?', 'A) -9', 'B) 9', 'C) 6', 'D) 3', 1, 'Dificil', 'Operadores'),
+(1380, 'O que retorna a expressão: \"A\" == \"a\"?', 'A) true', 'B) false', 'C) erro', 'D) null', 2, 'Facil', 'Operadores'),
+(1381, 'Qual o resultado da expressão: 3 + 2 * 4 - 1?', 'A) 10', 'B) 11', 'C) 9', 'D) 8', 2, 'Medio', 'Operadores'),
+(1382, 'Qual o resultado da expressão: (5 * 2) % 3?', 'A) 1', 'B) 0', 'C) 2', 'D) 3', 1, 'Facil', 'Operadores'),
+(1383, 'Qual o resultado lógico de (3 <= 4) && !(2 == 2)?', 'A) true', 'B) false', 'C) 1', 'D) 0', 2, 'Medio', 'Operadores'),
+(1384, 'Qual o resultado da expressão: 5 * 2 ** 2?', 'A) 20', 'B) 40', 'C) 25', 'D) 10', 1, 'Medio', 'Operadores'),
+(1385, 'Qual o valor retornado por (10 < 2) || (3 != 3)?', 'A) false', 'B) true', 'C) 0', 'D) 1', 1, 'Facil', 'Operadores'),
+(1386, 'Qual o valor lógico de !((3 < 2) || (1 > 0))?', 'A) false', 'B) true', 'C) null', 'D) 1', 1, 'Medio', 'Operadores'),
+(1387, 'Qual o resultado de: (7 - 3) * (2 + 1)?', 'A) 12', 'B) 9', 'C) 10', 'D) 6', 1, 'Facil', 'Operadores'),
+(1388, 'Qual o valor da variável final após: a = 2 b = 4 c = a + b * 2?', 'A) 8', 'B) 10', 'C) 6', 'D) 12', 2, 'Facil', 'Operadores');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -1426,16 +1476,17 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `foto`) VALUES
-(8, 'igorr', 'igorr@gmail.com', '$2b$10$4ePx9pn.2q9JaRAhI0zwy.i6hNXKPyUXYVk5knw43vQ9tQKt9Mbna', '1749057201187.jpg');
+(8, 'igorr', 'igorr@gmail.com', '$2b$10$4ePx9pn.2q9JaRAhI0zwy.i6hNXKPyUXYVk5knw43vQ9tQKt9Mbna', '1749057201187.jpg'),
+(9, 'caio', 'c@gmail.com', '$2b$10$vfq3mgr7OupXDK6JhWG9QOW/ZPS0C1KY7UoUwmUlZ9NPTfddw6YSq', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario_emblemas`
+-- Estrutura para tabela `usuario_emblemas`
 --
 
 CREATE TABLE `usuario_emblemas` (
@@ -1446,43 +1497,44 @@ CREATE TABLE `usuario_emblemas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `usuario_emblemas`
+-- Despejando dados para a tabela `usuario_emblemas`
 --
 
 INSERT INTO `usuario_emblemas` (`id`, `id_usuario`, `id_emblema`, `data_conquista`) VALUES
-(2, 8, 1, '2025-06-04 16:35:37');
+(2, 8, 1, '2025-06-04 16:35:37'),
+(3, 9, 1, '2025-06-17 01:32:10');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `emblemas`
+-- Índices de tabela `emblemas`
 --
 ALTER TABLE `emblemas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `game_questions`
+-- Índices de tabela `game_questions`
 --
 ALTER TABLE `game_questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `questions`
+-- Índices de tabela `questions`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email_UNIQUE` (`email`);
 
 --
--- Índices para tabela `usuario_emblemas`
+-- Índices de tabela `usuario_emblemas`
 --
 ALTER TABLE `usuario_emblemas`
   ADD PRIMARY KEY (`id`),
@@ -1490,7 +1542,7 @@ ALTER TABLE `usuario_emblemas`
   ADD KEY `id_emblema` (`id_emblema`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -1509,26 +1561,26 @@ ALTER TABLE `game_questions`
 -- AUTO_INCREMENT de tabela `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1339;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1389;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `usuario_emblemas`
 --
 ALTER TABLE `usuario_emblemas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `usuario_emblemas`
+-- Restrições para tabelas `usuario_emblemas`
 --
 ALTER TABLE `usuario_emblemas`
   ADD CONSTRAINT `usuario_emblemas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,

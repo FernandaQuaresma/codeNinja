@@ -150,64 +150,158 @@
     });
 
 // === Busca as conquistas do usuário ===
-fetch('/api/emblemas')
-  .then(response => response.json())
-  .then(emblemas => {
-    console.log("Emblemas recebidos:", emblemas);
-    const ul = document.getElementById('conquistasList');
-    ul.innerHTML = '';
+// === Busca conquistas salvas no localStorage ===
+const ul = document.getElementById('conquistasList');
+ul.innerHTML = '';
 
-    // === Monta os emblemas na tela
-    if (emblemas.length > 0) {
-      emblemas.forEach(emblema => {
-        const li = document.createElement('li');
-        li.style.flex = '0 0 auto';
-        li.style.textAlign = 'center';
+// Lista de emblemas locais
+const emblemas = [];
 
-        li.innerHTML = `
-          <img src="${emblema.imagem_url}" alt="${emblema.nome}" 
-            style="width: 80px; height: 80px; object-fit: contain; display: block; margin: 0 auto 5px; border-radius: 8px; border: 2px solid rgba(124, 77, 255, 0.5); transition: transform 0.2s ease, border-color 0.2s ease;">
-          <div style="font-size: 14px; color: #fff;">${emblema.nome}</div>
-        `;
-
-        li.querySelector('img').addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.1)';
-          this.style.borderColor = '#c084fc';
-        });
-        li.querySelector('img').addEventListener('mouseleave', function() {
-          this.style.transform = 'scale(1)';
-          this.style.borderColor = 'rgba(124, 77, 255, 0.5)';
-        });
-
-        ul.appendChild(li);
-      });
-    } else {
-      ul.innerHTML = '<li>Sem conquistas</li>';
-    }
-
-    // === CALCULA O TÍTULO DO USUÁRIO ===
-    const quantidade = emblemas.length;
-    let titulo = '';
-
-    if (quantidade === 0) {
-      titulo = 'Iniciante Ninja';
-    } else if (quantidade <= 4) {
-      titulo = 'Ninja Aprendiz';
-    } else if (quantidade <= 8) {
-      titulo = 'Ninja Guerreiro';
-    } else if (quantidade <= 12) {
-      titulo = 'Ninja Mestre';
-    } else {
-      titulo = 'Mestre Supremo Ninja';
-    }
-
-    // Atualiza o título no perfil
-    document.getElementById('tituloUsuario').textContent = titulo;
-  })
-  .catch(error => {
-    console.error('Erro ao carregar conquistas:', error);
-    document.getElementById('conquistasList').innerHTML = '<li>Erro ao carregar conquistas</li>';
+if (localStorage.getItem("emblema_niveis_algoritimos") === "true") {
+  emblemas.push({
+    nome: "Níveis - Algoritimos",
+    imagem_url: "/frontend/assets/emblemas/niveis_algoritimos.png"
   });
+}
+
+if (localStorage.getItem("emblema_game_algoritimos") === "true") {
+  emblemas.push({
+    nome: "Jogo - Algoritimos",
+    imagem_url: "/frontend/assets/emblemas/game_algoritimos.png"
+  });
+}
+  if (localStorage.getItem("emblema_niveis_variaveis") === "true") {
+  emblemas.push({
+    nome: "Níveis - Variáveis",
+    imagem_url: "/frontend/assets/emblemas/niveis_variaveis.png"
+  });
+}
+if (localStorage.getItem("emblema_game_variaveis") === "true") {
+  emblemas.push({
+    nome: "Jogo - Variáveis",
+    imagem_url: "/frontend/assets/emblemas/game_variaveis.png"
+  });
+}
+if (localStorage.getItem("emblema_niveis_operadores") === "true") {
+  emblemas.push({
+    nome: "Níveis - Operadores",
+    imagem_url: "/frontend/assets/emblemas/niveis_operadores.png"
+  });
+}
+if (localStorage.getItem("emblema_game_operadores") === "true") {
+  emblemas.push({
+    nome: "Jogo - Operadores",
+    imagem_url: "/frontend/assets/emblemas/game_operadores.png"
+  });
+}
+if (localStorage.getItem("emblema_niveis_condicionais") === "true") {
+  emblemas.push({
+    nome: "Níveis - Condicionais",
+    imagem_url: "/frontend/assets/emblemas/niveis_condicionais.png"
+  });
+}
+if (localStorage.getItem("emblema_game_condicionais") === "true") {
+  emblemas.push({
+    nome: "Jogo - Condicionais",
+    imagem_url: "/frontend/assets/emblemas/game_condicionais.png"
+  });
+}
+if (localStorage.getItem("emblema_niveis_lacos") === "true") {
+  emblemas.push({
+    nome: "Níveis - Laços",
+    imagem_url: "/frontend/assets/emblemas/niveis_lacos.png"
+  });
+}
+if (localStorage.getItem("emblema_game_lacos") === "true") {
+  emblemas.push({
+    nome: "Jogo - Laços",
+    imagem_url: "/frontend/assets/emblemas/game_lacos.png"
+  });
+}
+if (localStorage.getItem("emblema_niveis_vetores") === "true") {
+  emblemas.push({
+    nome: "Níveis - Vetores",
+    imagem_url: "/frontend/assets/emblemas/niveis_vetores.png"
+  });
+}
+if (localStorage.getItem("emblema_niveis_funcoes") === "true") {
+  emblemas.push({
+    nome: "Níveis - Funções",
+    imagem_url: "/frontend/assets/emblemas/niveis_funcoes.png"
+  });
+}
+if (localStorage.getItem("emblema_game_funcoes") === "true") {
+  emblemas.push({
+    nome: "Jogo - Funções",
+    imagem_url: "/frontend/assets/emblemas/game_funcoes.png"
+  });
+}
+if (localStorage.getItem("emblema_niveis_estruturas") === "true") {
+  emblemas.push({
+    nome: "Níveis - Estruturas",
+    imagem_url: "/frontend/assets/emblemas/niveis_estruturas.png"
+  });
+}
+if (localStorage.getItem("emblema_game_estruturas") === "true") {
+  emblemas.push({
+    nome: "Game - Estruturas",
+    imagem_url: "/frontend/assets/emblemas/game_estruturas.png"
+  });
+}
+if (localStorage.getItem("emblema_game_vetores") === "true") {
+  emblemas.push({
+    nome: "Game - Vetores",
+    imagem_url: "/frontend/assets/emblemas/game_vetores.png"
+  });
+}
+
+
+if (emblemas.length > 0) {
+  emblemas.forEach(emblema => {
+    const li = document.createElement('li');
+    li.style.flex = '0 0 auto';
+    li.style.textAlign = 'center';
+
+    li.innerHTML = `
+      <li>
+  <img src="${emblema.imagem_url}" alt="${emblema.nome}">
+  <div>${emblema.nome}</div>
+</li>
+
+    `;
+
+    li.querySelector('img').addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.1)';
+      this.style.borderColor = '#c084fc';
+    });
+    li.querySelector('img').addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+      this.style.borderColor = 'rgba(124, 77, 255, 0.5)';
+    });
+
+    ul.appendChild(li);
+  });
+} else {
+  ul.innerHTML = '<li>Sem conquistas</li>';
+}
+
+// === Define título conforme quantidade
+const quantidade = emblemas.length;
+let titulo = '';
+
+if (quantidade === 0) {
+  titulo = 'Iniciante Ninja';
+} else if (quantidade <= 4) {
+  titulo = 'Ninja Aprendiz';
+} else if (quantidade <= 8) {
+  titulo = 'Ninja Guerreiro';
+} else if (quantidade <= 12) {
+  titulo = 'Ninja Mestre';
+} else {
+  titulo = 'Mestre Supremo Ninja';
+}
+
+document.getElementById('tituloUsuario').textContent = titulo;
 
 
   // === Mostrar formulário ===

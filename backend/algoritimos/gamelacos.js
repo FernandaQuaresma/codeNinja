@@ -31,7 +31,7 @@ async function carregarPergunta() {
     // === Filtro por dificuldade e tópico ===
     const perguntasFiltradas = perguntas.filter(q =>
       q.dificuldade?.toLowerCase() === "facil" &&  // troque por "medio" ou "dificil" se quiser
-      q.topico?.toLowerCase() === "lacos"          // troque pelo tópico que você quiser
+      q.topico?.toLowerCase() === "laços"          // troque pelo tópico que você quiser
     );
 
     if (perguntasFiltradas.length > 0) {
@@ -157,19 +157,8 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // === POST para registrar emblema de game ===
-    fetch('/api/emblemas', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id_emblema: 2 }) // id do emblema "Mestre Ninja dos Algoritmos"
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Emblema de game registrado:', data);
-    })
-    .catch(error => {
-      console.error('Erro ao registrar emblema de game:', error);
-    });
+    // ✅ Salva o emblema do jogo de laços
+    localStorage.setItem("emblema_game_lacos", "true");
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';

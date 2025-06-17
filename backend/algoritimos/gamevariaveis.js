@@ -157,19 +157,8 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // === POST para registrar emblema de game ===
-    fetch('/api/emblemas', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id_emblema: 2 }) // id do emblema "Mestre Ninja dos Algoritmos"
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Emblema de game registrado:', data);
-    })
-    .catch(error => {
-      console.error('Erro ao registrar emblema de game:', error);
-    });
+    // ✅ SALVA O EMBLEMA GAME_VARIAVEIS NO LOCALSTORAGE
+    localStorage.setItem("emblema_game_variaveis", "true");
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';

@@ -155,6 +155,9 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
+  // ✅ Salva emblema "niveis_laços" no localStorage
+  localStorage.setItem("emblema_niveis_lacos", "true");
+
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
@@ -167,6 +170,7 @@ function finishGame() {
     window.location.href = "http://localhost:3000/frontend/pages/gamelacos.html";
   }, 3000);
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();

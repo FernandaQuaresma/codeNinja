@@ -173,14 +173,14 @@ header .navigation .navigation-items a:hover::before {
 
 #conquistasList {
   display: flex;
-  overflow-x: auto; /* ativa a rolagem horizontal */
+  flex-wrap: wrap; /* permite quebra de linha */
   gap: 12px;
   padding: 10px;
   list-style: none;
   margin: 0;
-  scrollbar-color: #7c4dff #1e1b2f; /* scrollbar personalizada (Firefox) */
-  scrollbar-width: thin;
+  justify-content: flex-start;
 }
+
 
 #conquistasList::-webkit-scrollbar {
   height: 8px;
@@ -203,9 +203,10 @@ header .navigation .navigation-items a:hover::before {
   object-fit: contain;
   margin-bottom: 5px;
   border-radius: 8px;
-  border: 2px solid rgba(124, 77, 255, 0.5);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  border: none; /* remove borda */
+  transition: transform 0.2s ease;
 }
+
 
 #conquistasList li img:hover {
   transform: scale(1.1);

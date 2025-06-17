@@ -154,7 +154,7 @@ function updateQuestionCard(card, cardIndex) {
 }
 
 function finishGame() {
-  window.location.href = "quizvariaveis2.html";
+  window.location.href = "variaveisnivel2.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {

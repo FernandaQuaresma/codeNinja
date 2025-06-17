@@ -96,7 +96,7 @@ function criarOpcao(resposta) {
         pontosEl.textContent = pontos;
         perguntasRespondidas++;
 
-        if (perguntasRespondidas >= 5) {
+        if (perguntasRespondidas >= 1) {
           mostrarFimDeJogo(true);
         } else {
           carregarPergunta();
@@ -157,11 +157,14 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // === POST para registrar emblema de game ===
+    // ✅ Salva o emblema do game de estruturas
+    localStorage.setItem("emblema_game_estruturas", "true");
+
+    // (opcional: manter também no backend se desejar)
     fetch('/api/emblemas', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id_emblema: 2 }) // id do emblema "Mestre Ninja dos Algoritmos"
+      body: JSON.stringify({ id_emblema: 12 }) // ID do emblema "Game Estruturas"
     })
     .then(response => response.json())
     .then(data => {
@@ -177,6 +180,7 @@ function mostrarFimDeJogo(vitoria) {
     botoesFimEl.appendChild(botaoTentar);
   }
 }
+
 
 // Início do jogo
 carregarPergunta();

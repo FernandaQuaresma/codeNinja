@@ -6,10 +6,7 @@
   <title>Perfil</title>
 
   <link rel="stylesheet" href="/frontend/css/perfil.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body>
   <header>
@@ -37,29 +34,25 @@
         </li>
         <hr />
         <li class="profile-dropdown-list-item">
-          <a href="/logout">
+          <a href="#" onclick="logout()">
             <i class="bi bi-box-arrow-right"></i> Sair
           </a>
         </li>
+
       </ul>
     </div>
   </header>
 
   <main class="perfil-container">
-    <!-- Card com dois lados -->
     <div class="perfil-card">
-      <!-- Lado esquerdo do card -->
       <div class="card-left">
         <i id="foto-perfil" class="bi bi-person-circle" style="font-size: 120px; color: #fff;"></i>
-
         <h2 id="nomeEsquerda"></h2>
         <p id="emailEsquerda"></p>
         <p><em id="tituloUsuario"></em></p>
       </div>
 
-      <!-- Lado direito do card -->
       <div class="card-right">
-        <!-- Visualização -->
         <div id="visualizacao">
           <div class="info-group">
             <strong>Nome:</strong>
@@ -79,7 +72,6 @@
               <li>Carregando conquistas...</li>
             </ul>
           </div>
-          
 
           <div class="buttons">
             <button class="btn-edit" onclick="mostrarFormulario()">
@@ -91,7 +83,6 @@
           </div>
         </div>
 
-        <!-- Formulário de edição -->
         <form id="formPerfil" enctype="multipart/form-data" class="hidden">
           <input type="file" name="foto" accept="image/*" />
           <input type="text" id="nome" name="nome" placeholder="Novo nome" />
@@ -107,365 +98,15 @@
     </div>
   </main>
 
-  
-  <!-- PARTE FINAL DO SEU SCRIPT -->
+  <!-- Modal Emblema -->
+  <div id="modalEmblema" class="modal-emblema hidden">
+    <span class="fechar-modal" onclick="fecharModalEmblema()">×</span>
+    <img id="modalImagem" class="modal-imagem" src="" alt="Emblema ampliado" />
+  </div>
 
-<script>
-  // === Preenche dados do usuário ===
-  function preencherDados(data) {
-    // Lado esquerdo (foto ou ícone)
-    const fotoPerfil = document.getElementById('foto-perfil');
-
-    if (data.foto) {
-      fotoPerfil.outerHTML = `
-        <img id="foto-perfil" src="/fotos/${data.foto}" 
-          alt="Foto de perfil" 
-          style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(124, 77, 255, 0.6); margin-bottom: 20px;">
-      `;
-    } else {
-      fotoPerfil.className = 'bi bi-person-circle';
-      fotoPerfil.style.fontSize = '120px';
-      fotoPerfil.style.color = '#fff';
-    }
-
-    // Lado esquerdo (nome, email, título)
-    document.getElementById('nomeEsquerda').textContent = data.nome || 'Usuário';
-    document.getElementById('emailEsquerda').textContent = data.email || '';
-    
-
-    // Lado direito (dados de exibição)
-    document.getElementById('nomeDisplay').textContent = data.nome || '';
-    document.getElementById('emailDisplay').textContent = data.email || '';
-    document.getElementById('nome').value = data.nome || '';
-    document.getElementById('email').value = data.email || '';
-  }
-
-  // === Busca os dados do usuário ===
-  fetch('/api/usuario')
-    .then((res) => res.json())
-    .then((data) => {
-      preencherDados(data);
-    })
-    .catch(() => {
-      alert('Erro ao carregar dados do usuário.');
-    });
-
-// === Busca as conquistas do usuário ===
-// === Busca conquistas salvas no localStorage ===
-const ul = document.getElementById('conquistasList');
-ul.innerHTML = '';
-
-// Lista de emblemas locais
-const emblemas = [];
-
-if (localStorage.getItem("emblema_niveis_algoritimos") === "true") {
-  emblemas.push({
-    nome: "Níveis - Algoritimos",
-    imagem_url: "/frontend/assets/emblemas/niveis_algoritimos.png"
-  });
-}
-
-if (localStorage.getItem("emblema_game_algoritimos") === "true") {
-  emblemas.push({
-    nome: "Jogo - Algoritimos",
-    imagem_url: "/frontend/assets/emblemas/game_algoritimos.png"
-  });
-}
-  if (localStorage.getItem("emblema_niveis_variaveis") === "true") {
-  emblemas.push({
-    nome: "Níveis - Variáveis",
-    imagem_url: "/frontend/assets/emblemas/niveis_variaveis.png"
-  });
-}
-if (localStorage.getItem("emblema_game_variaveis") === "true") {
-  emblemas.push({
-    nome: "Jogo - Variáveis",
-    imagem_url: "/frontend/assets/emblemas/game_variaveis.png"
-  });
-}
-if (localStorage.getItem("emblema_niveis_operadores") === "true") {
-  emblemas.push({
-    nome: "Níveis - Operadores",
-    imagem_url: "/frontend/assets/emblemas/niveis_operadores.png"
-  });
-}
-if (localStorage.getItem("emblema_game_operadores") === "true") {
-  emblemas.push({
-    nome: "Jogo - Operadores",
-    imagem_url: "/frontend/assets/emblemas/game_operadores.png"
-  });
-}
-if (localStorage.getItem("emblema_niveis_condicionais") === "true") {
-  emblemas.push({
-    nome: "Níveis - Condicionais",
-    imagem_url: "/frontend/assets/emblemas/niveis_condicionais.png"
-  });
-}
-if (localStorage.getItem("emblema_game_condicionais") === "true") {
-  emblemas.push({
-    nome: "Jogo - Condicionais",
-    imagem_url: "/frontend/assets/emblemas/game_condicionais.png"
-  });
-}
-if (localStorage.getItem("emblema_niveis_lacos") === "true") {
-  emblemas.push({
-    nome: "Níveis - Laços",
-    imagem_url: "/frontend/assets/emblemas/niveis_lacos.png"
-  });
-}
-if (localStorage.getItem("emblema_game_lacos") === "true") {
-  emblemas.push({
-    nome: "Jogo - Laços",
-    imagem_url: "/frontend/assets/emblemas/game_lacos.png"
-  });
-}
-if (localStorage.getItem("emblema_niveis_vetores") === "true") {
-  emblemas.push({
-    nome: "Níveis - Vetores",
-    imagem_url: "/frontend/assets/emblemas/niveis_vetores.png"
-  });
-}
-if (localStorage.getItem("emblema_niveis_funcoes") === "true") {
-  emblemas.push({
-    nome: "Níveis - Funções",
-    imagem_url: "/frontend/assets/emblemas/niveis_funcoes.png"
-  });
-}
-if (localStorage.getItem("emblema_game_funcoes") === "true") {
-  emblemas.push({
-    nome: "Jogo - Funções",
-    imagem_url: "/frontend/assets/emblemas/game_funcoes.png"
-  });
-}
-if (localStorage.getItem("emblema_niveis_estruturas") === "true") {
-  emblemas.push({
-    nome: "Níveis - Estruturas",
-    imagem_url: "/frontend/assets/emblemas/niveis_estruturas.png"
-  });
-}
-if (localStorage.getItem("emblema_game_estruturas") === "true") {
-  emblemas.push({
-    nome: "Game - Estruturas",
-    imagem_url: "/frontend/assets/emblemas/game_estruturas.png"
-  });
-}
-if (localStorage.getItem("emblema_game_vetores") === "true") {
-  emblemas.push({
-    nome: "Game - Vetores",
-    imagem_url: "/frontend/assets/emblemas/game_vetores.png"
-  });
-}
-
-
-if (emblemas.length > 0) {
-  emblemas.forEach(emblema => {
-    const li = document.createElement('li');
-    li.style.flex = '0 0 auto';
-    li.style.textAlign = 'center';
-
-    li.innerHTML = `
-      <li>
- <img src="${emblema.imagem_url}" alt="${emblema.nome}" onclick="abrirModalEmblema('${emblema.imagem_url}')">
-
-  <div>${emblema.nome}</div>
-</li>
-
-    `;
-
-    li.querySelector('img').addEventListener('mouseenter', function() {
-      this.style.transform = 'scale(1.1)';
-      this.style.borderColor = '#c084fc';
-    });
-    li.querySelector('img').addEventListener('mouseleave', function() {
-      this.style.transform = 'scale(1)';
-      this.style.borderColor = 'rgba(124, 77, 255, 0.5)';
-    });
-
-    ul.appendChild(li);
-  });
-} else {
-  ul.innerHTML = '<li>Sem conquistas</li>';
-}
-
-// === Define título conforme quantidade
-const quantidade = emblemas.length;
-let titulo = '';
-
-if (quantidade === 0) {
-  titulo = 'Iniciante Ninja';
-} else if (quantidade <= 4) {
-  titulo = 'Ninja Aprendiz';
-} else if (quantidade <= 8) {
-  titulo = 'Ninja Guerreiro';
-} else if (quantidade <= 12) {
-  titulo = 'Ninja Mestre';
-} else {
-  titulo = 'Mestre Supremo Ninja';
-}
-// === Verifica se usuário tem todos os emblemas ===
-if (quantidade >= 16) {
-  const diplomaBtn = document.createElement("button");
-  diplomaBtn.textContent = "Gerar Diploma";
-  diplomaBtn.classList.add("btn-edit");
-  diplomaBtn.onclick = gerarDiplomaPDF;
-
-  document.querySelector(".card-right .buttons").appendChild(diplomaBtn);
-}
-async function gerarDiplomaPDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  // Define fundo preto na página
-  doc.setFillColor(18, 18, 18); // quase preto
-  doc.rect(0, 0, 210, 297, 'F'); // preenche toda a página A4
-
-  const nomeUsuario = document.getElementById("nomeEsquerda").textContent;
-
-  // Título centralizado
-  doc.setTextColor(255, 255, 255); // branco
-  doc.setFontSize(24);
-  doc.setFont("helvetica", "bold");
-  doc.text("Diploma de Conclusão - CodeNinja", 105, 30, { align: "center" });
-
-  // Texto centralizado
-  doc.setFontSize(14);
-  doc.setFont("helvetica", "normal");
-
-  const texto = [
-    `Certificamos que ${nomeUsuario},`,
-    "concluiu com êxito todos os módulos de lógica de programação da plataforma CodeNinja,",
-    "demonstrando dedicação, raciocínio e domínio dos conteúdos abordados.",
-    "",
-    "Conquistas:"
-  ];
-
-  let y = 50;
-  texto.forEach((linha) => {
-    doc.text(linha, 105, y, { align: "center" });
-    y += 8;
-  });
-
-  // Emblemas
-  let x = 25;
-  y += 5;
-  let col = 0;
-
-  for (let emblema of emblemas) {
-    try {
-      const img = await loadImageAsBase64(emblema.imagem_url);
-      doc.addImage(img, "PNG", x, y, 30, 30);
-      x += 40;
-      col++;
-      if (col % 4 === 0) {
-        x = 25;
-        y += 40;
-      }
-    } catch (e) {
-      console.error("Erro ao carregar imagem:", emblema.imagem_url);
-    }
-  }
-
-  // Rodapé
-  doc.setFontSize(10);
-  doc.setTextColor(180, 180, 180);
-  doc.text("Emitido automaticamente por CodeNinja - www.codeninja.com.br", 105, 285, { align: "center" });
-
-  doc.save(`diploma_${nomeUsuario}.pdf`);
-}
-
-function loadImageAsBase64(url) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.onload = function () {
-      const canvas = document.createElement("canvas");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      canvas.getContext("2d").drawImage(img, 0, 0);
-      resolve(canvas.toDataURL("image/png"));
-    };
-    img.onerror = reject;
-    img.src = url;
-  });
-}
-
-document.getElementById('tituloUsuario').textContent = titulo;
-
-
-  // === Mostrar formulário ===
-  function mostrarFormulario() {
-    document.getElementById('visualizacao').style.display = 'none';
-    document.getElementById('formPerfil').style.display = 'flex';
-  }
-
-  // === Cancelar edição ===
-  function cancelarEdicao() {
-    document.getElementById('formPerfil').style.display = 'none';
-    document.getElementById('visualizacao').style.display = 'block';
-    document.getElementById('formPerfil').reset();
-  }
-
-  // === Envio do formulário ===
-  document.getElementById('formPerfil').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const form = document.getElementById('formPerfil');
-    const formData = new FormData(form);
-
-    const res = await fetch('/atualizar-usuario', {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (res.ok) {
-      alert('Alterações salvas!');
-      window.location.reload();
-    } else {
-      alert('Erro ao salvar alterações.');
-    }
-  });
-
-  // === Excluir conta ===
-  function excluirConta() {
-    if (confirm('Tem certeza que deseja excluir sua conta? Essa ação é permanente.')) {
-      fetch('/excluir-conta', {
-        method: 'DELETE',
-      }).then((res) => {
-        if (res.ok) {
-          alert('Conta excluída com sucesso.');
-          window.location.href = '/frontend/pages/login.html';
-        } else {
-          alert('Erro ao excluir a conta.');
-        }
-      });
-    }
-  }
-  function abrirModalEmblema(src) {
-  const modal = document.getElementById("modalEmblema");
-  const imagem = document.getElementById("modalImagem");
-  imagem.src = src;
-  modal.classList.remove("hidden");
-}
-
-function fecharModalEmblema() {
-  const modal = document.getElementById("modalEmblema");
-  modal.classList.add("hidden");
-}
-
-// Fecha ao clicar fora da imagem
-document.getElementById("modalEmblema").addEventListener("click", function (e) {
-  if (e.target.id === "modalEmblema") {
-    fecharModalEmblema();
-  }
-});
-
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="/frontend/js/dropdown.js"></script>
-  <!-- Modal de Visualização do Emblema -->
-<div id="modalEmblema" class="modal-emblema hidden">
-  <span class="fechar-modal" onclick="fecharModalEmblema()">×</span>
-  <img id="modalImagem" class="modal-imagem" src="" alt="Emblema ampliado" />
-</div>
+  <script src="/frontend/js/perfil.js"></script> <!-- Novo arquivo JS -->
 </body>
 </html>

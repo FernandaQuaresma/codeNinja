@@ -142,3 +142,8 @@ body {
 .option-visual:hover {
   transform: scale(1.05);
 }
+
+#fimJogo {
+  text-align: center;
+  color: white;
+}

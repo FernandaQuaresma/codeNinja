@@ -158,18 +158,25 @@ function finishGame() {
   // ✅ Salva o emblema "niveis_estruturas" localmente
   localStorage.setItem("emblema_niveis_estruturas", "true");
 
+  // ✅ Mostra mensagem final + imagem do emblema conquistado
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
-      <span>Resultado: ${message}</span><br/>
+      <span>Resultado: ${message}</span><br/><br/>
+      <strong>Você conquistou um novo emblema!</strong><br/>
+      <img src="/frontend/assets/emblemas/niveis_estruturas.png" 
+           alt="Emblema Estruturas"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+      <br/>
       Redirecionando para o jogo...
     </p>
   `;
 
   setTimeout(() => {
     window.location.href = "http://localhost:3000/frontend/pages/gameestrutura.html";
-  }, 3000);
+  }, 4000); // tempo aumentado para o jogador ver o emblema
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();

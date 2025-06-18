@@ -157,8 +157,24 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // Marca que o usuário conquistou o emblema "game_algoritimos"
+    // ✅ Marca que o usuário conquistou o emblema de jogo
     localStorage.setItem("emblema_game_algoritimos", "true");
+
+    // ✅ Mostra visual do emblema ganho
+    const emblemaImg = document.createElement('img');
+    emblemaImg.src = '/frontend/assets/emblemas/game_algoritimos.png';
+    emblemaImg.alt = 'Emblema Conquistado - Jogo Algoritmos';
+    emblemaImg.style.maxWidth = '200px';
+    emblemaImg.style.margin = '15px auto';
+    emblemaImg.style.display = 'block';
+
+    mensagemFinalEl.appendChild(emblemaImg);
+
+    // ✅ Após alguns segundos, volta ao menu
+    setTimeout(() => {
+      window.location.href = 'topicos.html';
+    }, 4000);
+
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';

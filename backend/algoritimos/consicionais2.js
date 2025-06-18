@@ -158,18 +158,26 @@ function finishGame() {
   // ✅ Marca o emblema "niveis_condicionais" como conquistado
   localStorage.setItem("emblema_niveis_condicionais", "true");
 
+  // ✅ Monta a mensagem final com imagem do emblema
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
       <span>Resultado: ${message}</span><br/>
+      <br/>
+      <strong>Você conquistou um novo emblema!</strong><br/>
+      <img src="/frontend/assets/emblemas/niveis_condicionais.png" 
+           alt="Emblema Condicionais"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+      <br/>
       Redirecionando para o jogo...
     </p>
   `;
 
   setTimeout(() => {
     window.location.href = "http://localhost:3000/frontend/pages/gamecondicionais.html";
-  }, 3000);
+  }, 4000); // tempo aumentado para dar tempo de ver o emblema
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();

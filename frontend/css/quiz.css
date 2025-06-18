@@ -263,4 +263,10 @@ header .brand {
   .answer {
     font-size: 0.9rem;
   }
+  .final-message {
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+
 }

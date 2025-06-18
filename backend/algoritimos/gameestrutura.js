@@ -148,7 +148,7 @@ document.addEventListener('keydown', (e) => {
 // Mostra o menu de fim de jogo
 function mostrarFimDeJogo(vitoria) {
   fimJogoEl.classList.remove('oculto');
-  mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
+  mensagemFinalEl.innerHTML = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
   botoesFimEl.innerHTML = '';
 
   const botaoMenu = document.createElement('button');
@@ -157,10 +157,18 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // ✅ Salva o emblema do game de estruturas
+    // ✅ Salva o emblema localmente
     localStorage.setItem("emblema_game_estruturas", "true");
 
-    // (opcional: manter também no backend se desejar)
+    // ✅ Exibe o emblema visualmente
+    mensagemFinalEl.innerHTML += `
+      <br/><strong>Você conquistou o emblema de Estruturas!</strong><br/>
+      <img src="/frontend/assets/emblemas/game_estruturas.png"
+           alt="Emblema Estruturas"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+    `;
+
+    // ✅ Salva no backend
     fetch('/api/emblemas', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -173,6 +181,7 @@ function mostrarFimDeJogo(vitoria) {
     .catch(error => {
       console.error('Erro ao registrar emblema de game:', error);
     });
+
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';
@@ -180,7 +189,6 @@ function mostrarFimDeJogo(vitoria) {
     botoesFimEl.appendChild(botaoTentar);
   }
 }
-
 
 // Início do jogo
 carregarPergunta();

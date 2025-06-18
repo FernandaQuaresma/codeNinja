@@ -155,13 +155,17 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
-  // ✅ Salva emblema "niveis_laços" no localStorage
+  // ✅ Salva o emblema "niveis_laços" no localStorage
   localStorage.setItem("emblema_niveis_lacos", "true");
 
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
       <span>Resultado: ${message}</span><br/>
+      <strong>Você conquistou o emblema de Laços!</strong><br/>
+      <img src="/frontend/assets/emblemas/niveis_lacos.png"
+           alt="Emblema Laços"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;"><br/>
       Redirecionando para o jogo...
     </p>
   `;
@@ -170,6 +174,7 @@ function finishGame() {
     window.location.href = "http://localhost:3000/frontend/pages/gamelacos.html";
   }, 3000);
 }
+
 
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -156,20 +156,23 @@ function finishGame() {
       message = "Pode melhorar :(";
   }
 
-  // === Salva localmente que o usuário ganhou o emblema de algoritmos (nível)
+  // ✅ Salva localmente o emblema de níveis - algoritmos
   localStorage.setItem("emblema_niveis_algoritimos", "true");
 
+  // ✅ Mostra emblema visualmente
   $questionsContainer.innerHTML = `
-    <p class="final-message">
-      Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
-      <span>Resultado: ${message}</span><br/>
-      Registrando conquista e redirecionando para o jogo...
-    </p>
+    <div class="final-message">
+      <p>Você acertou ${totalCorrect} de ${totalQuestions} questões!</p>
+      <p><strong>Resultado:</strong> ${message}</p>
+      <p>Você conquistou o emblema:</p>
+      <img src="/frontend/assets/emblemas/niveis_algoritimos.png" alt="Emblema Níveis - Algoritmos" style="max-width: 180px; margin: 10px auto; display: block;" />
+      <p>Redirecionando para o jogo...</p>
+    </div>
   `;
 
   setTimeout(() => {
     window.location.href = "http://localhost:3000/frontend/pages/game.html";
-  }, 2000);
+  }, 3000);
 }
 
 

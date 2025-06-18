@@ -107,6 +107,7 @@
     </div>
   </main>
 
+  
   <!-- PARTE FINAL DO SEU SCRIPT -->
 
 <script>
@@ -264,7 +265,8 @@ if (emblemas.length > 0) {
 
     li.innerHTML = `
       <li>
-  <img src="${emblema.imagem_url}" alt="${emblema.nome}">
+ <img src="${emblema.imagem_url}" alt="${emblema.nome}" onclick="abrirModalEmblema('${emblema.imagem_url}')">
+
   <div>${emblema.nome}</div>
 </li>
 
@@ -299,6 +301,92 @@ if (quantidade === 0) {
   titulo = 'Ninja Mestre';
 } else {
   titulo = 'Mestre Supremo Ninja';
+}
+// === Verifica se usuário tem todos os emblemas ===
+if (quantidade >= 16) {
+  const diplomaBtn = document.createElement("button");
+  diplomaBtn.textContent = "Gerar Diploma";
+  diplomaBtn.classList.add("btn-edit");
+  diplomaBtn.onclick = gerarDiplomaPDF;
+
+  document.querySelector(".card-right .buttons").appendChild(diplomaBtn);
+}
+async function gerarDiplomaPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // Define fundo preto na página
+  doc.setFillColor(18, 18, 18); // quase preto
+  doc.rect(0, 0, 210, 297, 'F'); // preenche toda a página A4
+
+  const nomeUsuario = document.getElementById("nomeEsquerda").textContent;
+
+  // Título centralizado
+  doc.setTextColor(255, 255, 255); // branco
+  doc.setFontSize(24);
+  doc.setFont("helvetica", "bold");
+  doc.text("Diploma de Conclusão - CodeNinja", 105, 30, { align: "center" });
+
+  // Texto centralizado
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "normal");
+
+  const texto = [
+    `Certificamos que ${nomeUsuario},`,
+    "concluiu com êxito todos os módulos de lógica de programação da plataforma CodeNinja,",
+    "demonstrando dedicação, raciocínio e domínio dos conteúdos abordados.",
+    "",
+    "Conquistas:"
+  ];
+
+  let y = 50;
+  texto.forEach((linha) => {
+    doc.text(linha, 105, y, { align: "center" });
+    y += 8;
+  });
+
+  // Emblemas
+  let x = 25;
+  y += 5;
+  let col = 0;
+
+  for (let emblema of emblemas) {
+    try {
+      const img = await loadImageAsBase64(emblema.imagem_url);
+      doc.addImage(img, "PNG", x, y, 30, 30);
+      x += 40;
+      col++;
+      if (col % 4 === 0) {
+        x = 25;
+        y += 40;
+      }
+    } catch (e) {
+      console.error("Erro ao carregar imagem:", emblema.imagem_url);
+    }
+  }
+
+  // Rodapé
+  doc.setFontSize(10);
+  doc.setTextColor(180, 180, 180);
+  doc.text("Emitido automaticamente por CodeNinja - www.codeninja.com.br", 105, 285, { align: "center" });
+
+  doc.save(`diploma_${nomeUsuario}.pdf`);
+}
+
+function loadImageAsBase64(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      canvas.getContext("2d").drawImage(img, 0, 0);
+      resolve(canvas.toDataURL("image/png"));
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
 }
 
 document.getElementById('tituloUsuario').textContent = titulo;
@@ -351,8 +439,33 @@ document.getElementById('tituloUsuario').textContent = titulo;
       });
     }
   }
+  function abrirModalEmblema(src) {
+  const modal = document.getElementById("modalEmblema");
+  const imagem = document.getElementById("modalImagem");
+  imagem.src = src;
+  modal.classList.remove("hidden");
+}
+
+function fecharModalEmblema() {
+  const modal = document.getElementById("modalEmblema");
+  modal.classList.add("hidden");
+}
+
+// Fecha ao clicar fora da imagem
+document.getElementById("modalEmblema").addEventListener("click", function (e) {
+  if (e.target.id === "modalEmblema") {
+    fecharModalEmblema();
+  }
+});
+
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <script src="/frontend/js/dropdown.js"></script>
+  <!-- Modal de Visualização do Emblema -->
+<div id="modalEmblema" class="modal-emblema hidden">
+  <span class="fechar-modal" onclick="fecharModalEmblema()">×</span>
+  <img id="modalImagem" class="modal-imagem" src="" alt="Emblema ampliado" />
+</div>
 </body>
 </html>

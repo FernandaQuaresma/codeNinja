@@ -146,6 +146,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Mostra o menu de fim de jogo
+// Mostra o menu de fim de jogo
 function mostrarFimDeJogo(vitoria) {
   fimJogoEl.classList.remove('oculto');
   mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
@@ -157,8 +158,16 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // ✅ Salva o emblema do jogo de laços
+    // ✅ Salva o emblema localmente
     localStorage.setItem("emblema_game_lacos", "true");
+
+    // ✅ Exibe imagem do emblema
+    mensagemFinalEl.innerHTML += `
+      <br/><strong>Você conquistou o emblema de Laços!</strong><br/>
+      <img src="/frontend/assets/emblemas/game_lacos.png"
+           alt="Emblema Laços"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+    `;
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';
@@ -166,6 +175,7 @@ function mostrarFimDeJogo(vitoria) {
     botoesFimEl.appendChild(botaoTentar);
   }
 }
+
 
 // Início do jogo
 carregarPergunta();

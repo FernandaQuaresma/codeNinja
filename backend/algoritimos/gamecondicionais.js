@@ -148,7 +148,7 @@ document.addEventListener('keydown', (e) => {
 // Mostra o menu de fim de jogo
 function mostrarFimDeJogo(vitoria) {
   fimJogoEl.classList.remove('oculto');
-  mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
+  mensagemFinalEl.innerHTML = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
   botoesFimEl.innerHTML = '';
 
   const botaoMenu = document.createElement('button');
@@ -159,6 +159,14 @@ function mostrarFimDeJogo(vitoria) {
   if (vitoria) {
     // ✅ Salva o emblema do jogo de condicionais
     localStorage.setItem("emblema_game_condicionais", "true");
+
+    // ✅ Mostra o emblema visualmente no fim do jogo
+    mensagemFinalEl.innerHTML += `
+      <br/><strong>Você conquistou o emblema de Condicionais!</strong><br/>
+      <img src="/frontend/assets/emblemas/game_condicionais.png"
+           alt="Emblema Condicionais"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+    `;
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';
@@ -166,7 +174,6 @@ function mostrarFimDeJogo(vitoria) {
     botoesFimEl.appendChild(botaoTentar);
   }
 }
-
 
 // Início do jogo
 carregarPergunta();

@@ -148,7 +148,7 @@ document.addEventListener('keydown', (e) => {
 // Mostra o menu de fim de jogo
 function mostrarFimDeJogo(vitoria) {
   fimJogoEl.classList.remove('oculto');
-  mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
+  mensagemFinalEl.innerHTML = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
   botoesFimEl.innerHTML = '';
 
   const botaoMenu = document.createElement('button');
@@ -160,8 +160,28 @@ function mostrarFimDeJogo(vitoria) {
     // ✅ Salva o emblema no localStorage
     localStorage.setItem("emblema_game_funcoes", "true");
 
-    // ✅ Log para depuração (opcional)
-    console.log("Emblema game_funcoes desbloqueado!");
+    // ✅ Exibe visualmente o emblema
+    mensagemFinalEl.innerHTML += `
+      <br/><strong>Você conquistou o emblema de Funções!</strong><br/>
+      <img src="/frontend/assets/emblemas/game_funcoes.png"
+           alt="Emblema Funções"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+    `;
+
+    // ✅ Salva no backend (ID 14 = emblema funções)
+    fetch('/api/emblemas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_emblema: 14 })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('Emblema funções registrado:', data);
+    })
+    .catch(err => {
+      console.error('Erro ao registrar emblema:', err);
+    });
+
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';

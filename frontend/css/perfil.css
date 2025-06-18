@@ -399,3 +399,57 @@ header .navigation .navigation-items a:hover::before {
   text-align: center;
   text-decoration: none;
 }
+.btn-diploma {
+  background-color: #7c4dff;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+}
+.btn-diploma:hover {
+  background-color: #5e35b1;
+}
+.modal-emblema {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-emblema.hidden {
+  display: none;
+}
+
+.modal-imagem {
+  max-width: 80vw;
+  max-height: 80vh;
+  border: 5px solid #c084fc;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10000;
+}
+
+.fechar-modal:hover {
+  color: #c084fc;
+}

@@ -158,18 +158,25 @@ function finishGame() {
   // ✅ Salva o emblema "niveis_funcoes" no localStorage
   localStorage.setItem("emblema_niveis_funcoes", "true");
 
+  // ✅ Mostra mensagem final + imagem do emblema
   $questionsContainer.innerHTML = `
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
-      <span>Resultado: ${message}</span><br/>
+      <span>Resultado: ${message}</span><br/><br/>
+      <strong>Você conquistou um novo emblema!</strong><br/>
+      <img src="/frontend/assets/emblemas/niveis_funcoes.png"
+           alt="Emblema Funções"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+      <br/>
       Redirecionando para o jogo...
     </p>
   `;
 
   setTimeout(() => {
     window.location.href = "http://localhost:3000/frontend/pages/gamefucoes.html";
-  }, 3000);
+  }, 4000); // tempo estendido para o jogador ver o emblema
 }
+
 
 
 document.addEventListener("DOMContentLoaded", () => {

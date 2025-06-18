@@ -162,6 +162,10 @@ function finishGame() {
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
       <span>Resultado: ${message}</span><br/>
+      <strong>Você conquistou o emblema de Variáveis!</strong><br/>
+      <img src="/frontend/assets/emblemas/niveis_variaveis.png"
+           alt="Emblema Variáveis"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;"><br/>
       Redirecionando para o jogo...
     </p>
   `;
@@ -170,6 +174,7 @@ function finishGame() {
     window.location.href = "http://localhost:3000/frontend/pages/gamevariaveis.html";
   }, 3000);
 }
+
 
 
 document.addEventListener("DOMContentLoaded", () => {

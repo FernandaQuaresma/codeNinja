@@ -146,6 +146,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Mostra o menu de fim de jogo
+// Mostra o menu de fim de jogo
 function mostrarFimDeJogo(vitoria) {
   fimJogoEl.classList.remove('oculto');
   mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
@@ -157,22 +158,16 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // ✅ Salva localmente o emblema do game de vetores
+    // ✅ Salva o emblema localmente
     localStorage.setItem("emblema_game_vetores", "true");
 
-    // (opcional: manter no banco de dados também)
-    fetch('/api/emblemas', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id_emblema: 10 }) // ID do emblema "Game - Vetores"
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Emblema de game registrado:', data);
-    })
-    .catch(error => {
-      console.error('Erro ao registrar emblema de game:', error);
-    });
+    // ✅ Exibe imagem do emblema
+    mensagemFinalEl.innerHTML += `
+      <br/><strong>Você conquistou o emblema de Vetores!</strong><br/>
+      <img src="/frontend/assets/emblemas/game_vetores.png"
+           alt="Emblema Vetores"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;">
+    `;
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';

@@ -162,6 +162,10 @@ function finishGame() {
     <p class="final-message">
       Você acertou ${totalCorrect} de ${totalQuestions} questões!<br/>
       <span>Resultado: ${message}</span><br/>
+      <strong>Você conquistou o emblema de Vetores!</strong><br/>
+      <img src="/frontend/assets/emblemas/niveis_vetores.png"
+           alt="Emblema Vetores"
+           style="max-width: 180px; margin-top: 15px; display: block; margin-left: auto; margin-right: auto;"><br/>
       Redirecionando para o jogo...
     </p>
   `;

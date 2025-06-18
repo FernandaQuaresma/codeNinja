@@ -12,26 +12,33 @@ let vidas = 3;
 let direction = 'direita';
 let perguntasRespondidas = 0;
 
-const gameWidth = gameArea.clientWidth;
-const areaPermitida = gameWidth * 0.9;
-const limiteEsquerdo = (gameWidth - areaPermitida) / 2;
-const limiteDireito = limiteEsquerdo + areaPermitida;
-
-let ninjaX = (limiteEsquerdo + limiteDireito) / 2 - 60;
+let ninjaX = 0;
 let respostas = [];
 
-ninja.style.left = `${ninjaX}px`;
+// Inicializa o ninja centralizado
+window.addEventListener('load', () => {
+  ninjaX = (gameArea.clientWidth - ninja.offsetWidth) / 2;
+  ninja.style.left = `${ninjaX}px`;
+});
 
-// Carrega uma pergunta da API com filtro por dificuldade e tópico
+window.addEventListener('resize', () => {
+  const ninjaWidth = ninja.offsetWidth;
+  const gameWidth = gameArea.clientWidth;
+  if (ninjaX + ninjaWidth > gameWidth) {
+    ninjaX = gameWidth - ninjaWidth;
+    ninja.style.left = `${ninjaX}px`;
+  }
+});
+
+// Carrega pergunta com filtro
 async function carregarPergunta() {
   try {
     const response = await fetch('/api/questions');
     const perguntas = await response.json();
 
-    // === Filtro por dificuldade e tópico ===
     const perguntasFiltradas = perguntas.filter(q =>
-      q.dificuldade?.toLowerCase() === "fácil" &&  // troque por "medio" ou "dificil" se quiser
-      q.topico?.toLowerCase() === "algoritimos"          // troque pelo tópico que você quiser
+      q.dificuldade?.toLowerCase() === "fácil" &&
+      q.topico?.toLowerCase() === "algoritimos"
     );
 
     if (perguntasFiltradas.length > 0) {
@@ -54,7 +61,6 @@ async function carregarPergunta() {
           `).join('')}
         </div>`;
     } else {
-      // Se não encontrar nenhuma pergunta com o filtro, exibe mensagem
       perguntaEl.textContent = 'Nenhuma pergunta encontrada para o filtro escolhido.';
       respostas = [];
     }
@@ -64,15 +70,15 @@ async function carregarPergunta() {
   }
 }
 
-// Cria uma opção visual que cai do topo
+// Cria opção visual que cai
 function criarOpcao(resposta) {
   const opt = document.createElement('div');
   opt.classList.add('option');
   opt.textContent = resposta.text;
   opt.dataset.correta = resposta.correta;
 
-  const posicaoAleatoria = Math.random() * (areaPermitida - 120);
-  opt.style.left = `${limiteEsquerdo + posicaoAleatoria}px`;
+  const posicaoAleatoria = Math.random() * (gameArea.clientWidth - 120);
+  opt.style.left = `${posicaoAleatoria}px`;
   opt.style.top = `0px`;
   opt.style.position = 'absolute';
 
@@ -84,6 +90,7 @@ function criarOpcao(resposta) {
 
     const ninjaRect = ninja.getBoundingClientRect();
     const optRect = opt.getBoundingClientRect();
+
     const colidiu =
       optRect.left < ninjaRect.right &&
       optRect.right > ninjaRect.left &&
@@ -120,7 +127,7 @@ function criarOpcao(resposta) {
   }, 16);
 }
 
-// Gera opções aleatórias
+// Gera opções a cada 3 segundos
 setInterval(() => {
   if (respostas.length > 0) {
     const aleatoria = respostas[Math.floor(Math.random() * respostas.length)];
@@ -128,9 +135,11 @@ setInterval(() => {
   }
 }, 3000);
 
-// Movimento do ninja com teclado
+// Movimento do ninja (corrigido)
 document.addEventListener('keydown', (e) => {
   const velocidade = 20;
+  const ninjaWidth = ninja.offsetWidth;
+  const gameWidthAtual = gameArea.clientWidth;
 
   if (e.key === 'ArrowLeft') {
     ninjaX -= velocidade;
@@ -140,12 +149,16 @@ document.addEventListener('keydown', (e) => {
     direction = 'direita';
   }
 
-  ninjaX = Math.max(limiteEsquerdo, Math.min(limiteDireito - 120, ninjaX));
+  if (ninjaX < 0) ninjaX = 0;
+  if (ninjaX > gameWidthAtual - ninjaWidth) ninjaX = gameWidthAtual - ninjaWidth;
+
   ninja.style.left = `${ninjaX}px`;
-  ninja.src = direction === 'direita' ? '/frontend/assets/ninja-direita.png' : '/frontend/assets/ninja-esquerda.png';
+  ninja.src = direction === 'direita'
+    ? '/frontend/assets/ninja-direita.png'
+    : '/frontend/assets/ninja-esquerda.png';
 });
 
-// Mostra o menu de fim de jogo
+// Fim de jogo
 function mostrarFimDeJogo(vitoria) {
   fimJogoEl.classList.remove('oculto');
   mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
@@ -157,10 +170,8 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // ✅ Marca que o usuário conquistou o emblema de jogo
     localStorage.setItem("emblema_game_algoritimos", "true");
 
-    // ✅ Mostra visual do emblema ganho
     const emblemaImg = document.createElement('img');
     emblemaImg.src = '/frontend/assets/emblemas/game_algoritimos.png';
     emblemaImg.alt = 'Emblema Conquistado - Jogo Algoritmos';
@@ -170,11 +181,9 @@ function mostrarFimDeJogo(vitoria) {
 
     mensagemFinalEl.appendChild(emblemaImg);
 
-    // ✅ Após alguns segundos, volta ao menu
     setTimeout(() => {
       window.location.href = 'topicos.html';
     }, 4000);
-
   } else {
     const botaoTentar = document.createElement('button');
     botaoTentar.textContent = '🔁 Tentar novamente';
@@ -183,6 +192,5 @@ function mostrarFimDeJogo(vitoria) {
   }
 }
 
-
-// Início do jogo
+// Início
 carregarPergunta();

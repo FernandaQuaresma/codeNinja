@@ -1,46 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: radial-gradient(ellipse at center, #1b1b2f, #0d0d1a);
+}
+
+body {
   font-family: 'Poppins', sans-serif;
+  background: radial-gradient(ellipse at center, #1b1b2f, #0d0d1a);
   color: #fff;
   overflow: hidden;
+  height: 100vh;
 }
 
 .game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
   height: 100vh;
-  padding-top: 20px;
+  padding: 10px;
+  overflow: hidden;
 }
 
 .pergunta {
-  font-size: 1.5rem;
-  text-shadow: 0 0 10px #7c4dff;
-  margin-bottom: 20px;
+  font-size: 1.2rem;
   text-align: center;
-  padding: 0 20px;
+  margin-bottom: 10px;
+  padding: 0 15px;
+  text-shadow: 0 0 10px #7c4dff;
 }
 
 #gameArea {
-  width: 100%;
-  height: 500px;
   position: relative;
+  width: 100%;
+  height: 70vh;          
+  max-height: 500px;     
   overflow: hidden;
-  border-top: 2px solid #7c4dff33;
+  border-top: 2px solid #7c4dff44;
 }
 
 #ninja {
-  width: 120px;
+  width: 10vw;
+  max-width: 100px;
+  min-width: 60px;
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: transform 0.1s;
+  left: 0;
+  transition: left 0.1s;
 }
 
 .option {
@@ -48,7 +55,7 @@ body {
   font-size: 1rem;
   background: #2a2a40;
   border: 1px solid #7c4dff;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 10px;
   color: #fff;
   box-shadow: 0 0 10px rgba(124, 77, 255, 0.4);
@@ -57,14 +64,13 @@ body {
 
 .placar {
   margin-top: 15px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   display: flex;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: space-around;
+  width: 100%;
   max-width: 600px;
 }
 
-/* Fim de jogo */
 .fim-jogo {
   position: fixed;
   top: 0;
@@ -85,20 +91,21 @@ body {
   background: #2a2a40;
   border: 2px solid #7c4dff;
   border-radius: 20px;
-  padding: 40px 20px;
+  padding: 30px 20px;
   box-shadow: 0 0 20px rgba(124, 77, 255, 0.5);
+  max-width: 90%;
 }
 
 .menu-fim h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
 }
 
 .menu-fim button {
   background: #7c4dff;
   color: white;
   border: none;
-  padding: 12px 25px;
+  padding: 10px 20px;
   font-size: 1rem;
   border-radius: 10px;
   margin: 10px;
@@ -113,9 +120,9 @@ body {
 .oculto {
   display: none;
 }
+
 .texto-pergunta {
-  font-size: 1.5rem;
-  text-shadow: 0 0 10px #7c4dff;
+  font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
@@ -123,27 +130,23 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 15px;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 0 10px;
 }
 
 .option-visual {
   background: #2a2a40;
   border: 1px solid #7c4dff;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
   color: #fff;
+  font-size: 0.95rem;
   box-shadow: 0 0 8px rgba(124, 77, 255, 0.3);
-  font-size: 1rem;
   white-space: nowrap;
   transition: transform 0.2s;
 }
 
 .option-visual:hover {
   transform: scale(1.05);
-}
-
-#fimJogo {
-  text-align: center;
-  color: white;
 }

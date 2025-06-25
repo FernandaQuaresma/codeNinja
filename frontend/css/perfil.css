@@ -173,12 +173,15 @@ header .navigation .navigation-items a:hover::before {
 
 #conquistasList {
   display: flex;
-  flex-wrap: wrap; /* permite quebra de linha */
+  overflow-x: auto;
+  overflow-y: hidden;
   gap: 12px;
   padding: 10px;
   list-style: none;
   margin: 0;
   justify-content: flex-start;
+  max-width: 100%;
+  scroll-behavior: smooth;
 }
 
 

@@ -11,27 +11,31 @@ let pontos = 0;
 let vidas = 3;
 let direction = 'direita';
 let perguntasRespondidas = 0;
-
-const gameWidth = gameArea.clientWidth;
-const areaPermitida = gameWidth * 0.6;
-const limiteEsquerdo = (gameWidth - areaPermitida) / 2;
-const limiteDireito = limiteEsquerdo + areaPermitida;
-
-let ninjaX = (limiteEsquerdo + limiteDireito) / 2 - 60;
+let ninjaX = 0;
 let respostas = [];
 
-ninja.style.left = `${ninjaX}px`;
+window.addEventListener('load', () => {
+  ninjaX = (gameArea.clientWidth - ninja.offsetWidth) / 2;
+  ninja.style.left = `${ninjaX}px`;
+});
 
-// Carrega uma pergunta da API com filtro por dificuldade e tópico
+window.addEventListener('resize', () => {
+  const ninjaWidth = ninja.offsetWidth;
+  const gameWidth = gameArea.clientWidth;
+  if (ninjaX + ninjaWidth > gameWidth) {
+    ninjaX = gameWidth - ninjaWidth;
+    ninja.style.left = `${ninjaX}px`;
+  }
+});
+
 async function carregarPergunta() {
   try {
     const response = await fetch('/api/questions');
     const perguntas = await response.json();
 
-    // === Filtro por dificuldade e tópico ===
     const perguntasFiltradas = perguntas.filter(q =>
-      q.dificuldade?.toLowerCase() === "facil" &&  // troque por "medio" ou "dificil" se quiser
-      q.topico?.toLowerCase() === "vetores"// troque pelo tópico que você quiser
+      q.dificuldade?.toLowerCase() === "facil" &&
+      q.topico?.toLowerCase() === "vetores"
     );
 
     if (perguntasFiltradas.length > 0) {
@@ -49,30 +53,25 @@ async function carregarPergunta() {
 
       perguntaEl.innerHTML += `
         <div class="alternativas-visuais">
-          ${respostas.map(res => `
-            <div class="option-visual">${res.text}</div>
-          `).join('')}
+          ${respostas.map(res => `<div class="option-visual">${res.text}</div>`).join('')}
         </div>`;
     } else {
-      // Se não encontrar nenhuma pergunta com o filtro, exibe mensagem
       perguntaEl.textContent = 'Nenhuma pergunta encontrada para o filtro escolhido.';
       respostas = [];
     }
-  } catch (error) {
-    console.error('Erro ao carregar pergunta:', error);
+  } catch {
     perguntaEl.textContent = 'Erro ao carregar pergunta';
   }
 }
 
-// Cria uma opção visual que cai do topo
 function criarOpcao(resposta) {
   const opt = document.createElement('div');
   opt.classList.add('option');
   opt.textContent = resposta.text;
   opt.dataset.correta = resposta.correta;
 
-  const posicaoAleatoria = Math.random() * (areaPermitida - 120);
-  opt.style.left = `${limiteEsquerdo + posicaoAleatoria}px`;
+  const posicaoAleatoria = Math.random() * (gameArea.clientWidth - 120);
+  opt.style.left = `${posicaoAleatoria}px`;
   opt.style.top = `0px`;
   opt.style.position = 'absolute';
 
@@ -84,6 +83,7 @@ function criarOpcao(resposta) {
 
     const ninjaRect = ninja.getBoundingClientRect();
     const optRect = opt.getBoundingClientRect();
+
     const colidiu =
       optRect.left < ninjaRect.right &&
       optRect.right > ninjaRect.left &&
@@ -95,17 +95,14 @@ function criarOpcao(resposta) {
         pontos++;
         pontosEl.textContent = pontos;
         perguntasRespondidas++;
-
         if (perguntasRespondidas >= 5) {
           mostrarFimDeJogo(true);
         } else {
           carregarPergunta();
         }
-
       } else {
         vidas--;
         vidasEl.textContent = vidas;
-
         if (vidas <= 0) {
           mostrarFimDeJogo(false);
         }
@@ -120,7 +117,6 @@ function criarOpcao(resposta) {
   }, 16);
 }
 
-// Gera opções aleatórias
 setInterval(() => {
   if (respostas.length > 0) {
     const aleatoria = respostas[Math.floor(Math.random() * respostas.length)];
@@ -128,9 +124,10 @@ setInterval(() => {
   }
 }, 3000);
 
-// Movimento do ninja com teclado
 document.addEventListener('keydown', (e) => {
   const velocidade = 20;
+  const ninjaWidth = ninja.offsetWidth;
+  const gameWidthAtual = gameArea.clientWidth;
 
   if (e.key === 'ArrowLeft') {
     ninjaX -= velocidade;
@@ -140,13 +137,15 @@ document.addEventListener('keydown', (e) => {
     direction = 'direita';
   }
 
-  ninjaX = Math.max(limiteEsquerdo, Math.min(limiteDireito - 120, ninjaX));
+  if (ninjaX < 0) ninjaX = 0;
+  if (ninjaX > gameWidthAtual - ninjaWidth) ninjaX = gameWidthAtual - ninjaWidth;
+
   ninja.style.left = `${ninjaX}px`;
-  ninja.src = direction === 'direita' ? '/frontend/assets/ninja-direita.png' : '/frontend/assets/ninja-esquerda.png';
+  ninja.src = direction === 'direita'
+    ? '/frontend/assets/ninja-direita.png'
+    : '/frontend/assets/ninja-esquerda.png';
 });
 
-// Mostra o menu de fim de jogo
-// Mostra o menu de fim de jogo
 function mostrarFimDeJogo(vitoria) {
   fimJogoEl.classList.remove('oculto');
   mensagemFinalEl.textContent = vitoria ? '🎉 Você venceu!' : '💀 Fim de jogo!';
@@ -158,10 +157,7 @@ function mostrarFimDeJogo(vitoria) {
   botoesFimEl.appendChild(botaoMenu);
 
   if (vitoria) {
-    // ✅ Salva o emblema localmente
     localStorage.setItem("emblema_game_vetores", "true");
-
-    // ✅ Exibe imagem do emblema
     mensagemFinalEl.innerHTML += `
       <br/><strong>Você conquistou o emblema de Vetores!</strong><br/>
       <img src="/frontend/assets/emblemas/game_vetores.png"
@@ -176,5 +172,4 @@ function mostrarFimDeJogo(vitoria) {
   }
 }
 
-// Início do jogo
 carregarPergunta();
